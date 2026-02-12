@@ -68,6 +68,13 @@
       background: #0a0a0a; border: 1px solid #262626; border-radius: 9999px;
       padding: 0 18px 0 36px; height: 96px; display: flex; align-items: center; gap: 24px;
     }
+    .credit-wireframe path {
+      stroke: #1f1f1f !important;
+      stroke-width: 0.9 !important;
+    }
+    .credit-wireframe path[fill="#0a0a0a"] {
+      fill: transparent !important;
+    }
     @media (max-width: 1200px) {
       .footer-wrap { padding-left: 48px !important; padding-right: 48px !important; }
     }
@@ -120,11 +127,11 @@
   </header>
 
   <!-- Hero Section -->
-  <section style="background: #ffffff;">
+  <section style="background: #0a0a0a;">
     <div class="max-w-content mx-auto" style="padding-top: 64px;">
-      <div class="relative overflow-hidden" style="height: 720px; border-radius: 0 0 14px 14px; border: 1px solid #262626; border-top: none; background: #ffffff;">
+      <div class="relative overflow-hidden" style="height: 720px; border-radius: 0 0 14px 14px; border: 1px solid #262626; border-top: none; background: #0a0a0a;">
         <!-- Faint green accent grid pattern at 25% opacity with blur -->
-        <div class="absolute inset-0" style="opacity: 0.08; filter: blur(4px);">
+        <div class="absolute inset-0" style="opacity: 0.12; filter: blur(4px);">
           <svg width="100%" height="100%" style="display: block;">
             <defs>
               <pattern id="heroGrid" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
@@ -136,7 +143,7 @@
         </div>
         <!-- Isometric 3D blocks - ghostly white with glow -->
         <div class="absolute inset-0 flex items-end justify-center">
-          <svg viewBox="0 0 1080 500" width="1080" height="500" style="display: block; opacity: 0.25; filter: drop-shadow(0 -5px 80px rgba(255,255,255,0.05)) drop-shadow(0 -11px 115px rgba(255,255,255,0.07)) drop-shadow(0 -18px 116px rgba(255,255,255,0.09)) drop-shadow(0 -49px 103px rgba(255,255,255,0.13));">
+          <svg viewBox="0 0 1080 500" width="1080" height="500" style="display: block; opacity: 0.58; filter: drop-shadow(0 -5px 80px rgba(255,255,255,0.05)) drop-shadow(0 -11px 115px rgba(255,255,255,0.07)) drop-shadow(0 -18px 116px rgba(255,255,255,0.09)) drop-shadow(0 -49px 103px rgba(255,255,255,0.13));">
             <defs>
               <linearGradient id="blockGrad" x1="25%" y1="62.5%" x2="75%" y2="0%" gradientUnits="objectBoundingBox">
                 <stop offset="0%" stop-color="#ffffff"/>
@@ -347,7 +354,7 @@
           </div>
         </div>
         <!-- Wireframe isometric blocks -->
-        <svg viewBox="0 0 1080 772" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" style="display: block;">
+        <svg class="credit-wireframe" viewBox="0 0 1080 772" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" style="display: block;">
           <!-- Row 1: 1 block -->
           <g transform="translate(402, 138)">
             <path d="M0,0 L134,-77 L268,0 L268,310 L134,387 L0,310 Z" fill="#0a0a0a" stroke="#262626" stroke-width="0.64"/>
