@@ -51,12 +51,14 @@
     .sub { margin: 22px auto 0; max-width: 670px; color: var(--muted); font-size: 20px; line-height: 1.8; }
     .actions { margin-top: 26px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
     .iso { position: absolute; inset: auto 0 0; height: 390px; display: flex; justify-content: center; align-items: end; }
-    .hook { grid-template-columns: 1fr 320px; }
-    .hook > div { padding: 44px; }
+    .hook { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .hook > div { padding: 44px; min-height: 304px; }
+    .hook-left { grid-column: span 2; }
+    .hook-right { grid-column: span 1; }
     .hook-right { border-left: 1px solid var(--border); display: flex; flex-direction: column; justify-content: space-between; gap: 22px; }
     .big-lines { color: var(--muted); font-size: 32px; line-height: 1.5; letter-spacing: -1.28px; }
     .cards { grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--border); }
-    .card { min-height: 305px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 44px; }
+    .card { min-height: 304px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 44px; }
     .card:nth-child(3n) { border-right: none; }
     .card h3 { margin: 0 0 8px; font-size: 24px; letter-spacing: -.96px; }
     .card p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.43; }
@@ -67,14 +69,15 @@
     .cta-main { min-height: 860px; border-top: 1px solid var(--border); display: flex; align-items: start; justify-content: center; position: relative; overflow: hidden; }
     .cta-main .inner { text-align: center; padding-top: 100px; position: relative; z-index: 2; }
     .wire { position: absolute; left: 50%; transform: translateX(-50%); bottom: -20px; width: 980px; opacity: .9; }
-    .testnet { min-height: 720px; border-top: 1px solid var(--border); display: grid; grid-template-columns: 1fr 2fr; }
-    .test-left { padding: 68px 44px; border-right: 1px solid var(--border); }
+    .testnet { min-height: 720px; border-top: 1px solid var(--border); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .test-left { grid-column: span 1; padding: 68px 44px; border-right: 1px solid var(--border); min-height: 304px; }
+    .test-right { grid-column: span 2; }
     .test-right { display: grid; grid-template-columns: repeat(2,1fr); gap: 0; }
-    .product { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); min-height: 180px; padding: 28px; display: flex; align-items: end; }
+    .product { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); min-height: 304px; padding: 28px; display: flex; align-items: end; }
     .product:nth-child(2n) { border-right: none; }
     .partners { border-top: 1px solid var(--border); }
     .partner-grid { display: grid; grid-template-columns: repeat(3,1fr); }
-    .partner { min-height: 130px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); display: grid; place-items: center; font-size: 24px; }
+    .partner { min-height: 304px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); display: grid; place-items: center; font-size: 24px; }
     .partner:nth-child(3n) { border-right: none; }
     .newsletter { border-top: 1px solid var(--border); text-align: center; padding: 90px 24px; }
     .newsletter h3 { margin: 0 0 24px; font-size: 24px; letter-spacing: -.9px; }
@@ -116,7 +119,7 @@
   </section>
 
   <section class="wrap frame row hook">
-    <div>
+    <div class="hook-left">
       <p class="big-lines">Up to 20x leveraged exposure.<br>No liquidations, no expiry.<br>Always-on redemption liquidity.</p>
     </div>
     <div class="hook-right">
