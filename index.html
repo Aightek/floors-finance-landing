@@ -88,6 +88,24 @@
       opacity: .25;
     }
     .hero-content { position: relative; z-index: 2; text-align: center; padding-top: 110px; }
+    .hero-status {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      z-index: 3;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--accent);
+      font-size: 14px;
+      line-height: 1;
+    }
+    .hero-status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
     h1 { margin: 0; font-size: 48px; letter-spacing: -2.4px; line-height: 1; }
     .sub { margin: 22px auto 0; max-width: 670px; color: var(--muted); font-size: 20px; line-height: 1.8; }
     .actions { margin-top: 26px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
@@ -219,6 +237,10 @@
 
   <section class="wrap frame hero">
     <div class="hero-grid"></div>
+    <div class="hero-status">
+      <span class="hero-status-dot" aria-hidden="true"></span>
+      <span>Testnet live.</span>
+    </div>
     <div class="hero-content">
       <h1>Floor Only Goes Up</h1>
       <p class="sub">Floors Finance is a DeFi protocol for digital assets with rising floor prices.</p>
