@@ -155,6 +155,33 @@
     .wire { position: absolute; left: 50%; transform: translateX(-50%); bottom: -20px; width: 980px; opacity: .9; }
     .testnet { min-height: 720px; border-top: 1px solid var(--border); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .test-left { grid-column: span 1; padding: 68px 44px; border-right: 1px solid var(--border); min-height: 304px; }
+    .test-left-inner { height: 100%; display: flex; flex-direction: column; justify-content: space-between; gap: 16px; }
+    .test-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      width: fit-content;
+      height: 34px;
+      padding: 8px;
+      border-radius: 6px;
+    }
+    .test-badge-dot { width: 8px; height: 8px; border-radius: 8px; background: var(--accent); }
+    .test-badge-text { color: var(--accent); font-size: 14px; line-height: 1.43; }
+    .test-actions { display: flex; flex-direction: column; gap: 16px; }
+    .test-btn {
+      height: 40px;
+      width: 100%;
+      border-radius: 9999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 10px 0 8px;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+    }
+    .test-btn-primary { background: #fafafa; color: #0a0a0a; }
+    .test-btn-secondary { color: #fafafa; border: 1px solid var(--border); background: transparent; }
     .test-right { grid-column: span 2; }
     .test-right { display: grid; grid-template-columns: repeat(2,1fr); gap: 0; }
     .product { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); min-height: 304px; padding: 28px; display: flex; align-items: end; }
@@ -310,8 +337,18 @@
 
   <section class="wrap frame testnet">
     <div class="test-left">
-      <h2 style="margin:0 0 22px;font-size:40px;letter-spacing:-2.4px;line-height:1.2">Enter at floor.<br>Exit with rewards.</h2>
-      <p style="margin:0;color:var(--muted);font-size:18px;line-height:1.52">We believe in rewarding early adopters. Your activity on the Floors Finance Testnet is tracked and converted directly into Mainnet value.</p>
+      <div class="test-left-inner">
+        <div class="test-badge">
+          <span class="test-badge-dot" aria-hidden="true"></span>
+          <span class="test-badge-text">Testnet live.</span>
+        </div>
+        <h2 style="margin:0;font-size:40px;letter-spacing:-2.4px;line-height:1.2">Enter at floor.<br>Exit with rewards.</h2>
+        <p style="margin:0;color:var(--muted);font-size:18px;line-height:1.52">We believe in rewarding early adopters. Your activity on the Floors Finance Testnet is tracked and converted directly into Mainnet value.</p>
+        <div class="test-actions">
+          <a href="#" class="test-btn test-btn-primary"><span>Join Points Program</span><span aria-hidden="true">→</span></a>
+          <a href="#" class="test-btn test-btn-secondary"><span>View Leaderboard</span><span aria-hidden="true">→</span></a>
+        </div>
+      </div>
     </div>
     <div class="test-right">
       <div class="product">Leveraged Presales</div>
