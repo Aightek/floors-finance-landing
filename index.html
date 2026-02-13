@@ -15,6 +15,7 @@
       --text: #fafafa;
       --muted: #a1a1a1;
       --accent: #beffb0;
+      --col-pad: 44px;
     }
     * { box-sizing: border-box; }
     body {
@@ -87,7 +88,17 @@
       background-size: 28px 28px;
       opacity: .25;
     }
-    .hero-content { position: relative; z-index: 2; text-align: center; padding-top: 110px; display: flex; flex-direction: column; align-items: center; }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding-top: 110px;
+      padding-left: var(--col-pad);
+      padding-right: var(--col-pad);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
     .hero-status {
       display: inline-flex;
       align-items: center;
@@ -204,6 +215,7 @@
       .footer-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 520px) {
+      :root { --col-pad: 28px; }
       .wrap { width: calc(100vw - 20px); }
       .hook > div, .card, .test-left, .product, .partner, .module-copy { padding: 28px; }
       .actions { gap: 10px; }
