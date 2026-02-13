@@ -24,7 +24,7 @@
       color: var(--text);
       -webkit-font-smoothing: antialiased;
     }
-    .wrap { width: 1060px; margin: 0 auto; }
+    .wrap { width: min(1060px, calc(100vw - 32px)); margin: 0 auto; }
     .frame { border: 1px solid var(--border); border-top: none; }
     .row { display: grid; }
     .btn-primary, .btn-secondary, .btn-ghost {
@@ -64,6 +64,7 @@
     .card p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.43; }
     .label { color: var(--accent); font-size: 14px; letter-spacing: -.28px; }
     .feature-title { font-size: 24px; letter-spacing: -.96px; line-height: 1.33; margin: 10px 0 0; }
+    .module-copy { min-height: 304px; display: flex; flex-direction: column; justify-content: center; padding: 44px; }
     .divider { height: 138px; display: grid; place-items: center; border-top: 1px solid var(--border); }
     .divider p { margin: 0; font-size: 24px; letter-spacing: -.96px; text-align: center; }
     .cta-main { min-height: 860px; border-top: 1px solid var(--border); display: flex; align-items: start; justify-content: center; position: relative; overflow: hidden; }
@@ -85,8 +86,45 @@
     .footer-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
     .footer h4 { margin: 0 0 8px; font-size: 14px; }
     .footer a { color: var(--muted); text-decoration: none; display: block; font-size: 14px; line-height: 1.9; }
-    @media (max-width: 1100px) {
-      body { min-width: 1060px; }
+    @media (max-width: 1024px) {
+      .hero { height: 680px; }
+      .hero-content { padding-top: 88px; }
+      h1 { font-size: 42px; }
+      .sub { font-size: 18px; }
+      .hook > div, .card, .test-left, .product, .partner, .module-copy { min-height: 304px; }
+      .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 800px) {
+      .topbar { padding: 0 16px; }
+      .hero { height: 620px; }
+      .hero-content { padding-top: 72px; }
+      h1 { font-size: 36px; letter-spacing: -1.8px; }
+      .sub { font-size: 16px; line-height: 1.6; }
+      .iso { height: 320px; }
+      .iso svg { width: min(420px, 92vw); height: auto; }
+      .hook { grid-template-columns: 1fr; }
+      .hook-left, .hook-right { grid-column: span 1; }
+      .hook-right { border-left: none; border-top: 1px solid var(--border); }
+      .cards { grid-template-columns: 1fr; }
+      .card { border-right: none; }
+      .cta-main { min-height: 760px; }
+      .cta-main .inner { padding: 84px 20px 0; }
+      .wire { width: min(980px, 160vw); }
+      .testnet { grid-template-columns: 1fr; }
+      .test-left { border-right: none; border-bottom: 1px solid var(--border); }
+      .test-right { grid-template-columns: 1fr; }
+      .product { border-right: none; }
+      .partner-grid { grid-template-columns: 1fr; }
+      .partner { border-right: none; }
+      .newsletter { padding: 64px 20px; }
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 520px) {
+      .wrap { width: calc(100vw - 20px); }
+      .hook > div, .card, .test-left, .product, .partner, .module-copy { padding: 28px; }
+      .actions { gap: 10px; }
+      .btn-primary, .btn-secondary { width: 100%; }
+      .btn-secondary { padding: 0 18px; }
     }
   </style>
 </head>
@@ -137,7 +175,7 @@
     <article class="card"><h3>Fee Routing Engine</h3><p>Protocol fees flow directly into reserves, compounding floor value over time.</p></article>
   </section>
 
-  <section class="wrap frame" style="padding:44px; border-top:none;">
+  <section class="wrap frame module-copy" style="border-top:none;">
     <div class="label">Protocol-Defined Liquidity</div>
     <p class="feature-title">From floor-backed issuance to compounding reserves in one flow. Floors aligns redemption liquidity and long-term upside for holders and treasuries.</p>
   </section>
@@ -170,7 +208,7 @@
     </div>
   </section>
 
-  <section class="wrap frame" style="padding:44px; border-top:none;">
+  <section class="wrap frame module-copy" style="border-top:none;">
     <div class="label">Debt-Aware Credit Layer</div>
     <p class="feature-title">Borrow against floor value with no liquidations and no expiry. Safety tracks a floor price designed to rise, not fall.</p>
   </section>
