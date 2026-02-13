@@ -78,6 +78,9 @@
     .module-3col .col-empty {
       min-height: 304px;
     }
+    .module-3col .divider-right {
+      border-right: 1px solid var(--border);
+    }
     .divider { height: 138px; display: grid; place-items: center; border-top: 1px solid var(--border); }
     .divider p { margin: 0; font-size: 24px; letter-spacing: -.96px; text-align: center; }
     .cta-main { min-height: 860px; border-top: 1px solid var(--border); display: flex; align-items: start; justify-content: center; position: relative; overflow: hidden; }
@@ -134,6 +137,9 @@
         grid-column: span 1;
         border-right: none;
         border-bottom: 1px solid var(--border);
+      }
+      .module-3col .divider-right {
+        border-right: none;
       }
       .newsletter { padding: 64px 20px; }
       .footer-grid { grid-template-columns: 1fr; }
@@ -195,7 +201,7 @@
   </section>
 
   <section class="wrap frame module-3col" style="border-top:none;">
-    <div class="col-empty"></div>
+    <div class="col-empty divider-right"></div>
     <div class="col-span2">
       <div class="label">Protocol-Defined Liquidity</div>
       <p class="feature-title">From floor-backed issuance to compounding reserves in one flow. Floors aligns redemption liquidity and long-term upside for holders and treasuries.</p>
