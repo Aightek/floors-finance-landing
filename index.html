@@ -24,7 +24,7 @@
       color: var(--text);
       -webkit-font-smoothing: antialiased;
     }
-    .wrap { width: min(1060px, calc(100vw - 32px)); margin: 0 auto; }
+    .wrap { width: 1060px; margin: 0 auto; }
     .frame { border: 1px solid var(--border); border-top: none; }
     .row { display: grid; }
     .btn-primary, .btn-secondary, .btn-ghost {
@@ -38,7 +38,7 @@
     .btn-primary { background: #fafafa; color: #0a0a0a; height: 48px; padding: 0 18px; font-size: 16px; }
     .btn-secondary { background: #0a0a0a; color: #fafafa; height: 48px; padding: 0 30px; font-size: 16px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.2); }
     .btn-ghost { background: #0a0a0a; color: #fafafa; height: 40px; padding: 0 14px; font-size: 14px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.2); }
-    .topbar { height: 86px; border: 1px solid var(--border); margin-top: 32px; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; }
+    .topbar { height: 86px; margin-top: 32px; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; }
     .hero { height: 720px; position: relative; overflow: hidden; }
     .hero-grid {
       position: absolute; inset: 0;
@@ -78,15 +78,12 @@
     .partner:nth-child(3n) { border-right: none; }
     .newsletter { border-top: 1px solid var(--border); text-align: center; padding: 90px 24px; }
     .newsletter h3 { margin: 0 0 24px; font-size: 24px; letter-spacing: -.9px; }
-    .footer { border-top: 1px solid var(--border); padding: 36px 24px 52px; }
+    .footer { padding: 36px 24px 52px; }
     .footer-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
     .footer h4 { margin: 0 0 8px; font-size: 14px; }
     .footer a { color: var(--muted); text-decoration: none; display: block; font-size: 14px; line-height: 1.9; }
-    @media (max-width: 900px) {
-      .hook, .testnet, .cards, .partner-grid, .footer-grid { grid-template-columns: 1fr; }
-      .hook-right, .test-left { border-left: none; border-right: none; border-top: 1px solid var(--border); }
-      .card, .product, .partner { border-right: none !important; }
-      .wire { width: 720px; }
+    @media (max-width: 1100px) {
+      body { min-width: 1060px; }
     }
   </style>
 </head>
@@ -187,7 +184,7 @@
     <a class="btn-primary" href="#">Join Our Newsletter</a>
   </section>
 
-  <footer class="wrap frame footer">
+  <footer class="wrap footer">
     <div class="footer-grid">
       <div><h4>Protocol</h4><a href="#">Litepaper</a><a href="#">Audit</a><a href="#">Contact</a></div>
       <div><h4>Resources</h4><a href="#">Blog</a><a href="#">Docs</a><a href="#">FAQ</a><a href="#">Terms Of Use</a><a href="#">Privacy Policy</a><a href="#">GitHub</a><a href="#">Media Kit</a></div>
