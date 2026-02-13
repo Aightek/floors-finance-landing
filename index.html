@@ -66,10 +66,18 @@
     .feature-title { font-size: 24px; letter-spacing: -.96px; line-height: 1.33; margin: 10px 0 0; }
     .module-copy { min-height: 304px; display: flex; flex-direction: column; justify-content: center; padding: 44px; }
     .module-3col { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--border); }
-    .module-3col > .col { min-height: 304px; border-right: 1px solid var(--border); display: flex; flex-direction: column; justify-content: center; }
-    .module-3col > .col:last-child { border-right: none; }
-    .module-3col .copy-a { padding: 44px; }
-    .module-3col .copy-b { padding: 44px; }
+    .module-3col .col-span2 {
+      grid-column: span 2;
+      min-height: 304px;
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 44px;
+    }
+    .module-3col .col-empty {
+      min-height: 304px;
+    }
     .divider { height: 138px; display: grid; place-items: center; border-top: 1px solid var(--border); }
     .divider p { margin: 0; font-size: 24px; letter-spacing: -.96px; text-align: center; }
     .cta-main { min-height: 860px; border-top: 1px solid var(--border); display: flex; align-items: start; justify-content: center; position: relative; overflow: hidden; }
@@ -122,8 +130,11 @@
       .partner-grid { grid-template-columns: 1fr; }
       .partner { border-right: none; }
       .module-3col { grid-template-columns: 1fr; }
-      .module-3col > .col { border-right: none; border-bottom: 1px solid var(--border); }
-      .module-3col > .col:last-child { border-bottom: none; }
+      .module-3col .col-span2 {
+        grid-column: span 1;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
       .newsletter { padding: 64px 20px; }
       .footer-grid { grid-template-columns: 1fr; }
     }
@@ -184,12 +195,11 @@
   </section>
 
   <section class="wrap frame module-3col" style="border-top:none;">
-    <div class="col copy-a"></div>
-    <div class="col copy-b">
+    <div class="col-span2">
       <div class="label">Protocol-Defined Liquidity</div>
       <p class="feature-title">From floor-backed issuance to compounding reserves in one flow. Floors aligns redemption liquidity and long-term upside for holders and treasuries.</p>
     </div>
-    <div class="col"></div>
+    <div class="col-empty"></div>
   </section>
 
   <section class="wrap frame cta-main">
@@ -221,12 +231,11 @@
   </section>
 
   <section class="wrap frame module-3col" style="border-top:none;">
-    <div class="col copy-a">
+    <div class="col-span2">
       <div class="label">Debt-Aware Credit Layer</div>
       <p class="feature-title">Borrow against floor value with no liquidations and no expiry. Safety tracks a floor price designed to rise, not fall.</p>
     </div>
-    <div class="col"></div>
-    <div class="col"></div>
+    <div class="col-empty"></div>
   </section>
 
   <section class="wrap frame partners">
