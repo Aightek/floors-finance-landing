@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -87,14 +87,37 @@
       background-image: radial-gradient(circle at 1px 1px, rgba(190,255,176,.25) 1px, transparent 0);
       background-size: 28px 28px;
       opacity: .25;
+      z-index: 0;
+    }
+    .hero-lottie {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .hero-lottie-track {
+      position: absolute;
+      inset: 0;
+    }
+    .hero-lottie-track > div,
+    .hero-lottie-track > svg {
+      width: 100%;
+      height: 100%;
     }
     .hero-content {
       position: relative;
       z-index: 2;
       text-align: center;
-      padding-top: 110px;
       padding-left: var(--col-pad);
       padding-right: var(--col-pad);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .hero-content-box {
+      width: min(860px, 100%);
+      min-height: 420px;
+      padding: 64px 44px 56px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -115,9 +138,31 @@
       background: var(--accent);
     }
     h1 { margin: 0; font-size: 48px; letter-spacing: -2.4px; line-height: 1; }
+    .hero-headline { display: inline-flex; align-items: baseline; gap: 0.22em; }
+    .hero-verb {
+      position: relative;
+      display: inline-block;
+      min-width: 6ch;
+      text-align: left;
+    }
+    .hero-verb::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -0.12em;
+      height: 2px;
+      background: currentColor;
+      transform: scaleX(0);
+      transform-origin: left;
+    }
+    .hero-verb.is-final::after { animation: hero-underline 700ms ease forwards; }
+    @keyframes hero-underline {
+      from { transform: scaleX(0); }
+      to { transform: scaleX(1); }
+    }
     .sub { margin: 22px auto 0; max-width: 670px; color: var(--muted); font-size: 20px; line-height: 1.8; }
     .actions { margin-top: 26px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-    .iso { position: absolute; inset: auto 0 0; height: 390px; display: flex; justify-content: center; align-items: end; }
     .hook { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .hook > div { padding: 44px; min-height: 304px; }
     .hook-left { grid-column: span 2; }
@@ -129,6 +174,33 @@
     .card:nth-child(3n) { border-right: none; }
     .card h3 { margin: 0 0 8px; font-size: 24px; letter-spacing: -.96px; }
     .card p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.43; }
+    .card-with-media {
+      position: relative;
+      overflow: hidden;
+    }
+    .card-media-bg {
+      position: absolute;
+      left: -10%;
+      right: -10%;
+      top: -8%;
+      bottom: -28%;
+      pointer-events: none;
+      opacity: 0.8;
+      z-index: 0;
+    }
+    .card-media-bg > div,
+    .card-media-bg > svg { width: 100%; height: 100%; }
+    .reserve-pool-card .card-media-bg {
+      left: -2%;
+      right: -2%;
+      top: -2%;
+      bottom: -12%;
+    }
+    .card-content {
+      position: relative;
+      z-index: 1;
+      max-width: 320px;
+    }
     .label { color: var(--accent); font-size: 14px; letter-spacing: -.28px; }
     .feature-title { font-size: 24px; letter-spacing: -.96px; line-height: 1.33; margin: 10px 0 0; }
     .module-copy { min-height: 304px; display: flex; flex-direction: column; justify-content: center; padding: 44px; }
@@ -152,10 +224,166 @@
     .divider p { margin: 0; font-size: 24px; letter-spacing: -.96px; text-align: center; }
     .cta-main { min-height: 860px; border-top: 1px solid var(--border); display: flex; align-items: start; justify-content: center; position: relative; overflow: hidden; }
     .cta-main .inner { text-align: center; padding-top: 100px; position: relative; z-index: 2; }
+    .cta-lottie {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .cta-lottie-track {
+      position: absolute;
+      inset: 0;
+    }
+    .cta-lottie-track > div,
+    .cta-lottie-track > svg {
+      width: 100%;
+      height: 100%;
+    }
     .wire { position: absolute; left: 50%; transform: translateX(-50%); bottom: -20px; width: 980px; opacity: .9; }
     .testnet { min-height: 720px; border-top: 1px solid var(--border); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .leaderboard { min-height: 608px; border-top: 1px solid var(--border); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .leaderboard-col { min-height: 608px; }
+    .leaderboard-col + .leaderboard-col { border-left: 1px solid var(--border); }
+    .lb-stats { padding: 64px 44px; display: flex; flex-direction: column; gap: 16px; }
+    .lb-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      height: 34px;
+      width: fit-content;
+      border-radius: 6px;
+      padding: 8px;
+      color: var(--accent);
+      font-size: 14px;
+      line-height: 1.43;
+    }
+    .lb-live-dot { width: 8px; height: 8px; border-radius: 8px; background: var(--accent); }
+    .lb-overview-title {
+      margin: 0;
+      color: #fafafa;
+      font-size: 32px;
+      font-weight: 600;
+      letter-spacing: -2.4px;
+      line-height: 1.2;
+    }
+    .lb-overview-copy {
+      margin: 0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.52;
+    }
+    .lb-divider { height: 1px; background: var(--border); }
+    .lb-stat-row { display: flex; flex-direction: column; gap: 6px; }
+    .lb-stat-title {
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.33;
+      letter-spacing: -.96px;
+    }
+    .lb-stat-value {
+      margin: 0;
+      color: #fafafa;
+      font-size: 24px;
+      font-weight: 600;
+      line-height: 1;
+      letter-spacing: -.96px;
+    }
+    .lb-tier-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 2px;
+    }
+    .lb-tier-item { display: inline-flex; flex-direction: column; align-items: center; gap: 4px; }
+    .lb-tier-value {
+      color: #fafafa;
+      font-size: 24px;
+      font-weight: 600;
+      line-height: 1;
+      letter-spacing: -.96px;
+    }
+    .lb-tier-label {
+      color: #565656;
+      font-size: 8px;
+      line-height: 1;
+      letter-spacing: .04px;
+    }
+    .lb-rankings { padding: 44px; display: flex; flex-direction: column; justify-content: center; gap: 8px; }
+    .lb-rankings h3 {
+      margin: 0;
+      color: #fafafa;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+    .lb-rank-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 4px; }
+    .lb-rank-item {
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      font-size: 14px;
+      line-height: 1.43;
+    }
+    .lb-rank-left {
+      color: #c7d3e9;
+      min-width: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .lb-rank-item.top1 .lb-rank-left { color: #f8ca62; font-weight: 500; }
+    .lb-rank-item.top2 .lb-rank-left { color: #39d0c6; font-weight: 500; }
+    .lb-rank-item.top3 .lb-rank-left { color: #8c63ff; font-weight: 500; }
+    .lb-rank-right { color: #c7d3e9; font-weight: 500; flex: 0 0 auto; }
+    .lb-tasks { padding: 64px 44px; display: flex; flex-direction: column; gap: 16px; }
+    .lb-task-list { border: none; }
+    .lb-task { min-height: 108px; padding: 16px; display: flex; flex-direction: column; border: none; }
+    .lb-task:not(:last-child) { border-bottom: 1px solid var(--border); }
+    .lb-task-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+    .lb-task-copy { display: flex; flex-direction: column; gap: 6px; margin-top: auto; padding-top: 10px; }
+    .lb-task-head h4 {
+      margin: 0;
+      color: #fafafa;
+      font-size: 16px;
+      line-height: 1.33;
+      letter-spacing: -.96px;
+      font-weight: 600;
+    }
+    .lb-task-copy p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.43;
+    }
+    .lb-task-points {
+      margin: 0;
+      color: #beffb0;
+      font-size: 24px;
+      line-height: 1;
+      letter-spacing: -.96px;
+      font-weight: 600;
+    }
+    .lb-view-all {
+      height: 40px;
+      border-radius: 9999px;
+      border: none;
+      color: var(--muted);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 14px;
+      font-size: 14px;
+      font-family: "Poppins", sans-serif;
+      font-weight: 400;
+      line-height: 1.43;
+    }
     .test-left { grid-column: span 1; padding: 68px 44px; border-right: 1px solid var(--border); min-height: 304px; }
     .test-left-inner { height: 100%; display: flex; flex-direction: column; justify-content: space-between; gap: 16px; }
+    .test-copy { display: flex; flex-direction: column; gap: 16px; }
     .test-badge {
       display: inline-flex;
       align-items: center;
@@ -182,10 +410,31 @@
     }
     .test-btn-primary { background: #fafafa; color: #0a0a0a; }
     .test-btn-secondary { color: #fafafa; border: 1px solid var(--border); background: transparent; }
-    .test-right { grid-column: span 2; }
-    .test-right { display: grid; grid-template-columns: repeat(2,1fr); gap: 0; }
-    .product { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); min-height: 304px; padding: 28px; display: flex; align-items: end; }
+    .test-right { grid-column: span 2; display: grid; grid-template-columns: repeat(2,1fr); gap: 0; }
+    .product {
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      min-height: 304px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 16px;
+    }
     .product:nth-child(2n) { border-right: none; }
+    .product-icon {
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      color: #fafafa;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .product h4 { margin: 0; font-size: 24px; letter-spacing: -.96px; line-height: 1.2; }
+    .product p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.5; }
     .partners { border-top: 1px solid var(--border); }
     .partner-grid { display: grid; grid-template-columns: repeat(3,1fr); }
     .partner { min-height: 304px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); display: grid; place-items: center; font-size: 24px; }
@@ -198,7 +447,7 @@
     .footer a { color: var(--muted); text-decoration: none; display: block; font-size: 14px; line-height: 1.9; }
     @media (max-width: 1024px) {
       .hero { height: 680px; }
-      .hero-content { padding-top: 88px; }
+      .hero-content-box { padding-top: 88px; }
       h1 { font-size: 42px; }
       .sub { font-size: 18px; }
       .hook > div, .card, .test-left, .product, .partner, .module-copy { min-height: 304px; }
@@ -210,11 +459,9 @@
       .main-nav { display: none; }
       .nav-actions { padding-left: 0; gap: 8px; }
       .hero { height: 620px; }
-      .hero-content { padding-top: 72px; }
+      .hero-content-box { padding: 72px 24px 40px; }
       h1 { font-size: 36px; letter-spacing: -1.8px; }
       .sub { font-size: 16px; line-height: 1.6; }
-      .iso { height: 320px; }
-      .iso svg { width: min(420px, 92vw); height: auto; }
       .hook { grid-template-columns: 1fr; }
       .hook-left, .hook-right { grid-column: span 1; }
       .hook-right { border-left: none; border-top: 1px solid var(--border); }
@@ -224,8 +471,11 @@
       .cta-main .inner { padding: 84px 20px 0; }
       .wire { width: min(980px, 160vw); }
       .testnet { grid-template-columns: 1fr; }
+      .leaderboard { grid-template-columns: 1fr; }
+      .leaderboard-col + .leaderboard-col { border-left: none; border-top: 1px solid var(--border); }
+      .leaderboard-col { min-height: auto; }
       .test-left { border-right: none; border-bottom: 1px solid var(--border); }
-      .test-right { grid-template-columns: 1fr; }
+      .test-right { grid-template-columns: 1fr; border-left: none; }
       .product { border-right: none; }
       .partner-grid { grid-template-columns: 1fr; }
       .partner { border-right: none; }
@@ -244,7 +494,10 @@
     @media (max-width: 520px) {
       :root { --col-pad: 28px; }
       .wrap { width: calc(100vw - 20px); }
-      .hook > div, .card, .test-left, .product, .partner, .module-copy { padding: 28px; }
+      .hook > div, .card, .test-left, .partner, .module-copy { padding: 28px; }
+      .lb-stats, .lb-rankings, .lb-tasks { padding: 28px; }
+      .lb-overview-title { font-size: 32px; letter-spacing: -2.4px; }
+      .lb-overview-copy { font-size: 16px; line-height: 1.5; }
       .actions { gap: 10px; }
       .btn-primary, .btn-secondary { width: 100%; }
       .btn-secondary { padding: 0 18px; }
@@ -272,26 +525,23 @@
   </div>
 
   <section class="wrap frame hero">
-    <div class="hero-grid"></div>
-    <div class="hero-content">
-      <div class="hero-status">
-        <span class="hero-status-dot" aria-hidden="true"></span>
-        <span>Testnet live.</span>
-      </div>
-      <h1>Floor Only Goes Up</h1>
-      <p class="sub">Floors Finance is a DeFi protocol for digital assets with rising floor prices.</p>
-      <div class="actions">
-        <a href="#" class="btn-primary">Join Testnet</a>
-        <a href="#" class="btn-secondary">Read Documentation</a>
-      </div>
+    <div class="hero-lottie">
+      <div class="hero-lottie-track" id="hero-intro-track"><div id="hero-intro-lottie" aria-hidden="true"></div></div>
+      <div class="hero-lottie-track" id="hero-loop-track"><div id="hero-loop-lottie" aria-hidden="true"></div></div>
     </div>
-    <div class="iso">
-      <svg width="520" height="320" viewBox="0 0 520 320" fill="none">
-        <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#efefef"/><stop offset="1" stop-color="#6f6f6f"/></linearGradient></defs>
-        <g transform="translate(50 70)"><path d="M0 58 100 0l100 58v116L100 232 0 174Z" fill="url(#g)" stroke="#efefef"/></g>
-        <g transform="translate(150 12)"><path d="M0 58 100 0l100 58v116L100 232 0 174Z" fill="url(#g)" stroke="#efefef"/></g>
-        <g transform="translate(250 70)"><path d="M0 58 100 0l100 58v116L100 232 0 174Z" fill="url(#g)" stroke="#efefef"/></g>
-      </svg>
+    <div class="hero-content">
+      <div class="hero-content-box">
+        <div class="hero-status">
+          <span class="hero-status-dot" aria-hidden="true"></span>
+          <span>Testnet live</span>
+        </div>
+        <h1 class="hero-headline"><span class="hero-verb" id="hero-verb">Hold</span> different.</h1>
+      <p class="sub">Floors Finance is a DeFi protocol with token-owned liquidity and a monotonic floor.</p>
+        <div class="actions">
+          <a href="#" class="btn-primary">Join Testnet</a>
+          <a href="#" class="btn-secondary">Read Documentation</a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -307,11 +557,51 @@
 
   <section class="wrap frame row cards">
     <article class="card"><h3 style="font-size:32px;letter-spacing:-1.28px">Compounding value, delivered.</h3><p style="font-size:18px;line-height:1.42">Floor protection, instant liquidity, and zero-liquidation credit so you can scale conviction safely.</p></article>
-    <article class="card"><h3>Leveraged Presales</h3><p>Early access to fTokens at 1:1 floor pricing with up to 20x looping for upside exposure.</p></article>
-    <article class="card"><h3>Reserve Pool</h3><p>Presale liquidity bootstraps reserves and sets the minimum redemption base value.</p></article>
-    <article class="card"><h3>Trading Pool</h3><p>Instant issuance and redemption liquidity, always available onchain.</p></article>
-    <article class="card"><h3>Bonding Curve</h3><p>A deterministic pricing function for issuance, redemption, and credit exchange rates.</p></article>
-    <article class="card"><h3>Fee Routing Engine</h3><p>Protocol fees flow directly into reserves, compounding floor value over time.</p></article>
+    <article class="card card-with-media">
+      <div class="card-media-bg">
+        <div id="leveraged-presales-lottie" aria-hidden="true"></div>
+      </div>
+      <div class="card-content">
+        <h3>Leveraged Presales</h3>
+        <p>Early access to fTokens at 1:1 floor pricing with up to 20x looping for upside exposure.</p>
+      </div>
+    </article>
+    <article class="card card-with-media reserve-pool-card">
+      <div class="card-media-bg">
+        <div id="reserve-pool-lottie" aria-hidden="true"></div>
+      </div>
+      <div class="card-content">
+        <h3>Reserve Pool</h3>
+        <p>Presale liquidity bootstraps reserves and sets the minimum redemption base value.</p>
+      </div>
+    </article>
+    <article class="card card-with-media">
+      <div class="card-media-bg">
+        <div id="trading-pool-lottie" aria-hidden="true"></div>
+      </div>
+      <div class="card-content">
+        <h3>Trading Pool</h3>
+        <p>Instant issuance and redemption liquidity, always available onchain.</p>
+      </div>
+    </article>
+    <article class="card card-with-media">
+      <div class="card-media-bg">
+        <div id="bonding-curve-lottie" aria-hidden="true"></div>
+      </div>
+      <div class="card-content">
+        <h3>Bonding Curve</h3>
+        <p>A deterministic pricing function for issuance, redemption, and credit exchange rates.</p>
+      </div>
+    </article>
+    <article class="card card-with-media">
+      <div class="card-media-bg">
+        <div id="fee-routing-lottie" aria-hidden="true"></div>
+      </div>
+      <div class="card-content">
+        <h3>Fee Routing Engine</h3>
+        <p>Protocol fees flow directly into reserves, compounding floor value over time.</p>
+      </div>
+    </article>
   </section>
 
   <section class="wrap frame module-3col" style="border-top:none;">
@@ -323,6 +613,10 @@
   </section>
 
   <section class="wrap frame cta-main">
+    <div class="cta-lottie">
+      <div class="cta-lottie-track" id="learnmore-intro-track"><div id="learnmore-intro-lottie" aria-hidden="true"></div></div>
+      <div class="cta-lottie-track" id="learnmore-loop-track"><div id="learnmore-loop-lottie" aria-hidden="true"></div></div>
+    </div>
     <div class="inner">
       <p style="font-size:24px;letter-spacing:-.9px;line-height:1.1;margin:0">Borrow at floor value with no liquidations, no expiry,<br/>and no mandatory interest payments.</p>
       <div class="actions" style="margin-top:22px">
@@ -330,33 +624,134 @@
         <a class="btn-secondary" href="#">Read Litepaper</a>
       </div>
     </div>
-    <svg class="wire" viewBox="0 0 1080 720" fill="none">
-      <g stroke="#30343a" stroke-width="1"><path d="M405 120 540 42l135 78v310L540 508 405 430Z"/><path d="M270 198 405 120l135 78v310L405 586 270 508Z"/><path d="M540 198 675 120l135 78v310L675 586 540 508Z"/><path d="M135 276 270 198l135 78v310L270 664 135 586Z"/><path d="M405 276 540 198l135 78v310L540 664 405 586Z"/><path d="M675 276 810 198l135 78v310L810 664 675 586Z"/></g>
-    </svg>
   </section>
 
   <section class="wrap frame testnet">
     <div class="test-left">
       <div class="test-left-inner">
-        <div class="test-badge">
-          <span class="test-badge-dot" aria-hidden="true"></span>
-          <span class="test-badge-text">Testnet live.</span>
+        <div class="test-copy">
+          <div class="test-badge">
+            <span class="test-badge-dot" aria-hidden="true"></span>
+            <span class="test-badge-text">Testnet live</span>
+          </div>
+          <h2 style="margin:0;font-size:40px;letter-spacing:-2.4px;line-height:1.2">Enter at floor.<br>Exit with rewards.</h2>
+          <p style="margin:0;color:var(--muted);font-size:18px;line-height:1.52">We believe in rewarding early adopters. Your activity on the Floors Finance Testnet is tracked and converted directly into Mainnet value.</p>
         </div>
-        <h2 style="margin:0;font-size:40px;letter-spacing:-2.4px;line-height:1.2">Enter at floor.<br>Exit with rewards.</h2>
-        <p style="margin:0;color:var(--muted);font-size:18px;line-height:1.52">We believe in rewarding early adopters. Your activity on the Floors Finance Testnet is tracked and converted directly into Mainnet value.</p>
         <div class="test-actions">
-          <a href="#" class="test-btn test-btn-primary"><span>Join Points Program</span><span aria-hidden="true">→</span></a>
-          <a href="#" class="test-btn test-btn-secondary"><span>View Leaderboard</span><span aria-hidden="true">→</span></a>
+          <a href="https://floors-points.vercel.app/" target="_blank" rel="noopener noreferrer" class="test-btn test-btn-primary"><span>Join Points Program</span><span aria-hidden="true">â†’</span></a>
+          <a href="https://floors-points.vercel.app/" target="_blank" rel="noopener noreferrer" class="test-btn test-btn-secondary"><span>View Leaderboard</span><span aria-hidden="true">â†’</span></a>
         </div>
       </div>
     </div>
     <div class="test-right">
-      <div class="product">Leveraged Presales</div>
-      <div class="product">Bonding Curve</div>
-      <div class="product">Reserve Pool</div>
-      <div class="product">Fee Routing Engine</div>
-      <div class="product">Trading Pool</div>
-      <div class="product">Zero-Liquidation Credit</div>
+      <article class="product">
+        <div class="product-icon">P1</div>
+        <h4>Trade On Testnet</h4>
+        <p>Execute swaps and liquidity actions to accumulate campaign points from real protocol activity.</p>
+      </article>
+      <article class="product">
+        <div class="product-icon">P2</div>
+        <h4>Complete Missions</h4>
+        <p>Finish weekly milestones and partner quests to unlock extra multipliers and bonus allocations.</p>
+      </article>
+      <article class="product">
+        <div class="product-icon">P3</div>
+        <h4>Climb Leaderboards</h4>
+        <p>Your wallet rank updates in real time so you can track progress against other participants.</p>
+      </article>
+      <article class="product">
+        <div class="product-icon">P4</div>
+        <h4>Convert To Mainnet</h4>
+        <p>Qualified point totals convert into mainnet benefits when the campaign phase is finalized.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="wrap frame leaderboard">
+    <div class="leaderboard-col lb-stats">
+      <h3 class="lb-overview-title">Genesis Rewards</h3>
+      <p class="lb-overview-copy">Participate in the Testnet ecosystem to earn weighted points clusters.</p>
+      <div class="lb-divider" aria-hidden="true"></div>
+      <article class="lb-stat-row">
+        <p class="lb-stat-title">Total Participated</p>
+        <p class="lb-stat-value">748</p>
+      </article>
+      <div class="lb-divider" aria-hidden="true"></div>
+      <article class="lb-stat-row">
+        <p class="lb-stat-title">Points Distributed</p>
+        <p class="lb-stat-value">140,000</p>
+      </article>
+      <div class="lb-divider" aria-hidden="true"></div>
+      <article class="lb-stat-row">
+        <p class="lb-stat-title">Tier Distribution</p>
+        <div class="lb-tier-wrap">
+          <span class="lb-tier-item"><span class="lb-tier-value">0</span><span class="lb-tier-label">T1</span></span>
+          <span class="lb-tier-item"><span class="lb-tier-value">0</span><span class="lb-tier-label">T2</span></span>
+          <span class="lb-tier-item"><span class="lb-tier-value">0</span><span class="lb-tier-label">T3</span></span>
+          <span class="lb-tier-item"><span class="lb-tier-value">0</span><span class="lb-tier-label">INC</span></span>
+        </div>
+      </article>
+    </div>
+    <div class="leaderboard-col lb-rankings">
+      <h3>Top wallets on Feb 14, 2026</h3>
+      <ul class="lb-rank-list">
+        <li class="lb-rank-item top1"><span class="lb-rank-left">1 â— Claude Sonnet...</span><span class="lb-rank-right">1500pt</span></li>
+        <li class="lb-rank-item top2"><span class="lb-rank-left">2 â— KAT-Coder-Pro...</span><span class="lb-rank-right">1000pt</span></li>
+        <li class="lb-rank-item top3"><span class="lb-rank-left">3 â— Gemini 3 Flash</span><span class="lb-rank-right">980pt</span></li>
+        <li class="lb-rank-item"><span class="lb-rank-left">4 â— Claude Opus 4...</span><span class="lb-rank-right">500pt</span></li>
+        <li class="lb-rank-item"><span class="lb-rank-left">5 â— GLM 5</span><span class="lb-rank-right">500pt</span></li>
+        <li class="lb-rank-item"><span class="lb-rank-left">6 â— GLM 5</span><span class="lb-rank-right">500pt</span></li>
+        <li class="lb-rank-item"><span class="lb-rank-left">7 â— Claude Opus 4...</span><span class="lb-rank-right">500pt</span></li>
+        <li class="lb-rank-item"><span class="lb-rank-left">8 â— Gemini 3 Flash</span><span class="lb-rank-right">500pt</span></li>
+        <li class="lb-rank-item"><span class="lb-rank-left">9 â— KAT-Coder-Pro...</span><span class="lb-rank-right">500pt</span></li>
+        <li class="lb-rank-item"><span class="lb-rank-left">10 â— Claude Sonnet...</span><span class="lb-rank-right">500pt</span></li>
+        <li class="lb-rank-item"><span class="lb-rank-left">11 â— Claude Sonnet...</span><span class="lb-rank-right">500pt</span></li>
+        <li class="lb-rank-item"><span class="lb-rank-left">12 â— KAT-Coder-Pro...</span><span class="lb-rank-right">500pt</span></li>
+        <li class="lb-rank-item"><span class="lb-rank-left">13 â— Claude Opus 4...</span><span class="lb-rank-right">500pt</span></li>
+        <li class="lb-rank-item"><span class="lb-rank-left">14 â— Claude Opus 4...</span><span class="lb-rank-right">500pt</span></li>
+        <li class="lb-rank-item"><span class="lb-rank-left">15 â— KAT-Coder-Pro...</span><span class="lb-rank-right">500pt</span></li>
+      </ul>
+    </div>
+    <div class="leaderboard-col lb-tasks">
+      <div class="lb-task-list">
+        <article class="lb-task">
+          <div class="lb-task-head">
+            <h4>Repay Loan</h4>
+            <p class="lb-task-points">+30</p>
+          </div>
+          <div class="lb-task-copy">
+            <p>Complete the cycle by repaying your loan in full.</p>
+          </div>
+        </article>
+        <article class="lb-task">
+          <div class="lb-task-head">
+            <h4>Buy fToken Near Floor</h4>
+            <p class="lb-task-points">+30</p>
+          </div>
+          <div class="lb-task-copy">
+            <p>Purchase fTokens when price is within 10% of floor</p>
+          </div>
+        </article>
+        <article class="lb-task">
+          <div class="lb-task-head">
+            <h4>Presale Deposit</h4>
+            <p class="lb-task-points">+30</p>
+          </div>
+          <div class="lb-task-copy">
+            <p>Make your first deposit into a presale round</p>
+          </div>
+        </article>
+        <article class="lb-task">
+          <div class="lb-task-head">
+            <h4>Looping Mechanism</h4>
+            <p class="lb-task-points">+30</p>
+          </div>
+          <div class="lb-task-copy">
+            <p>Complete at least 1 loop in the presale</p>
+          </div>
+        </article>
+      </div>
+      <a href="#" class="lb-view-all"><span>View all tasks</span></a>
     </div>
   </section>
 
@@ -370,8 +765,8 @@
 
   <section class="wrap frame partners">
     <div class="partner-grid">
-      <div class="partner">Aave</div><div class="partner">Uniswap</div><div class="partner">Compound</div>
-      <div class="partner">MakerDAO</div><div class="partner">Baseline</div><div class="partner">Olympus</div>
+      <div class="partner">Ava Labs</div><div class="partner">Uniswap</div><div class="partner">Inverter</div>
+      <div class="partner">Avant</div><div class="partner">Yield Yak</div><div class="partner">Avalanche</div>
     </div>
   </section>
 
@@ -388,5 +783,292 @@
       <div><h4>Social</h4><a href="#">GitHub</a><a href="#">X / Twitter</a><a href="#">Discord</a><a href="#">Telegram</a></div>
     </div>
   </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js" defer></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', function () {
+      if (!window.lottie) return;
+      var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      var initCardLottie = function (elementId, jsonPath, idleSeconds) {
+        var container = document.getElementById(elementId);
+        if (!container) return;
+
+        var card = container.closest('.card-with-media');
+        if (!card) return;
+
+        var animation = window.lottie.loadAnimation({
+          container: container,
+          renderer: 'svg',
+          loop: false,
+          autoplay: false,
+          path: jsonPath,
+          rendererSettings: { preserveAspectRatio: 'xMidYMid meet' }
+        });
+
+        var idleFrame = 0;
+        var returningToIdle = false;
+        var wantsHover = false;
+        var setIdleFrame = function () {
+          var frameRate = animation.frameRate || (animation.animationData && animation.animationData.fr) || 60;
+          var targetFrame = Math.round(idleSeconds * frameRate);
+          var totalFrames = animation.totalFrames || animation.getDuration(true) || targetFrame + 1;
+          idleFrame = Math.min(targetFrame, Math.max(0, Math.floor(totalFrames - 1)));
+          animation.goToAndStop(idleFrame, true);
+        };
+        var clampReverseToIdle = function () {
+          if (!returningToIdle) return;
+          var currentFrame = animation.currentFrame || 0;
+          if (currentFrame <= idleFrame + 0.5) {
+            returningToIdle = false;
+            animation.pause();
+            animation.goToAndStop(idleFrame, true);
+          }
+        };
+
+        animation.addEventListener('data_ready', setIdleFrame);
+        animation.addEventListener('DOMLoaded', setIdleFrame);
+        animation.addEventListener('enterFrame', clampReverseToIdle);
+        setIdleFrame();
+
+        card.addEventListener('mouseenter', function () {
+          if (reduceMotion) return;
+          wantsHover = true;
+          returningToIdle = false;
+          animation.loop = true;
+          if ((animation.currentFrame || 0) < idleFrame) {
+            animation.goToAndStop(idleFrame, true);
+          }
+          animation.setDirection(1);
+          animation.play();
+        });
+        card.addEventListener('mouseleave', function () {
+          wantsHover = false;
+          if (reduceMotion) {
+            animation.goToAndStop(idleFrame, true);
+            return;
+          }
+          returningToIdle = true;
+          animation.loop = false;
+          animation.setDirection(-1);
+          animation.play();
+        });
+
+        if (reduceMotion) {
+          animation.goToAndStop(idleFrame, true);
+        }
+      };
+
+      var initHeroHeadlineRotation = function () {
+        var verb = document.getElementById('hero-verb');
+        if (!verb) return;
+
+        var sequence = ['Hold', 'Trade', 'Borrow', 'Loop', 'Earn'];
+        var index = 0;
+        var intervalMs = 2000;
+
+        verb.textContent = sequence[index];
+        var timer = window.setInterval(function () {
+          index += 1;
+          if (index < sequence.length) {
+            verb.textContent = sequence[index];
+            return;
+          }
+
+          window.clearInterval(timer);
+          verb.textContent = 'Hold';
+          verb.classList.add('is-final');
+        }, intervalMs);
+      };
+
+      var initHeroLottie = function () {
+        var introContainer = document.getElementById('hero-intro-lottie');
+        var loopContainer = document.getElementById('hero-loop-lottie');
+        var introTrack = document.getElementById('hero-intro-track');
+        var loopTrack = document.getElementById('hero-loop-track');
+        var hero = document.querySelector('.hero');
+        if (!introContainer || !loopContainer || !introTrack || !loopTrack || !hero) return;
+
+        var introAnimation = window.lottie.loadAnimation({
+          container: introContainer,
+          renderer: 'svg',
+          loop: false,
+          autoplay: true,
+          path: 'Animations/HeroIntro.json',
+          rendererSettings: { preserveAspectRatio: 'xMidYMid slice' }
+        });
+        var loopAnimation = window.lottie.loadAnimation({
+          container: loopContainer,
+          renderer: 'svg',
+          loop: true,
+          autoplay: false,
+          path: 'Animations/HeroLoop.json',
+          rendererSettings: { preserveAspectRatio: 'xMidYMid slice' }
+        });
+        introAnimation.setSpeed(1.25);
+        loopAnimation.setSpeed(1.25);
+
+        var introDone = false;
+        var wantsHover = false;
+        var stopAfterCurrentLoop = false;
+        var showIntro = function () {
+          introTrack.style.opacity = '1';
+          loopTrack.style.opacity = '0';
+        };
+        var showLoop = function () {
+          introTrack.style.opacity = '0';
+          loopTrack.style.opacity = '1';
+        };
+
+        showIntro();
+        loopAnimation.addEventListener('DOMLoaded', function () {
+          stopAfterCurrentLoop = false;
+          loopAnimation.goToAndStop(0, true);
+        });
+        loopAnimation.addEventListener('complete', function () {
+          if (wantsHover && !stopAfterCurrentLoop) return;
+          stopAfterCurrentLoop = false;
+          loopAnimation.loop = false;
+          loopAnimation.goToAndStop(0, true);
+        });
+        if (reduceMotion) {
+          introAnimation.goToAndStop(0, true);
+          introDone = true;
+          showLoop();
+          loopAnimation.goToAndStop(0, true);
+        } else {
+          introAnimation.addEventListener('complete', function () {
+            introDone = true;
+            showLoop();
+            if (wantsHover) {
+              stopAfterCurrentLoop = false;
+              loopAnimation.loop = true;
+              loopAnimation.play();
+            } else {
+              loopAnimation.loop = false;
+              loopAnimation.goToAndStop(0, true);
+            }
+          });
+        }
+
+        hero.addEventListener('mouseenter', function () {
+          wantsHover = true;
+          if (!introDone || reduceMotion) return;
+          showLoop();
+          stopAfterCurrentLoop = false;
+          loopAnimation.loop = true;
+          loopAnimation.play();
+        });
+        hero.addEventListener('mouseleave', function () {
+          wantsHover = false;
+          if (!introDone) return;
+          showLoop();
+          stopAfterCurrentLoop = true;
+          loopAnimation.loop = false;
+          if (loopAnimation.isPaused) {
+            stopAfterCurrentLoop = false;
+            loopAnimation.goToAndStop(0, true);
+          }
+        });
+      };
+
+      var initLearnMoreLottie = function () {
+        var introContainer = document.getElementById('learnmore-intro-lottie');
+        var loopContainer = document.getElementById('learnmore-loop-lottie');
+        var introTrack = document.getElementById('learnmore-intro-track');
+        var loopTrack = document.getElementById('learnmore-loop-track');
+        var section = document.querySelector('.cta-main');
+        if (!introContainer || !loopContainer || !introTrack || !loopTrack || !section) return;
+
+        var introAnimation = window.lottie.loadAnimation({
+          container: introContainer,
+          renderer: 'svg',
+          loop: false,
+          autoplay: true,
+          path: 'Animations/LearnMoreIntro.json',
+          rendererSettings: { preserveAspectRatio: 'xMidYMid slice' }
+        });
+        var loopAnimation = window.lottie.loadAnimation({
+          container: loopContainer,
+          renderer: 'svg',
+          loop: true,
+          autoplay: false,
+          path: 'Animations/LearnMoreLoop.json',
+          rendererSettings: { preserveAspectRatio: 'xMidYMid slice' }
+        });
+
+        var introDone = false;
+        var wantsHover = false;
+        var stopAfterCurrentLoop = false;
+        var showIntro = function () {
+          introTrack.style.opacity = '1';
+          loopTrack.style.opacity = '0';
+        };
+        var showLoop = function () {
+          introTrack.style.opacity = '0';
+          loopTrack.style.opacity = '1';
+        };
+
+        showIntro();
+        loopAnimation.addEventListener('DOMLoaded', function () {
+          stopAfterCurrentLoop = false;
+          loopAnimation.goToAndStop(0, true);
+        });
+        loopAnimation.addEventListener('complete', function () {
+          if (wantsHover && !stopAfterCurrentLoop) return;
+          stopAfterCurrentLoop = false;
+          loopAnimation.loop = false;
+          loopAnimation.goToAndStop(0, true);
+        });
+        if (reduceMotion) {
+          introAnimation.goToAndStop(0, true);
+          introDone = true;
+          showLoop();
+          loopAnimation.goToAndStop(0, true);
+        } else {
+          introAnimation.addEventListener('complete', function () {
+            introDone = true;
+            showLoop();
+            if (wantsHover) {
+              stopAfterCurrentLoop = false;
+              loopAnimation.loop = true;
+              loopAnimation.play();
+            } else {
+              loopAnimation.loop = false;
+              loopAnimation.goToAndStop(0, true);
+            }
+          });
+        }
+
+        section.addEventListener('mouseenter', function () {
+          wantsHover = true;
+          if (!introDone || reduceMotion) return;
+          showLoop();
+          stopAfterCurrentLoop = false;
+          loopAnimation.loop = true;
+          loopAnimation.play();
+        });
+        section.addEventListener('mouseleave', function () {
+          wantsHover = false;
+          if (!introDone) return;
+          showLoop();
+          stopAfterCurrentLoop = true;
+          loopAnimation.loop = false;
+          if (loopAnimation.isPaused) {
+            stopAfterCurrentLoop = false;
+            loopAnimation.goToAndStop(0, true);
+          }
+        });
+      };
+
+      initHeroHeadlineRotation();
+      initHeroLottie();
+      initLearnMoreLottie();
+      initCardLottie('leveraged-presales-lottie', 'Animations/Leveraged.json', 1.5);
+      initCardLottie('reserve-pool-lottie', 'Animations/Reserve%20Pool.json', 2.2);
+      initCardLottie('trading-pool-lottie', 'Animations/Trading.json', 0.9);
+      initCardLottie('bonding-curve-lottie', 'Animations/Curve.json', 1.5);
+      initCardLottie('fee-routing-lottie', 'Animations/Routing.json', 2.0);
+    });
+  </script>
 </body>
 </html>
