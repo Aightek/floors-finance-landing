@@ -165,9 +165,9 @@
     .actions { margin-top: 26px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
     .hook { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .hook > div { padding: 44px; min-height: 304px; }
-    .hook-left { grid-column: span 2; }
+    .hook-left { grid-column: span 2; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
     .hook-right { grid-column: span 1; }
-    .hook-right { border-left: 1px solid var(--border); display: flex; flex-direction: column; justify-content: center; gap: 16px; }
+    .hook-right { border-left: 1px solid var(--border); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; gap: 16px; }
     .big-lines { color: var(--muted); font-size: 32px; line-height: 1.5; letter-spacing: -1.28px; }
     .cards { grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--border); }
     .card { min-height: 304px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 44px; }
@@ -551,7 +551,6 @@
     </div>
     <div class="hook-right">
       <p style="color:var(--muted);font-size:16px;line-height:1.5;margin:0">As of today, tokens are born incomplete. Thin liquidity. Gated lending. No productive backing.<br>Floors fixes this at the asset level.</p>
-      <a class="btn-primary" style="height:40px;font-size:14px" href="#">Token-owned Liquidity</a>
     </div>
   </section>
 
@@ -638,8 +637,8 @@
           <p style="margin:0;color:var(--muted);font-size:18px;line-height:1.52">We believe in rewarding early adopters. Your activity on the Floors Finance Testnet is tracked and converted directly into Mainnet value.</p>
         </div>
         <div class="test-actions">
-          <a href="https://floors-points.vercel.app/" target="_blank" rel="noopener noreferrer" class="test-btn test-btn-primary"><span>Join Points Program</span><span aria-hidden="true">ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢</span></a>
-          <a href="https://floors-points.vercel.app/" target="_blank" rel="noopener noreferrer" class="test-btn test-btn-secondary"><span>View Leaderboard</span><span aria-hidden="true">ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢</span></a>
+          <a href="https://floors-points.vercel.app/" target="_blank" rel="noopener noreferrer" class="test-btn test-btn-primary"><span>Join Points Program</span><span aria-hidden="true">ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢</span></a>
+          <a href="https://floors-points.vercel.app/" target="_blank" rel="noopener noreferrer" class="test-btn test-btn-secondary"><span>View Leaderboard</span><span aria-hidden="true">ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢</span></a>
         </div>
       </div>
     </div>
@@ -695,21 +694,21 @@
     <div class="leaderboard-col lb-rankings">
       <h3>Top wallets on Feb 14, 2026</h3>
       <ul class="lb-rank-list">
-        <li class="lb-rank-item top1"><span class="lb-rank-left">1 ÃƒÂ¢Ã¢â‚¬â€Ã‚Â Claude Sonnet...</span><span class="lb-rank-right">1500pt</span></li>
-        <li class="lb-rank-item top2"><span class="lb-rank-left">2 ÃƒÂ¢Ã¢â‚¬â€Ã‚Â KAT-Coder-Pro...</span><span class="lb-rank-right">1000pt</span></li>
-        <li class="lb-rank-item top3"><span class="lb-rank-left">3 ÃƒÂ¢Ã¢â‚¬â€Ã‚Â Gemini 3 Flash</span><span class="lb-rank-right">980pt</span></li>
-        <li class="lb-rank-item"><span class="lb-rank-left">4 ÃƒÂ¢Ã¢â‚¬â€Ã‚Â Claude Opus 4...</span><span class="lb-rank-right">500pt</span></li>
-        <li class="lb-rank-item"><span class="lb-rank-left">5 ÃƒÂ¢Ã¢â‚¬â€Ã‚Â GLM 5</span><span class="lb-rank-right">500pt</span></li>
-        <li class="lb-rank-item"><span class="lb-rank-left">6 ÃƒÂ¢Ã¢â‚¬â€Ã‚Â GLM 5</span><span class="lb-rank-right">500pt</span></li>
-        <li class="lb-rank-item"><span class="lb-rank-left">7 ÃƒÂ¢Ã¢â‚¬â€Ã‚Â Claude Opus 4...</span><span class="lb-rank-right">500pt</span></li>
-        <li class="lb-rank-item"><span class="lb-rank-left">8 ÃƒÂ¢Ã¢â‚¬â€Ã‚Â Gemini 3 Flash</span><span class="lb-rank-right">500pt</span></li>
-        <li class="lb-rank-item"><span class="lb-rank-left">9 ÃƒÂ¢Ã¢â‚¬â€Ã‚Â KAT-Coder-Pro...</span><span class="lb-rank-right">500pt</span></li>
-        <li class="lb-rank-item"><span class="lb-rank-left">10 ÃƒÂ¢Ã¢â‚¬â€Ã‚Â Claude Sonnet...</span><span class="lb-rank-right">500pt</span></li>
-        <li class="lb-rank-item"><span class="lb-rank-left">11 ÃƒÂ¢Ã¢â‚¬â€Ã‚Â Claude Sonnet...</span><span class="lb-rank-right">500pt</span></li>
-        <li class="lb-rank-item"><span class="lb-rank-left">12 ÃƒÂ¢Ã¢â‚¬â€Ã‚Â KAT-Coder-Pro...</span><span class="lb-rank-right">500pt</span></li>
-        <li class="lb-rank-item"><span class="lb-rank-left">13 ÃƒÂ¢Ã¢â‚¬â€Ã‚Â Claude Opus 4...</span><span class="lb-rank-right">500pt</span></li>
-        <li class="lb-rank-item"><span class="lb-rank-left">14 ÃƒÂ¢Ã¢â‚¬â€Ã‚Â Claude Opus 4...</span><span class="lb-rank-right">500pt</span></li>
-        <li class="lb-rank-item"><span class="lb-rank-left">15 ÃƒÂ¢Ã¢â‚¬â€Ã‚Â KAT-Coder-Pro...</span><span class="lb-rank-right">500pt</span></li>
+        <li class="lb-rank-item top1"><span class="lb-rank-left">1 ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚ÂÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â Claude Sonnet...</span><span class="lb-rank-right">1500pt</span></li>
+        <li class="lb-rank-item top2"><span class="lb-rank-left">2 ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚ÂÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â KAT-Coder-Pro...</span><span class="lb-rank-right">1000pt</span></li>
+        <li class="lb-rank-item top3"><span class="lb-rank-left">3 ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚ÂÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â Gemini 3 Flash</span><span class="lb-rank-right">980pt</span></li>
+        <li class="lb-rank-item"><span class="lb-rank-left">4 ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚ÂÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â Claude Opus 4...</span><span class="lb-rank-right">500pt</span></li>
+        <li class="lb-rank-item"><span class="lb-rank-left">5 ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚ÂÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â GLM 5</span><span class="lb-rank-right">500pt</span></li>
+        <li class="lb-rank-item"><span class="lb-rank-left">6 ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚ÂÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â GLM 5</span><span class="lb-rank-right">500pt</span></li>
+        <li class="lb-rank-item"><span class="lb-rank-left">7 ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚ÂÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â Claude Opus 4...</span><span class="lb-rank-right">500pt</span></li>
+        <li class="lb-rank-item"><span class="lb-rank-left">8 ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚ÂÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â Gemini 3 Flash</span><span class="lb-rank-right">500pt</span></li>
+        <li class="lb-rank-item"><span class="lb-rank-left">9 ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚ÂÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â KAT-Coder-Pro...</span><span class="lb-rank-right">500pt</span></li>
+        <li class="lb-rank-item"><span class="lb-rank-left">10 ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚ÂÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â Claude Sonnet...</span><span class="lb-rank-right">500pt</span></li>
+        <li class="lb-rank-item"><span class="lb-rank-left">11 ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚ÂÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â Claude Sonnet...</span><span class="lb-rank-right">500pt</span></li>
+        <li class="lb-rank-item"><span class="lb-rank-left">12 ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚ÂÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â KAT-Coder-Pro...</span><span class="lb-rank-right">500pt</span></li>
+        <li class="lb-rank-item"><span class="lb-rank-left">13 ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚ÂÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â Claude Opus 4...</span><span class="lb-rank-right">500pt</span></li>
+        <li class="lb-rank-item"><span class="lb-rank-left">14 ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚ÂÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â Claude Opus 4...</span><span class="lb-rank-right">500pt</span></li>
+        <li class="lb-rank-item"><span class="lb-rank-left">15 ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚ÂÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â KAT-Coder-Pro...</span><span class="lb-rank-right">500pt</span></li>
       </ul>
     </div>
     <div class="leaderboard-col lb-tasks">
