@@ -408,36 +408,6 @@
       font-weight: 400;
       line-height: 1.43;
     }
-    .test-left { grid-column: span 1; padding: 68px 44px; border-right: 1px solid var(--border); min-height: 304px; }
-    .test-left-inner { height: 100%; display: flex; flex-direction: column; justify-content: space-between; gap: 16px; }
-    .test-copy { display: flex; flex-direction: column; gap: 16px; }
-    .test-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      width: fit-content;
-      height: 34px;
-      padding: 8px;
-      border-radius: 6px;
-    }
-    .test-badge-dot { width: 8px; height: 8px; border-radius: 8px; background: var(--accent); }
-    .test-badge-text { color: var(--accent); font-size: 14px; line-height: 1.43; }
-    .test-actions { display: flex; flex-direction: column; gap: 16px; }
-    .test-btn {
-      height: 40px;
-      width: 100%;
-      border-radius: 9999px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 10px 0 8px;
-      font-size: 14px;
-      font-weight: 500;
-      text-decoration: none;
-    }
-    .test-btn-primary { background: #fafafa; color: #0a0a0a; }
-    .test-btn-secondary { color: #fafafa; border: 1px solid var(--border); background: transparent; }
-    .test-right { grid-column: span 2; display: grid; grid-template-columns: repeat(2,1fr); gap: 0; }
     .product {
       border-right: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
@@ -445,23 +415,11 @@
       padding: 28px;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      gap: 16px;
+      justify-content: center;
     }
-    .product:nth-child(2n) { border-right: none; }
-    .product-icon {
-      width: 36px;
-      height: 36px;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      display: grid;
-      place-items: center;
-      color: #fafafa;
-      font-size: 12px;
-      font-weight: 600;
-    }
-    .product h4 { margin: 0; font-size: 24px; letter-spacing: -.96px; line-height: 1.2; }
-    .product p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.5; }
+    .product:nth-child(3n) { border-right: none; }
+    .product p { margin: 0; color: var(--muted); font-size: 18px; line-height: 1.52; }
+    .product-empty { background: transparent; }
     .partners { border-top: 1px solid var(--border); }
     .partner-grid { display: grid; grid-template-columns: repeat(3,1fr); }
     .partner { min-height: 304px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); display: grid; place-items: center; font-size: 24px; }
@@ -477,7 +435,7 @@
       .hero-content-box { padding-top: 88px; }
       h1 { font-size: 42px; }
       .sub { font-size: 18px; }
-      .card, .test-left, .product, .partner, .module-copy { min-height: 304px; }
+      .card, .product, .partner, .module-copy { min-height: 304px; }
       .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
     @media (max-width: 800px) {
@@ -498,8 +456,6 @@
       .leaderboard { grid-template-columns: 1fr; }
       .leaderboard-col + .leaderboard-col { border-left: none; border-top: 1px solid var(--border); }
       .leaderboard-col { min-height: auto; }
-      .test-left { border-right: none; border-bottom: 1px solid var(--border); }
-      .test-right { grid-template-columns: 1fr; border-left: none; }
       .product { border-right: none; }
       .partner-grid { grid-template-columns: 1fr; }
       .partner { border-right: none; }
@@ -518,7 +474,7 @@
     @media (max-width: 520px) {
       :root { --col-pad: 28px; }
       .wrap { width: calc(100vw - 20px); }
-      .hook > div, .card, .test-left, .partner, .module-copy { padding: 28px; }
+      .hook > div, .card, .partner, .module-copy { padding: 28px; }
       .lb-stats, .lb-rankings, .lb-tasks { padding: 28px; }
       .lb-overview-title { font-size: 32px; letter-spacing: -2.4px; }
       .lb-overview-copy { font-size: 16px; line-height: 1.5; }
@@ -608,44 +564,22 @@
   </section>
 
   <section class="wrap frame testnet">
-    <div class="test-left">
-      <div class="test-left-inner">
-        <div class="test-copy">
-          <div class="test-badge">
-            <span class="test-badge-dot" aria-hidden="true"></span>
-            <span class="test-badge-text">Testnet live</span>
-          </div>
-          <h2 style="margin:0;font-size:40px;letter-spacing:-2.4px;line-height:1.2">Enter at floor.<br>Exit with rewards.</h2>
-          <p style="margin:0;color:var(--muted);font-size:18px;line-height:1.52">We believe in rewarding early adopters. Your activity on the Floors Finance Testnet is tracked and converted directly into Mainnet value.</p>
-        </div>
-        <div class="test-actions">
-          <a href="https://floors-points.vercel.app/" target="_blank" rel="noopener noreferrer" class="test-btn test-btn-primary"><span>Join Points Program</span><span aria-hidden="true">&rarr;</span></a>
-          <a href="https://floors-points.vercel.app/" target="_blank" rel="noopener noreferrer" class="test-btn test-btn-secondary"><span>View Leaderboard</span><span aria-hidden="true">&rarr;</span></a>
-        </div>
-      </div>
-    </div>
-    <div class="test-right">
-      <article class="product">
-        <div class="product-icon">P1</div>
-        <h4>Trade On Testnet</h4>
-        <p>Execute swaps and liquidity actions to accumulate campaign points from real protocol activity.</p>
-      </article>
-      <article class="product">
-        <div class="product-icon">P2</div>
-        <h4>Complete Missions</h4>
-        <p>Finish weekly milestones and partner quests to unlock extra multipliers and bonus allocations.</p>
-      </article>
-      <article class="product">
-        <div class="product-icon">P3</div>
-        <h4>Climb Leaderboards</h4>
-        <p>Your wallet rank updates in real time so you can track progress against other participants.</p>
-      </article>
-      <article class="product">
-        <div class="product-icon">P4</div>
-        <h4>Convert To Mainnet</h4>
-        <p>Qualified point totals convert into mainnet benefits when the campaign phase is finalized.</p>
-      </article>
-    </div>
+    <article class="product">
+      <p>Presale is the lowest price ever. Once the presale closes, the token can never fall below that price. Every buyer after you only pushes it higher.</p>
+    </article>
+    <article class="product">
+      <p>Hold with conviction. A rising floor means your downside improves every day you hold, even at the worst times.</p>
+    </article>
+    <article class="product">
+      <p>Experience no liquidations, ever again. Borrow against your floor and your position is never force-sold.</p>
+    </article>
+    <article class="product">
+      <p>Volatility works for you. Trading activity and fees compound into reserves, turning market movement into floor growth.</p>
+    </article>
+    <article class="product">
+      <p>More supply strengthens your price. Every new token minted adds to the reserve. Growth in supply doesn't dilute previous holders, it strengthens everyone's positions.</p>
+    </article>
+    <article class="product product-empty" aria-hidden="true"></article>
   </section>
 
   <section class="wrap frame leaderboard">
