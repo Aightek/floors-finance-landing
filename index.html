@@ -163,11 +163,6 @@
     }
     .sub { margin: 22px auto 0; max-width: 670px; color: var(--muted); font-size: 20px; line-height: 1.8; }
     .actions { margin-top: 26px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-    .hook { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .hook > div { padding: 44px; min-height: 304px; }
-    .hook-left { grid-column: span 2; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; text-align: left; }
-    .hook-right { grid-column: span 1; }
-    .hook-right { border-left: 1px solid var(--border); display: flex; flex-direction: column; justify-content: center; align-items: flex-start; text-align: left; gap: 16px; }
     .big-lines { color: var(--muted); font-size: 32px; line-height: 1.5; letter-spacing: -1.28px; }
     .cards { grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--border); }
     .card { min-height: 304px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 44px; }
@@ -482,7 +477,7 @@
       .hero-content-box { padding-top: 88px; }
       h1 { font-size: 42px; }
       .sub { font-size: 18px; }
-      .hook > div, .card, .test-left, .product, .partner, .module-copy { min-height: 304px; }
+      .card, .test-left, .product, .partner, .module-copy { min-height: 304px; }
       .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
     @media (max-width: 800px) {
@@ -494,9 +489,6 @@
       .hero-content-box { padding: 72px 24px 40px; }
       h1 { font-size: 36px; letter-spacing: -1.8px; }
       .sub { font-size: 16px; line-height: 1.6; }
-      .hook { grid-template-columns: 1fr; }
-      .hook-left, .hook-right { grid-column: span 1; }
-      .hook-right { border-left: none; border-top: 1px solid var(--border); }
       .cards { grid-template-columns: 1fr; }
       .card { border-right: none; }
       .cta-main { min-height: 760px; }
@@ -574,15 +566,6 @@
           <a href="#" class="btn-secondary">Read Documentation</a>
         </div>
       </div>
-    </div>
-  </section>
-
-  <section class="wrap frame row hook">
-    <div class="hook-left">
-      <p class="big-lines">The Upgrade for <br>Investors and Issuers</p>
-    </div>
-    <div class="hook-right">
-      <p style="color:var(--muted);font-size:16px;line-height:1.5;margin:0">As of today, tokens are born incomplete. Thin liquidity. Gated lending. No productive backing.<br>Floors fixes this at the asset level.</p>
     </div>
   </section>
 
