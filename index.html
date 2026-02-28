@@ -267,7 +267,44 @@
       height: 100%;
     }
     .wire { position: absolute; left: 50%; transform: translateX(-50%); bottom: -20px; width: 980px; opacity: .9; }
-    .testnet { min-height: 720px; border-top: 1px solid var(--border); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .testnet { display: none; min-height: 720px; border-top: 1px solid var(--border); grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .feature-rows { border-top: 1px solid var(--border); }
+    .feature-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      min-height: 304px;
+    }
+    .feature-spacer,
+    .feature-panel {
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      min-height: 304px;
+    }
+    .feature-spacer:last-child,
+    .feature-panel:last-child { border-right: none; }
+    .feature-spacer { background: transparent; }
+    .feature-panel {
+      grid-column: span 2;
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      text-align: left;
+    }
+    .feature-panel h4 {
+      margin: 0 0 10px;
+      color: #fafafa;
+      font-size: 24px;
+      letter-spacing: -.96px;
+      line-height: 1.2;
+    }
+    .feature-panel p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.52;
+      max-width: 760px;
+    }
     .leaderboard { display: none; min-height: 608px; border-top: 1px solid var(--border); grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .leaderboard-col { min-height: 608px; }
     .leaderboard-col + .leaderboard-col { border-left: 1px solid var(--border); }
@@ -454,6 +491,12 @@
       .cta-main .inner { padding: 84px 20px 0; }
       .wire { width: min(980px, 160vw); }
       .testnet { grid-template-columns: 1fr; }
+      .feature-row { grid-template-columns: 1fr; }
+      .feature-spacer { display: none; }
+      .feature-panel {
+        grid-column: span 1;
+        border-right: none;
+      }
       .leaderboard { grid-template-columns: 1fr; }
       .leaderboard-col + .leaderboard-col { border-left: none; border-top: 1px solid var(--border); }
       .leaderboard-col { min-height: auto; }
@@ -581,6 +624,44 @@
     <article class="product">
       <h4>More supply strengthens your price.</h4>
       <p>Every new token minted adds to the reserve. Growth in supply doesn't dilute previous holders, it strengthens everyone's positions.</p>
+    </article>
+  </section>
+
+  <section class="wrap frame feature-rows">
+    <article class="feature-row">
+      <div class="feature-panel">
+        <h4>Presale is the lowest price ever.</h4>
+        <p>Once the presale closes, the token can never fall below that price. Every buyer after you only pushes it higher.</p>
+      </div>
+      <div class="feature-spacer" aria-hidden="true"></div>
+    </article>
+    <article class="feature-row">
+      <div class="feature-spacer" aria-hidden="true"></div>
+      <div class="feature-panel">
+        <h4>Hold with conviction.</h4>
+        <p>A rising floor means your downside improves every day you hold, even at the worst times.</p>
+      </div>
+    </article>
+    <article class="feature-row">
+      <div class="feature-panel">
+        <h4>Experience no liquidations, ever again.</h4>
+        <p>Borrow against your floor and your position is never force-sold.</p>
+      </div>
+      <div class="feature-spacer" aria-hidden="true"></div>
+    </article>
+    <article class="feature-row">
+      <div class="feature-spacer" aria-hidden="true"></div>
+      <div class="feature-panel">
+        <h4>Volatility works for you.</h4>
+        <p>Trading activity and fees compound into reserves, turning market movement into floor growth.</p>
+      </div>
+    </article>
+    <article class="feature-row">
+      <div class="feature-panel">
+        <h4>More supply strengthens your price.</h4>
+        <p>Every new token minted adds to the reserve. Growth in supply doesn't dilute previous holders, it strengthens everyone's positions.</p>
+      </div>
+      <div class="feature-spacer" aria-hidden="true"></div>
     </article>
   </section>
 
