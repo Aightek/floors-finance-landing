@@ -859,49 +859,78 @@
 
         var restFrame = 0;
         var isReady = false;
+        var introDone = false;
         var wantsHover = false;
-        var returningToStart = false;
+        var returningToRest = false;
         var setStartFrame = function () {
           var totalFrames = animation.totalFrames || animation.getDuration(true) || 1;
           restFrame = Math.max(0, Math.floor((totalFrames - 1) / 2));
           isReady = true;
-          animation.goToAndStop(restFrame, true);
+          if (reduceMotion) {
+            introDone = true;
+            animation.goToAndStop(restFrame, true);
+          }
         };
-        var clampReverseToStart = function () {
-          if (!returningToStart) return;
+        var clampReverseToRest = function () {
+          if (!returningToRest) return;
           if ((animation.currentFrame || 0) <= restFrame + 0.5) {
-            returningToStart = false;
+            returningToRest = false;
             animation.pause();
             animation.goToAndStop(restFrame, true);
           }
         };
-        var restartFullLoop = function () {
-          if (!wantsHover || returningToStart || !isReady) return;
+        var handleComplete = function () {
+          if (!isReady) return;
+
+          if (!introDone) {
+            introDone = true;
+            if (wantsHover) {
+              animation.loop = false;
+              animation.setDirection(1);
+              animation.goToAndPlay(restFrame, true);
+              return;
+            }
+            animation.goToAndStop(restFrame, true);
+            return;
+          }
+
+          if (!wantsHover || returningToRest) return;
           animation.loop = false;
           animation.setDirection(1);
-          animation.goToAndPlay(0, true);
+          animation.goToAndPlay(restFrame, true);
         };
 
         animation.addEventListener('data_ready', setStartFrame);
         animation.addEventListener('DOMLoaded', setStartFrame);
-        animation.addEventListener('enterFrame', clampReverseToStart);
-        animation.addEventListener('complete', restartFullLoop);
+        animation.addEventListener('enterFrame', clampReverseToRest);
+        animation.addEventListener('complete', handleComplete);
         setStartFrame();
 
         if (reduceMotion) return;
 
+        animation.goToAndPlay(0, true);
+
         card.addEventListener('mouseenter', function () {
           if (!isReady) return;
           wantsHover = true;
-          returningToStart = false;
+          if (!introDone) return;
+          returningToRest = false;
           animation.loop = false;
           animation.setDirection(1);
-          animation.goToAndPlay(0, true);
+          if ((animation.currentFrame || 0) <= restFrame + 0.5) {
+            animation.goToAndPlay(restFrame, true);
+            return;
+          }
+          animation.play();
         });
         card.addEventListener('mouseleave', function () {
           wantsHover = false;
-          if (!isReady) return;
-          returningToStart = true;
+          if (!isReady || !introDone) return;
+          if ((animation.currentFrame || 0) <= restFrame + 0.5) {
+            animation.goToAndStop(restFrame, true);
+            return;
+          }
+          returningToRest = true;
           animation.loop = false;
           animation.setDirection(-1);
           animation.play();
