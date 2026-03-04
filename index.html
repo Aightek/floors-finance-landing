@@ -861,7 +861,8 @@
         var isReady = false;
         var introDone = false;
         var wantsHover = false;
-        var returningToRest = false;
+        var settlingToRest = false;
+        var settleDirection = 0;
         var setStartFrame = function () {
           if (isReady) return;
           var totalFrames = animation.totalFrames || animation.getDuration(true) || 0;
@@ -893,15 +894,23 @@
             }
             return;
           }
-          if (!returningToRest) return;
-          if ((animation.currentFrame || 0) <= restFrame + 0.5) {
-            returningToRest = false;
+          if (!settlingToRest) return;
+          if (settleDirection > 0 && (animation.currentFrame || 0) >= restFrame - 0.5) {
+            settlingToRest = false;
+            settleDirection = 0;
+            animation.pause();
+            animation.goToAndStop(restFrame, true);
+            return;
+          }
+          if (settleDirection < 0 && (animation.currentFrame || 0) <= restFrame + 0.5) {
+            settlingToRest = false;
+            settleDirection = 0;
             animation.pause();
             animation.goToAndStop(restFrame, true);
           }
         };
         var handleComplete = function () {
-          if (!isReady || !introDone || !wantsHover || returningToRest) return;
+          if (!isReady || !introDone || !wantsHover || settlingToRest) return;
           animation.loop = false;
           animation.setDirection(1);
           animation.goToAndPlay(0, true);
@@ -932,7 +941,8 @@
           if (!isReady) return;
           wantsHover = true;
           if (!introDone) return;
-          returningToRest = false;
+          settlingToRest = false;
+          settleDirection = 0;
           animation.loop = false;
           animation.setDirection(1);
           if ((animation.currentFrame || 0) <= restFrame + 0.5) {
@@ -945,10 +955,19 @@
           wantsHover = false;
           if (!isReady || !introDone) return;
           if ((animation.currentFrame || 0) <= restFrame + 0.5) {
-            animation.goToAndStop(restFrame, true);
+            if ((animation.currentFrame || 0) >= restFrame - 0.5) {
+              animation.goToAndStop(restFrame, true);
+              return;
+            }
+            settlingToRest = true;
+            settleDirection = 1;
+            animation.loop = false;
+            animation.setDirection(1);
+            animation.play();
             return;
           }
-          returningToRest = true;
+          settlingToRest = true;
+          settleDirection = -1;
           animation.loop = false;
           animation.setDirection(-1);
           animation.play();
