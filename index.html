@@ -845,24 +845,50 @@
       var initCardLottie = function (elementId, jsonPath) {
         var container = document.getElementById(elementId);
         if (!container) return;
+        var card = container.closest('.card-with-media');
+        if (!card) return;
 
         var animation = window.lottie.loadAnimation({
           container: container,
           renderer: 'svg',
-          loop: !reduceMotion,
-          autoplay: !reduceMotion,
+          loop: false,
+          autoplay: false,
           path: jsonPath,
           rendererSettings: { preserveAspectRatio: 'xMidYMid meet' }
         });
 
-        if (reduceMotion) {
-          var pauseOnFirstFrame = function () {
+        var returningToStart = false;
+        var setStartFrame = function () {
+          animation.goToAndStop(0, true);
+        };
+        var clampReverseToStart = function () {
+          if (!returningToStart) return;
+          if ((animation.currentFrame || 0) <= 0.5) {
+            returningToStart = false;
+            animation.pause();
             animation.goToAndStop(0, true);
           };
-          animation.addEventListener('data_ready', pauseOnFirstFrame);
-          animation.addEventListener('DOMLoaded', pauseOnFirstFrame);
-          pauseOnFirstFrame();
-        }
+        };
+
+        animation.addEventListener('data_ready', setStartFrame);
+        animation.addEventListener('DOMLoaded', setStartFrame);
+        animation.addEventListener('enterFrame', clampReverseToStart);
+        setStartFrame();
+
+        if (reduceMotion) return;
+
+        card.addEventListener('mouseenter', function () {
+          returningToStart = false;
+          animation.loop = false;
+          animation.setDirection(1);
+          animation.goToAndPlay(0, true);
+        });
+        card.addEventListener('mouseleave', function () {
+          returningToStart = true;
+          animation.loop = false;
+          animation.setDirection(-1);
+          animation.play();
+        });
       };
 
       var initHeroHeadlineRotation = function () {
