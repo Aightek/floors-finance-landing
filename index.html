@@ -863,7 +863,9 @@
         var wantsHover = false;
         var returningToRest = false;
         var setStartFrame = function () {
-          var totalFrames = animation.totalFrames || animation.getDuration(true) || 1;
+          if (isReady) return;
+          var totalFrames = animation.totalFrames || animation.getDuration(true) || 0;
+          if (totalFrames <= 1) return;
           restFrame = Math.max(0, Math.floor((totalFrames - 1) / 2));
           isReady = true;
           if (reduceMotion) {
@@ -871,7 +873,20 @@
             animation.goToAndStop(restFrame, true);
           }
         };
-        var clampReverseToRest = function () {
+        var handleFrameProgress = function () {
+          if (!isReady) return;
+          if (!introDone) {
+            if ((animation.currentFrame || 0) >= restFrame - 0.5) {
+              introDone = true;
+              animation.pause();
+              if (wantsHover) {
+                animation.goToAndPlay(restFrame, true);
+                return;
+              }
+              animation.goToAndStop(restFrame, true);
+            }
+            return;
+          }
           if (!returningToRest) return;
           if ((animation.currentFrame || 0) <= restFrame + 0.5) {
             returningToRest = false;
@@ -880,35 +895,32 @@
           }
         };
         var handleComplete = function () {
-          if (!isReady) return;
-
-          if (!introDone) {
-            introDone = true;
-            if (wantsHover) {
-              animation.loop = false;
-              animation.setDirection(1);
-              animation.goToAndPlay(restFrame, true);
-              return;
-            }
-            animation.goToAndStop(restFrame, true);
-            return;
-          }
-
-          if (!wantsHover || returningToRest) return;
+          if (!isReady || !introDone || !wantsHover || returningToRest) return;
           animation.loop = false;
           animation.setDirection(1);
-          animation.goToAndPlay(restFrame, true);
+          animation.goToAndPlay(0, true);
         };
 
         animation.addEventListener('data_ready', setStartFrame);
         animation.addEventListener('DOMLoaded', setStartFrame);
-        animation.addEventListener('enterFrame', clampReverseToRest);
+        animation.addEventListener('enterFrame', handleFrameProgress);
         animation.addEventListener('complete', handleComplete);
         setStartFrame();
 
         if (reduceMotion) return;
 
-        animation.goToAndPlay(0, true);
+        if (isReady) {
+          animation.goToAndPlay(0, true);
+        } else {
+          var startIntro = function () {
+            if (!isReady) return;
+            animation.goToAndPlay(0, true);
+            animation.removeEventListener('data_ready', startIntro);
+            animation.removeEventListener('DOMLoaded', startIntro);
+          };
+          animation.addEventListener('data_ready', startIntro);
+          animation.addEventListener('DOMLoaded', startIntro);
+        }
 
         card.addEventListener('mouseenter', function () {
           if (!isReady) return;
