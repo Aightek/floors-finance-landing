@@ -501,6 +501,7 @@
     .partner-grid { display: grid; grid-template-columns: repeat(3,1fr); }
     .partner { min-height: 304px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); display: grid; place-items: center; font-size: 24px; }
     .partner:nth-child(3n) { border-right: none; }
+    .partner.partner-centered-last { grid-column: 2; }
     .newsletter { border-top: 1px solid var(--border); text-align: center; padding: 90px 24px; }
     .newsletter h3 { margin: 0 0 24px; font-size: 24px; letter-spacing: -.9px; }
     .footer { padding: 36px 24px 52px; }
@@ -815,8 +816,9 @@
 
   <section class="wrap frame partners">
     <div class="partner-grid">
-      <div class="partner">Ava Labs</div><div class="partner">Uniswap</div><div class="partner">Inverter</div>
-      <div class="partner">Avant</div><div class="partner">Yield Yak</div><div class="partner">Avalanche</div>
+      <div class="partner">AvaLabs</div><div class="partner">Avalanche Foundation</div><div class="partner">Inverter</div>
+      <div class="partner">Avant</div><div class="partner">Yield Yak</div><div class="partner">BENQI</div>
+      <div class="partner partner-centered-last">House Protocol</div>
     </div>
   </section>
 
