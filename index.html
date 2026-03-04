@@ -200,22 +200,32 @@
     .mechanic-card {
       height: 680px;
       min-height: 680px;
+      position: relative;
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
-      gap: 22px;
+      justify-content: flex-end;
+      gap: 0;
     }
     .mechanic-media {
-      width: 100%;
-      height: 420px;
+      position: absolute;
+      inset: 0;
       border: none;
       border-radius: 0;
-      overflow: visible;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
     }
     .mechanic-media > div,
     .mechanic-media > svg {
       width: 100%;
       height: 100%;
+    }
+    .mechanic-copy {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
     }
     .mechanic-card h3 {
       margin: 0;
@@ -610,22 +620,28 @@
       <div class="mechanic-media">
         <div id="built-in-liquidity-lottie" aria-hidden="true"></div>
       </div>
-      <h3>Built-in Liquidity</h3>
-      <p>Every floor token has its own market for buying and selling. No external LPs needed.</p>
+      <div class="mechanic-copy">
+        <h3>Built-in Liquidity</h3>
+        <p>Every floor token has its own market for buying and selling. No external LPs needed.</p>
+      </div>
     </article>
     <article class="card card-with-media mechanic-card">
       <div class="mechanic-media">
         <div id="native-borrowing-lottie" aria-hidden="true"></div>
       </div>
-      <h3>Native Borrowing</h3>
-      <p>Every floor token can be borrowed up to its floor value with zero liquidations. No expiries.</p>
+      <div class="mechanic-copy">
+        <h3>Native Borrowing</h3>
+        <p>Every floor token can be borrowed up to its floor value with zero liquidations. No expiries.</p>
+      </div>
     </article>
     <article class="card card-with-media mechanic-card">
       <div class="mechanic-media">
         <div id="rising-floor-lottie" aria-hidden="true"></div>
       </div>
-      <h3>Rising Floor Price</h3>
-      <p>Fees, liquidity rebalancing, and staking yield compound into the floor over time. Even if everyone sells.</p>
+      <div class="mechanic-copy">
+        <h3>Rising Floor Price</h3>
+        <p>Fees, liquidity rebalancing, and staking yield compound into the floor over time. Even if everyone sells.</p>
+      </div>
     </article>
   </section>
 
@@ -826,72 +842,26 @@
       if (!window.lottie) return;
       var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      var initCardLottie = function (elementId, jsonPath, idleSeconds) {
+      var initCardLottie = function (elementId, jsonPath) {
         var container = document.getElementById(elementId);
         if (!container) return;
-
-        var card = container.closest('.card-with-media');
-        if (!card) return;
 
         var animation = window.lottie.loadAnimation({
           container: container,
           renderer: 'svg',
-          loop: false,
-          autoplay: false,
+          loop: !reduceMotion,
+          autoplay: !reduceMotion,
           path: jsonPath,
           rendererSettings: { preserveAspectRatio: 'xMidYMid meet' }
         });
 
-        var idleFrame = 0;
-        var returningToIdle = false;
-        var wantsHover = false;
-        var setIdleFrame = function () {
-          var frameRate = animation.frameRate || (animation.animationData && animation.animationData.fr) || 60;
-          var targetFrame = Math.round(idleSeconds * frameRate);
-          var totalFrames = animation.totalFrames || animation.getDuration(true) || targetFrame + 1;
-          idleFrame = Math.min(targetFrame, Math.max(0, Math.floor(totalFrames - 1)));
-          animation.goToAndStop(idleFrame, true);
-        };
-        var clampReverseToIdle = function () {
-          if (!returningToIdle) return;
-          var currentFrame = animation.currentFrame || 0;
-          if (currentFrame <= idleFrame + 0.5) {
-            returningToIdle = false;
-            animation.pause();
-            animation.goToAndStop(idleFrame, true);
-          }
-        };
-
-        animation.addEventListener('data_ready', setIdleFrame);
-        animation.addEventListener('DOMLoaded', setIdleFrame);
-        animation.addEventListener('enterFrame', clampReverseToIdle);
-        setIdleFrame();
-
-        card.addEventListener('mouseenter', function () {
-          if (reduceMotion) return;
-          wantsHover = true;
-          returningToIdle = false;
-          animation.loop = true;
-          if ((animation.currentFrame || 0) < idleFrame) {
-            animation.goToAndStop(idleFrame, true);
-          }
-          animation.setDirection(1);
-          animation.play();
-        });
-        card.addEventListener('mouseleave', function () {
-          wantsHover = false;
-          if (reduceMotion) {
-            animation.goToAndStop(idleFrame, true);
-            return;
-          }
-          returningToIdle = true;
-          animation.loop = false;
-          animation.setDirection(-1);
-          animation.play();
-        });
-
         if (reduceMotion) {
-          animation.goToAndStop(idleFrame, true);
+          var pauseOnFirstFrame = function () {
+            animation.goToAndStop(0, true);
+          };
+          animation.addEventListener('data_ready', pauseOnFirstFrame);
+          animation.addEventListener('DOMLoaded', pauseOnFirstFrame);
+          pauseOnFirstFrame();
         }
       };
 
@@ -1098,6 +1068,9 @@
       };
 
       initHeroHeadlineRotation();
+      initCardLottie('built-in-liquidity-lottie', 'Animations/OwnLiquidity.json');
+      initCardLottie('native-borrowing-lottie', 'Animations/NativeBorrowing.json');
+      initCardLottie('rising-floor-lottie', 'Animations/RisingFloor.json');
       initHeroLottie();
       initLearnMoreLottie();
     });
