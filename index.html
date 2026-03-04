@@ -857,19 +857,22 @@
           rendererSettings: { preserveAspectRatio: 'xMidYMid meet' }
         });
 
+        var restFrame = 0;
         var isReady = false;
         var wantsHover = false;
         var returningToStart = false;
         var setStartFrame = function () {
+          var totalFrames = animation.totalFrames || animation.getDuration(true) || 1;
+          restFrame = Math.max(0, Math.floor((totalFrames - 1) / 2));
           isReady = true;
-          animation.goToAndStop(0, true);
+          animation.goToAndStop(restFrame, true);
         };
         var clampReverseToStart = function () {
           if (!returningToStart) return;
-          if ((animation.currentFrame || 0) <= 0.5) {
+          if ((animation.currentFrame || 0) <= restFrame + 0.5) {
             returningToStart = false;
             animation.pause();
-            animation.goToAndStop(0, true);
+            animation.goToAndStop(restFrame, true);
           }
         };
         var restartFullLoop = function () {
@@ -893,11 +896,7 @@
           returningToStart = false;
           animation.loop = false;
           animation.setDirection(1);
-          if ((animation.currentFrame || 0) <= 0.5) {
-            animation.goToAndPlay(0, true);
-            return;
-          }
-          animation.play();
+          animation.goToAndPlay(0, true);
         });
         card.addEventListener('mouseleave', function () {
           wantsHover = false;
