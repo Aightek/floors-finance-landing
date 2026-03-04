@@ -842,7 +842,7 @@
       if (!window.lottie) return;
       var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      var initCardLottie = function (elementId, jsonPath) {
+      var initCardLottie = function (elementId, jsonPath, idleSeconds) {
         var container = document.getElementById(elementId);
         if (!container) return;
         var card = container.closest('.card-with-media');
@@ -866,7 +866,13 @@
           if (isReady) return;
           var totalFrames = animation.totalFrames || animation.getDuration(true) || 0;
           if (totalFrames <= 1) return;
-          restFrame = Math.max(0, Math.floor((totalFrames - 1) / 2));
+          if (typeof idleSeconds === 'number') {
+            var frameRate = animation.frameRate || (animation.animationData && animation.animationData.fr) || 60;
+            restFrame = Math.round(idleSeconds * frameRate);
+            restFrame = Math.min(restFrame, Math.max(0, Math.floor(totalFrames - 1)));
+          } else {
+            restFrame = Math.max(0, Math.floor((totalFrames - 1) / 2));
+          }
           isReady = true;
           if (reduceMotion) {
             introDone = true;
@@ -1154,7 +1160,7 @@
       initHeroHeadlineRotation();
       initCardLottie('built-in-liquidity-lottie', 'Animations/OwnLiquidity.json');
       initCardLottie('native-borrowing-lottie', 'Animations/NativeBorrowing.json');
-      initCardLottie('rising-floor-lottie', 'Animations/RisingFloor.json');
+      initCardLottie('rising-floor-lottie', 'Animations/RisingFloor.json', 2.0);
       initHeroLottie();
       initLearnMoreLottie();
     });
