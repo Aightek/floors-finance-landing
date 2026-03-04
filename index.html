@@ -842,7 +842,7 @@
       if (!window.lottie) return;
       var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      var initCardLottie = function (elementId, jsonPath) {
+      var initCardLottie = function (elementId, jsonPath, loopStartSeconds) {
         var container = document.getElementById(elementId);
         if (!container) return;
         var card = container.closest('.card-with-media');
@@ -857,33 +857,56 @@
           rendererSettings: { preserveAspectRatio: 'xMidYMid meet' }
         });
 
+        var loopStartFrame = 0;
+        var isReady = false;
+        var wantsHover = false;
         var returningToStart = false;
-        var setStartFrame = function () {
-          animation.goToAndStop(0, true);
+        var setLoopStartFrame = function () {
+          var frameRate = animation.frameRate || (animation.animationData && animation.animationData.fr) || 60;
+          var targetFrame = Math.round((loopStartSeconds || 0) * frameRate);
+          var totalFrames = animation.totalFrames || animation.getDuration(true) || targetFrame + 1;
+          loopStartFrame = Math.min(targetFrame, Math.max(0, Math.floor(totalFrames - 1)));
+          isReady = true;
+          animation.goToAndStop(loopStartFrame, true);
         };
         var clampReverseToStart = function () {
           if (!returningToStart) return;
-          if ((animation.currentFrame || 0) <= 0.5) {
+          if ((animation.currentFrame || 0) <= loopStartFrame + 0.5) {
             returningToStart = false;
             animation.pause();
-            animation.goToAndStop(0, true);
-          };
+            animation.goToAndStop(loopStartFrame, true);
+          }
+        };
+        var restartLoopSegment = function () {
+          if (!wantsHover || returningToStart || !isReady) return;
+          animation.loop = false;
+          animation.setDirection(1);
+          animation.goToAndPlay(loopStartFrame, true);
         };
 
-        animation.addEventListener('data_ready', setStartFrame);
-        animation.addEventListener('DOMLoaded', setStartFrame);
+        animation.addEventListener('data_ready', setLoopStartFrame);
+        animation.addEventListener('DOMLoaded', setLoopStartFrame);
         animation.addEventListener('enterFrame', clampReverseToStart);
-        setStartFrame();
+        animation.addEventListener('complete', restartLoopSegment);
+        setLoopStartFrame();
 
         if (reduceMotion) return;
 
         card.addEventListener('mouseenter', function () {
+          if (!isReady) return;
+          wantsHover = true;
           returningToStart = false;
           animation.loop = false;
           animation.setDirection(1);
-          animation.goToAndPlay(0, true);
+          if ((animation.currentFrame || 0) <= loopStartFrame + 0.5) {
+            animation.goToAndPlay(loopStartFrame, true);
+            return;
+          }
+          animation.play();
         });
         card.addEventListener('mouseleave', function () {
+          wantsHover = false;
+          if (!isReady) return;
           returningToStart = true;
           animation.loop = false;
           animation.setDirection(-1);
@@ -1094,9 +1117,9 @@
       };
 
       initHeroHeadlineRotation();
-      initCardLottie('built-in-liquidity-lottie', 'Animations/OwnLiquidity.json');
-      initCardLottie('native-borrowing-lottie', 'Animations/NativeBorrowing.json');
-      initCardLottie('rising-floor-lottie', 'Animations/RisingFloor.json');
+      initCardLottie('built-in-liquidity-lottie', 'Animations/OwnLiquidity.json', 1.1);
+      initCardLottie('native-borrowing-lottie', 'Animations/NativeBorrowing.json', 0.9);
+      initCardLottie('rising-floor-lottie', 'Animations/RisingFloor.json', 1.9);
       initHeroLottie();
       initLearnMoreLottie();
     });
