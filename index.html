@@ -379,6 +379,7 @@
     .feat1--animate .feat1-lottie-only { opacity: 1; transform: translateY(0); }
     .feat2--animate .feat1-lottie-only { opacity: 1; transform: translateY(0); }
     .feat3--animate .feat1-lottie-only { opacity: 1; transform: translateY(0); }
+    .feat5--animate .feat1-lottie-only { opacity: 1; transform: translateY(0); }
     @media (prefers-reduced-motion: reduce) {
       .feat1-visual,
       .feat1-card,
@@ -973,22 +974,8 @@
       </div>
       <div class="feature-spacer" aria-hidden="true">
         <div class="feat5-visual" id="feat5-visual">
-          <div class="feat1-shell">
-            <article class="feat1-card">
-              <p class="feat1-card-label">Supply &amp; Backing</p>
-              <div class="fmock">
-                <div class="fmock-matrix">
-                  <span class="fmock-cell"></span><span class="fmock-cell"></span><span class="fmock-cell fmock-cell--accent"></span><span class="fmock-cell"></span>
-                  <span class="fmock-cell"></span><span class="fmock-cell fmock-cell--accent"></span><span class="fmock-cell"></span><span class="fmock-cell"></span>
-                  <span class="fmock-cell"></span><span class="fmock-cell"></span><span class="fmock-cell"></span><span class="fmock-cell fmock-cell--accent"></span>
-                </div>
-                <div class="fmock-stack">
-                  <span class="fmock-line" style="--w:88%;"></span>
-                  <span class="fmock-line fmock-line--accent" style="--w:62%;"></span>
-                  <span class="fmock-line" style="--w:40%;"></span>
-                </div>
-              </div>
-            </article>
+          <div class="feat1-lottie-only" aria-hidden="true">
+            <div id="feature-f5-lottie"></div>
           </div>
         </div>
       </div>
@@ -1221,6 +1208,7 @@
       initFeatureLottie('feature-f1-lottie', 'feat1-visual', 'Animations/F1.json');
       initFeatureLottie('feature-f2-lottie', 'feat2-visual', 'Animations/F2.json');
       initFeatureLottie('feature-f3-lottie', 'feat3-visual', 'Animations/F3.json');
+      initFeatureLottie('feature-f5-lottie', 'feat5-visual', 'Animations/F5.json');
 
       if (!window.lottie) return;
 
