@@ -363,21 +363,6 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
     }
-    .feat1-asset-wrap {
-      margin-top: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 11px;
-      padding: 8px;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.008) 100%);
-      overflow: hidden;
-    }
-    .feat1-asset {
-      width: 100%;
-      height: 132px;
-      display: block;
-      object-fit: cover;
-      border-radius: 8px;
-    }
     .feat1--animate { opacity: 1; transform: translateY(0) scale(1); }
     .feat1--animate .feat1-card { opacity: 1; transform: translateY(0); }
     @media (prefers-reduced-motion: reduce) {
@@ -409,122 +394,101 @@
     }
     @media (prefers-reduced-motion: reduce) {
       .feat2-visual, .feat3-visual, .feat4-visual, .feat5-visual { transition: none !important; }
-      .feat4-bar-fill,
-      .feat4-reserve-fill { transition: none !important; }
+      .fmock-mini,
+      .fmock-band > span,
+      .fmock-route .fmock-line,
+      .fmock-chip,
+      .fmock-flow-row .fmock-line,
+      .fmock-vault-fill,
+      .fmock-cell,
+      .fmock-stack .fmock-line {
+        transition: none !important;
+      }
     }
-    .feat-ui {
+    .fmock {
       margin-top: 14px;
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 11px;
       padding: 12px;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.025) 0%, rgba(255, 255, 255, 0.008) 100%);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.022) 0%, rgba(255, 255, 255, 0.008) 100%);
     }
-    .feat-stack { display: flex; flex-direction: column; gap: 9px; }
-    .feat-line-row { display: flex; align-items: center; gap: 9px; }
-    .feat-node { width: 6px; height: 6px; border-radius: 50%; background: rgba(255, 255, 255, 0.3); flex-shrink: 0; }
-    .feat-node--soft { background: rgba(255, 255, 255, 0.2); }
-    .feat-line {
-      height: 2px;
-      width: var(--w, 100%);
-      border-radius: 2px;
-      background: rgba(255, 255, 255, 0.16);
-      display: block;
-      flex-shrink: 0;
-    }
-    .feat-line--accent { background: rgba(190, 255, 176, 0.75); }
-    .feat-line--focus { background: rgba(255, 255, 255, 0.34); }
-    .feat-rail {
-      height: 2px;
-      width: 100%;
-      border-radius: 2px;
-      background: rgba(255, 255, 255, 0.09);
+    .fmock-line { height: 2px; border-radius: 99px; background: rgba(255, 255, 255, 0.2); display: block; transform-origin: left center; }
+    .fmock-line--accent { background: rgba(190, 255, 176, 0.7); }
+    .fmock-node { width: 6px; height: 6px; border-radius: 50%; background: rgba(255, 255, 255, 0.34); flex-shrink: 0; }
+    .fmock-node--accent { background: rgba(190, 255, 176, 0.78); }
+
+    .fmock-floor-frame {
+      height: 96px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
       overflow: hidden;
+      background: rgba(255, 255, 255, 0.03);
     }
-    .feat-rail-fill {
-      height: 100%;
-      width: var(--w, 56%);
-      background: rgba(255, 255, 255, 0.26);
-      border-radius: 2px;
-      display: block;
-    }
-    .feat-rail-fill--focus { background: rgba(255, 255, 255, 0.34); }
-    .feat-floorline { margin-top: 10px; height: 1px; background: rgba(255, 255, 255, 0.08); position: relative; }
-    .feat-floorline-fill { position: absolute; left: 0; top: 0; width: 72%; height: 1px; background: rgba(255, 255, 255, 0.34); }
-    .feat-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      border-radius: 999px;
-      padding: 5px 9px;
-      margin-bottom: 8px;
-    }
-    .feat-pill-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255, 255, 255, 0.38); }
-    .feat-pill-line { width: 24px; height: 2px; border-radius: 2px; background: rgba(255, 255, 255, 0.2); }
-    .feat4-head { margin-top: 2px; }
-    .feat4-chart {
-      margin-top: 10px;
-      height: 92px;
-      display: flex;
-      align-items: flex-end;
-      gap: 5px;
-      padding: 0 1px 2px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    .feat4-bar {
-      position: relative;
-      flex: 1;
-      height: 100%;
-      border-radius: 4px 4px 0 0;
-      background: rgba(255, 255, 255, 0.08);
-      overflow: hidden;
-    }
-    .feat4-bar-fill {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      height: var(--h, 52%);
-      border-radius: 4px 4px 0 0;
-      background: rgba(255, 255, 255, 0.34);
-      transform-origin: bottom center;
-      transform: scaleY(0);
-      transition: transform 0.68s cubic-bezier(0.22, 0.8, 0.24, 1);
-    }
-    .feat4-bar-fill--accent { background: rgba(190, 255, 176, 0.7); }
-    .feat4-reserve {
-      margin-top: 10px;
-      height: 3px;
-      border-radius: 99px;
-      background: rgba(255, 255, 255, 0.1);
-      overflow: hidden;
-    }
-    .feat4-reserve-fill {
-      display: block;
-      width: 74%;
-      height: 100%;
-      border-radius: 99px;
-      background: rgba(255, 255, 255, 0.34);
-      transform-origin: left center;
-      transform: scaleX(0);
-      transition: transform 0.8s cubic-bezier(0.22, 0.8, 0.24, 1) 0.3s;
-    }
-    .feat4--animate .feat4-bar-fill { transform: scaleY(1); }
-    .feat4--animate .feat4-bar:nth-child(1) .feat4-bar-fill { transition-delay: 0.04s; }
-    .feat4--animate .feat4-bar:nth-child(2) .feat4-bar-fill { transition-delay: 0.08s; }
-    .feat4--animate .feat4-bar:nth-child(3) .feat4-bar-fill { transition-delay: 0.12s; }
-    .feat4--animate .feat4-bar:nth-child(4) .feat4-bar-fill { transition-delay: 0.16s; }
-    .feat4--animate .feat4-bar:nth-child(5) .feat4-bar-fill { transition-delay: 0.2s; }
-    .feat4--animate .feat4-bar:nth-child(6) .feat4-bar-fill { transition-delay: 0.24s; }
-    .feat4--animate .feat4-bar:nth-child(7) .feat4-bar-fill { transition-delay: 0.28s; }
-    .feat4--animate .feat4-bar:nth-child(8) .feat4-bar-fill { transition-delay: 0.32s; }
-    .feat4--animate .feat4-reserve-fill { transform: scaleX(1); }
-    .feat5-center { display: flex; align-items: center; justify-content: center; }
-    .feat5-ring { width: 88px; height: 88px; transform: rotate(-90deg); overflow: visible; flex-shrink: 0; }
-    .feat5-ring-track { fill: none; stroke: rgba(255, 255, 255, 0.1); stroke-width: 6; }
-    .feat5-ring-fill { fill: none; stroke: rgba(255, 255, 255, 0.34); stroke-width: 6; stroke-linecap: round; stroke-dasharray: 226; stroke-dashoffset: 116; }
-    .feat5-cluster { display: flex; align-items: center; gap: 14px; }
-    .feat5-bars { display: flex; flex-direction: column; gap: 7px; }
+    .fmock-floor-frame img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.94; }
+    .fmock-floor-meter { margin-top: 10px; height: 2px; background: rgba(255, 255, 255, 0.12); border-radius: 99px; overflow: hidden; }
+    .fmock-floor-meter > span { display: block; width: 88%; height: 100%; background: rgba(190, 255, 176, 0.72); transform: scaleX(0); transform-origin: left center; transition: transform 0.65s cubic-bezier(0.22, 0.8, 0.24, 1) 0.16s; }
+    .feat1--animate .fmock-floor-meter > span { transform: scaleX(1); }
+
+    .fmock-mini-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; margin-bottom: 10px; }
+    .fmock-mini { height: 18px; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 4px; background: rgba(255, 255, 255, 0.04); opacity: 0.45; transform: translateY(5px); transition: transform 0.45s ease, opacity 0.45s ease; }
+    .fmock-band { margin-top: 8px; height: 5px; border-radius: 99px; background: rgba(255, 255, 255, 0.1); overflow: hidden; }
+    .fmock-band > span { display: block; width: var(--w, 70%); height: 100%; transform: scaleX(0); transform-origin: left center; transition: transform 0.65s cubic-bezier(0.22, 0.8, 0.24, 1); }
+    .fmock-band-a { background: rgba(255, 255, 255, 0.32); }
+    .fmock-band-b { background: rgba(190, 255, 176, 0.66); }
+    .feat2--animate .fmock-mini { opacity: 1; transform: translateY(0); }
+    .feat2--animate .fmock-mini:nth-child(1) { transition-delay: 0.04s; }
+    .feat2--animate .fmock-mini:nth-child(2) { transition-delay: 0.08s; }
+    .feat2--animate .fmock-mini:nth-child(3) { transition-delay: 0.12s; }
+    .feat2--animate .fmock-mini:nth-child(4) { transition-delay: 0.16s; }
+    .feat2--animate .fmock-band > span { transform: scaleX(1); }
+    .feat2--animate .fmock-band:nth-child(2) > span { transition-delay: 0.18s; }
+    .feat2--animate .fmock-band:nth-child(3) > span { transition-delay: 0.28s; }
+
+    .fmock-route { display: flex; align-items: center; gap: 7px; margin: 6px 0 12px; }
+    .fmock-route .fmock-line { flex: 1; transform: scaleX(0); transition: transform 0.6s cubic-bezier(0.22, 0.8, 0.24, 1); }
+    .fmock-chip-row { display: flex; gap: 6px; }
+    .fmock-chip { flex: 1; height: 18px; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1); background: rgba(255, 255, 255, 0.04); transform: scaleX(0); transform-origin: left center; transition: transform 0.55s cubic-bezier(0.22, 0.8, 0.24, 1); }
+    .fmock-chip--accent { border-color: rgba(190, 255, 176, 0.3); background: rgba(190, 255, 176, 0.12); }
+    .feat3--animate .fmock-route .fmock-line,
+    .feat3--animate .fmock-chip { transform: scaleX(1); }
+    .feat3--animate .fmock-route .fmock-line:nth-of-type(2) { transition-delay: 0.08s; }
+    .feat3--animate .fmock-route .fmock-line:nth-of-type(4) { transition-delay: 0.16s; }
+    .feat3--animate .fmock-chip:nth-child(1) { transition-delay: 0.14s; }
+    .feat3--animate .fmock-chip:nth-child(2) { transition-delay: 0.2s; }
+    .feat3--animate .fmock-chip:nth-child(3) { transition-delay: 0.26s; }
+
+    .fmock-flow-row { display: flex; align-items: center; gap: 8px; margin-bottom: 7px; }
+    .fmock-flow-row .fmock-line { transform: scaleX(0); transition: transform 0.6s cubic-bezier(0.22, 0.8, 0.24, 1); }
+    .fmock-vault { margin-top: 8px; height: 30px; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1); background: rgba(255, 255, 255, 0.03); padding: 3px; display: flex; align-items: flex-end; }
+    .fmock-vault-fill { width: 100%; height: 100%; border-radius: 4px; background: linear-gradient(180deg, rgba(190, 255, 176, 0.46) 0%, rgba(255, 255, 255, 0.28) 100%); transform-origin: bottom center; transform: scaleY(0); transition: transform 0.68s cubic-bezier(0.22, 0.8, 0.24, 1) 0.24s; }
+    .feat4--animate .fmock-flow-row .fmock-line { transform: scaleX(1); }
+    .feat4--animate .fmock-flow-row:nth-child(1) .fmock-line { transition-delay: 0.06s; }
+    .feat4--animate .fmock-flow-row:nth-child(2) .fmock-line { transition-delay: 0.12s; }
+    .feat4--animate .fmock-flow-row:nth-child(3) .fmock-line { transition-delay: 0.18s; }
+    .feat4--animate .fmock-vault-fill { transform: scaleY(1); }
+
+    .fmock-matrix { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; margin-bottom: 10px; }
+    .fmock-cell { height: 14px; border-radius: 4px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.08); opacity: 0.3; transform: translateY(5px); transition: transform 0.45s ease, opacity 0.45s ease; }
+    .fmock-cell--accent { background: rgba(190, 255, 176, 0.2); border-color: rgba(190, 255, 176, 0.3); }
+    .fmock-stack { display: flex; flex-direction: column; gap: 6px; }
+    .fmock-stack .fmock-line { width: var(--w, 100%); transform: scaleX(0); transition: transform 0.55s cubic-bezier(0.22, 0.8, 0.24, 1); }
+    .feat5--animate .fmock-cell { opacity: 1; transform: translateY(0); }
+    .feat5--animate .fmock-cell:nth-child(1) { transition-delay: 0.03s; }
+    .feat5--animate .fmock-cell:nth-child(2) { transition-delay: 0.06s; }
+    .feat5--animate .fmock-cell:nth-child(3) { transition-delay: 0.09s; }
+    .feat5--animate .fmock-cell:nth-child(4) { transition-delay: 0.12s; }
+    .feat5--animate .fmock-cell:nth-child(5) { transition-delay: 0.15s; }
+    .feat5--animate .fmock-cell:nth-child(6) { transition-delay: 0.18s; }
+    .feat5--animate .fmock-cell:nth-child(7) { transition-delay: 0.21s; }
+    .feat5--animate .fmock-cell:nth-child(8) { transition-delay: 0.24s; }
+    .feat5--animate .fmock-cell:nth-child(9) { transition-delay: 0.27s; }
+    .feat5--animate .fmock-cell:nth-child(10) { transition-delay: 0.3s; }
+    .feat5--animate .fmock-cell:nth-child(11) { transition-delay: 0.33s; }
+    .feat5--animate .fmock-cell:nth-child(12) { transition-delay: 0.36s; }
+    .feat5--animate .fmock-stack .fmock-line { transform: scaleX(1); }
+    .feat5--animate .fmock-stack .fmock-line:nth-child(1) { transition-delay: 0.16s; }
+    .feat5--animate .fmock-stack .fmock-line:nth-child(2) { transition-delay: 0.22s; }
+    .feat5--animate .fmock-stack .fmock-line:nth-child(3) { transition-delay: 0.28s; }
     .feature-panel {
       grid-column: span 2;
       padding: 44px;
@@ -903,8 +867,11 @@
           <div class="feat1-shell">
             <article class="feat1-card">
               <p class="feat1-card-label">Floor Price</p>
-              <div class="feat1-asset-wrap" aria-hidden="true">
-                <img class="feat1-asset" src="Illustrations/Price_Floor.svg" alt="" loading="lazy" decoding="async" />
+              <div class="fmock" aria-hidden="true">
+                <div class="fmock-floor-frame">
+                  <img src="Illustrations/Price_Floor.svg" alt="" loading="lazy" decoding="async" />
+                </div>
+                <div class="fmock-floor-meter"><span></span></div>
               </div>
             </article>
           </div>
@@ -917,18 +884,15 @@
           <div class="feat1-shell">
             <article class="feat1-card">
               <p class="feat1-card-label">Your Position</p>
-              <div class="feat-ui">
-                <div class="feat-stack">
-                  <div class="feat-line-row">
-                    <span class="feat-node feat-node--soft"></span>
-                    <span class="feat-rail"><span class="feat-rail-fill" style="--w:74%;"></span></span>
-                  </div>
-                  <div class="feat-line-row">
-                    <span class="feat-node feat-node--soft"></span>
-                    <span class="feat-rail"><span class="feat-rail-fill feat-rail-fill--focus" style="--w:74%;"></span></span>
-                  </div>
+              <div class="fmock">
+                <div class="fmock-mini-grid">
+                  <span class="fmock-mini"></span>
+                  <span class="fmock-mini"></span>
+                  <span class="fmock-mini"></span>
+                  <span class="fmock-mini"></span>
                 </div>
-                <div class="feat-floorline"><span class="feat-floorline-fill"></span></div>
+                <div class="fmock-band"><span class="fmock-band-a" style="--w:62%;"></span></div>
+                <div class="fmock-band"><span class="fmock-band-b" style="--w:82%;"></span></div>
               </div>
             </article>
           </div>
@@ -951,16 +915,18 @@
           <div class="feat1-shell">
             <article class="feat1-card">
               <p class="feat1-card-label">Borrow Health</p>
-              <div class="feat-ui">
-                <div class="feat-pill">
-                  <span class="feat-pill-dot"></span>
-                  <span class="feat-pill-line"></span>
-                  <span class="feat-pill-line"></span>
+              <div class="fmock">
+                <div class="fmock-route">
+                  <span class="fmock-node"></span>
+                  <span class="fmock-line"></span>
+                  <span class="fmock-node"></span>
+                  <span class="fmock-line fmock-line--accent"></span>
+                  <span class="fmock-node fmock-node--accent"></span>
                 </div>
-                <div class="feat-stack">
-                  <div class="feat-line-row"><span class="feat-node"></span><span class="feat-line feat-line--focus" style="--w:80%;"></span></div>
-                  <div class="feat-line-row"><span class="feat-node feat-node--soft"></span><span class="feat-line" style="--w:56%;"></span></div>
-                  <div class="feat-line-row"><span class="feat-node feat-node--soft"></span><span class="feat-line" style="--w:38%;"></span></div>
+                <div class="fmock-chip-row">
+                  <span class="fmock-chip"></span>
+                  <span class="fmock-chip"></span>
+                  <span class="fmock-chip fmock-chip--accent"></span>
                 </div>
               </div>
             </article>
@@ -974,25 +940,11 @@
           <div class="feat1-shell">
             <article class="feat1-card">
               <p class="feat1-card-label">Reserve Growth</p>
-              <div class="feat-ui">
-                <div class="feat4-head">
-                  <div class="feat-line-row">
-                    <span class="feat-node feat-node--soft"></span><span class="feat-line" style="--w:24%;"></span>
-                    <span class="feat-node feat-node--soft"></span><span class="feat-line" style="--w:20%;"></span>
-                    <span class="feat-line feat-line--accent" style="--w:16%;"></span>
-                  </div>
-                </div>
-                <div class="feat4-chart" aria-hidden="true">
-                  <span class="feat4-bar"><span class="feat4-bar-fill" style="--h:22%;"></span></span>
-                  <span class="feat4-bar"><span class="feat4-bar-fill" style="--h:36%;"></span></span>
-                  <span class="feat4-bar"><span class="feat4-bar-fill" style="--h:33%;"></span></span>
-                  <span class="feat4-bar"><span class="feat4-bar-fill" style="--h:54%;"></span></span>
-                  <span class="feat4-bar"><span class="feat4-bar-fill feat4-bar-fill--accent" style="--h:65%;"></span></span>
-                  <span class="feat4-bar"><span class="feat4-bar-fill" style="--h:58%;"></span></span>
-                  <span class="feat4-bar"><span class="feat4-bar-fill" style="--h:74%;"></span></span>
-                  <span class="feat4-bar"><span class="feat4-bar-fill" style="--h:88%;"></span></span>
-                </div>
-                <div class="feat4-reserve"><span class="feat4-reserve-fill"></span></div>
+              <div class="fmock">
+                <div class="fmock-flow-row"><span class="fmock-node"></span><span class="fmock-line" style="width:68%;"></span></div>
+                <div class="fmock-flow-row"><span class="fmock-node"></span><span class="fmock-line" style="width:82%;"></span></div>
+                <div class="fmock-flow-row"><span class="fmock-node fmock-node--accent"></span><span class="fmock-line fmock-line--accent" style="width:56%;"></span></div>
+                <div class="fmock-vault"><span class="fmock-vault-fill"></span></div>
               </div>
             </article>
           </div>
@@ -1015,19 +967,16 @@
           <div class="feat1-shell">
             <article class="feat1-card">
               <p class="feat1-card-label">Supply &amp; Backing</p>
-              <div class="feat-ui">
-                <div class="feat5-cluster">
-                  <div class="feat5-center">
-                    <svg class="feat5-ring" viewBox="0 0 100 100" aria-hidden="true">
-                      <circle class="feat5-ring-track" cx="50" cy="50" r="36"/>
-                      <circle class="feat5-ring-fill" cx="50" cy="50" r="36"/>
-                    </svg>
-                  </div>
-                  <div class="feat5-bars">
-                    <span class="feat-line feat-line--focus" style="--w:46px;"></span>
-                    <span class="feat-line" style="--w:34px;"></span>
-                    <span class="feat-line feat-line--accent" style="--w:18px;"></span>
-                  </div>
+              <div class="fmock">
+                <div class="fmock-matrix">
+                  <span class="fmock-cell"></span><span class="fmock-cell"></span><span class="fmock-cell fmock-cell--accent"></span><span class="fmock-cell"></span>
+                  <span class="fmock-cell"></span><span class="fmock-cell fmock-cell--accent"></span><span class="fmock-cell"></span><span class="fmock-cell"></span>
+                  <span class="fmock-cell"></span><span class="fmock-cell"></span><span class="fmock-cell"></span><span class="fmock-cell fmock-cell--accent"></span>
+                </div>
+                <div class="fmock-stack">
+                  <span class="fmock-line" style="--w:88%;"></span>
+                  <span class="fmock-line fmock-line--accent" style="--w:62%;"></span>
+                  <span class="fmock-line" style="--w:40%;"></span>
                 </div>
               </div>
             </article>
