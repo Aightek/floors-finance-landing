@@ -321,7 +321,7 @@
     .feature-spacer:last-child,
     .feature-panel:last-child { border-right: none; }
     .feature-spacer { background: transparent; }
-    /* -- Feature 1 — Floor Price Illustration ----------------------------- */
+    /* -- Feature 1: HUD Area Chart Illustration ---------------------------- */
     .feature-spacer { position: relative; }
     .feat1-visual {
       position: absolute;
@@ -337,153 +337,57 @@
       width: 100%;
       height: 100%;
       overflow: hidden;
-      border-radius: 2px;
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      background:
-        radial-gradient(130% 90% at -12% 112%, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0) 56%),
-        radial-gradient(120% 80% at 90% -18%, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0) 45%),
-        #080808;
+      background: #080808;
     }
-    .feat1-shell::before {
-      content: "";
+    .feat1-svg {
       position: absolute;
       inset: 0;
-      pointer-events: none;
-      background: linear-gradient(180deg, rgba(0, 0, 0, 0.52) 0%, rgba(0, 0, 0, 0.1) 36%, rgba(0, 0, 0, 0.62) 100%);
-      z-index: 1;
-    }
-    .feat1-grid-guide {
-      position: absolute;
-      z-index: 2;
-      pointer-events: none;
-      opacity: 0.55;
-      background: rgba(255, 255, 255, 0.1);
-    }
-    .feat1-grid-guide--v {
-      top: 0;
-      bottom: 0;
-      width: 1px;
-    }
-    .feat1-grid-guide--h {
-      left: 0;
-      right: 0;
-      height: 1px;
-    }
-    .feat1-grid-guide--v1 { left: 27%; }
-    .feat1-grid-guide--v2 { left: 58%; opacity: 0.22; }
-    .feat1-grid-guide--h1 { top: 34%; }
-    .feat1-grid-guide--h2 { top: 68%; opacity: 0.2; }
-    .feat1-cross {
-      position: absolute;
-      width: 14px;
-      height: 14px;
-      z-index: 3;
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-      opacity: 0.7;
-    }
-    .feat1-cross::before,
-    .feat1-cross::after {
-      content: "";
-      position: absolute;
-      background: rgba(255, 255, 255, 0.42);
-    }
-    .feat1-cross::before {
-      width: 1px;
-      height: 14px;
-      left: 6px;
-      top: 0;
-    }
-    .feat1-cross::after {
-      height: 1px;
-      width: 14px;
-      left: 0;
-      top: 6px;
-    }
-    .feat1-cross--tl { left: 27%; top: 34%; }
-    .feat1-cross--bl { left: 27%; top: 68%; opacity: 0.45; }
-    .feat1-svg {
-      position: relative;
-      z-index: 4;
       width: 100%;
       height: 100%;
       display: block;
     }
-    .feat1-fill { opacity: 0; transition: opacity 0.55s ease 0.55s; }
-    .feat1-entry-bloom { opacity: 0; transition: opacity 0.65s ease 0.45s; }
-    .feat1-path-floor {
-      stroke-dasharray: 620;
-      stroke-dashoffset: 620;
-      transition: stroke-dashoffset 0.95s cubic-bezier(0.18, 0.78, 0.22, 1) 0.12s;
-      filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.4)) drop-shadow(0 0 10px rgba(255, 255, 255, 0.16));
-    }
-    .feat1-path-market {
-      stroke-dasharray: 680;
-      stroke-dashoffset: 680;
-      transition: stroke-dashoffset 1.05s cubic-bezier(0.22, 0.8, 0.24, 1) 0.22s;
-    }
-    .feat1-step-dots { opacity: 0; transition: opacity 0.32s ease 0.95s; }
-    .feat1-entry-dot { opacity: 0; transition: opacity 0.24s ease 1.02s; filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.8)); }
-    .feat1-pulse-ring { opacity: 0; transform-box: fill-box; transform-origin: 50% 50%; }
-    .feat1-dot-floor { opacity: 0; transition: opacity 0.26s ease 0.92s; filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.68)); }
-    .feat1-dot-market { opacity: 0; transition: opacity 0.26s ease 0.88s; }
-    .feat1-gap-line { opacity: 0; transition: opacity 0.26s ease 0.92s; }
-    .feat1-safe-band { opacity: 0; transition: opacity 0.4s ease 0.72s; }
-    .feat1-label { opacity: 0; transition: opacity 0.3s ease 1.04s; }
-    .feat1-scan {
+    .feat1-plot-fill {
       opacity: 0;
-      transform: translateX(-52%);
-      transition: opacity 0.2s ease;
-      transform-box: fill-box;
-      transform-origin: center;
+      transition: opacity 0.55s ease 0.42s;
     }
-    .feat1-caption { opacity: 0; transition: opacity 0.3s ease 0.95s; }
+    .feat1-plot-line {
+      opacity: 0;
+      stroke-dasharray: 280;
+      stroke-dashoffset: 280;
+      transition: opacity 0.2s ease 0.1s, stroke-dashoffset 1s cubic-bezier(0.22, 0.8, 0.24, 1) 0.18s;
+    }
+    .feat1-hover-dot {
+      opacity: 0;
+      transition: opacity 0.16s ease;
+      filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.65));
+    }
+    .feat1-hover-readout {
+      position: absolute;
+      bottom: 18px;
+      left: 22px;
+      z-index: 2;
+      color: #ffffff;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 11px;
+      line-height: 1.2;
+      letter-spacing: 0.04em;
+      opacity: 0;
+      transition: opacity 0.16s ease;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+    .feat1-hover-readout.is-visible { opacity: 0.82; }
     .feat1--animate { opacity: 1; transform: translateY(0) scale(1); }
-    .feat1--animate .feat1-fill { opacity: 1; }
-    .feat1--animate .feat1-entry-bloom { opacity: 1; }
-    .feat1--animate .feat1-path-floor { stroke-dashoffset: 0; }
-    .feat1--animate .feat1-path-market { stroke-dashoffset: 0; }
-    .feat1--animate .feat1-step-dots { opacity: 1; }
-    .feat1--animate .feat1-entry-dot { opacity: 1; }
-    .feat1--animate .feat1-dot-floor { opacity: 1; }
-    .feat1--animate .feat1-dot-market { opacity: 0.72; }
-    .feat1--animate .feat1-gap-line { opacity: 1; }
-    .feat1--animate .feat1-safe-band { opacity: 1; }
-    .feat1--animate .feat1-label { opacity: 1; }
-    .feat1--animate .feat1-caption { opacity: 1; }
-    .feat1--animate .feat1-scan {
-      opacity: 0.48;
-      animation: feat1-scan 1.15s cubic-bezier(0.23, 1, 0.32, 1) 0.56s 1;
-    }
-    .feat1--animate .feat1-pulse-ring { animation: feat1-pulse 1.2s ease-out 1.02s 1; }
-    @keyframes feat1-pulse {
-      0% { transform: scale(1); opacity: 0.7; }
-      100% { transform: scale(3.6); opacity: 0; }
-    }
-    @keyframes feat1-scan {
-      from { transform: translateX(-52%); }
-      to { transform: translateX(52%); opacity: 0; }
-    }
+    .feat1--animate .feat1-plot-fill { opacity: 1; }
+    .feat1--animate .feat1-plot-line { opacity: 0.96; stroke-dashoffset: 0; }
+    .feat1-visual.is-hovering .feat1-hover-dot { opacity: 0.95; }
     @media (prefers-reduced-motion: reduce) {
       .feat1-visual,
-      .feat1-fill,
-      .feat1-entry-bloom,
-      .feat1-path-floor,
-      .feat1-path-market,
-      .feat1-step-dots,
-      .feat1-entry-dot,
-      .feat1-dot-floor,
-      .feat1-dot-market,
-      .feat1-gap-line,
-      .feat1-safe-band,
-      .feat1-label,
-      .feat1-caption {
+      .feat1-plot-fill,
+      .feat1-plot-line,
+      .feat1-hover-dot,
+      .feat1-hover-readout {
         transition: none !important;
-      }
-      .feat1-pulse-ring,
-      .feat1-scan {
-        animation: none !important;
-        opacity: 0 !important;
       }
     }
     .feature-panel {
@@ -855,87 +759,33 @@
       <div class="feature-spacer" aria-hidden="true">
         <div class="feat1-visual" id="feat1-visual">
           <div class="feat1-shell">
-            <div class="feat1-grid-guide feat1-grid-guide--v feat1-grid-guide--v1"></div>
-            <div class="feat1-grid-guide feat1-grid-guide--v feat1-grid-guide--v2"></div>
-            <div class="feat1-grid-guide feat1-grid-guide--h feat1-grid-guide--h1"></div>
-            <div class="feat1-grid-guide feat1-grid-guide--h feat1-grid-guide--h2"></div>
-            <div class="feat1-cross feat1-cross--tl"></div>
-            <div class="feat1-cross feat1-cross--bl"></div>
-            <svg class="feat1-svg" viewBox="0 0 420 280" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+            <svg class="feat1-svg" viewBox="0 0 152 149" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
               <defs>
-                <linearGradient id="feat1-fill-grad" x1="0" x2="0" y1="0" y2="1">
-                  <stop offset="0%" stop-color="#ffffff" stop-opacity="0.24"/>
-                  <stop offset="100%" stop-color="#ffffff" stop-opacity="0.01"/>
-                </linearGradient>
-                <linearGradient id="feat1-zone-grad" x1="0" x2="1" y1="0" y2="0">
-                  <stop offset="0%" stop-color="#ffffff" stop-opacity="0.1"/>
-                  <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
-                </linearGradient>
-                <radialGradient id="feat1-bloom-grad" cx="0" cy="1" r="0.95" fx="0" fy="1">
-                  <stop offset="0%" stop-color="#ffffff" stop-opacity="0.18"/>
-                  <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
-                </radialGradient>
-                <linearGradient id="feat1-top-fade" x1="0" x2="0" y1="0" y2="1">
-                  <stop offset="0%" stop-color="#060606" stop-opacity="0.56"/>
-                  <stop offset="24%" stop-color="#060606" stop-opacity="0"/>
-                </linearGradient>
-                <linearGradient id="feat1-scan-grad" x1="0" x2="1" y1="0" y2="0">
-                  <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
-                  <stop offset="50%" stop-color="#ffffff" stop-opacity="0.2"/>
-                  <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
-                </linearGradient>
-                <pattern id="feat1-dot-grid" x="0" y="0" width="16" height="14" patternUnits="userSpaceOnUse">
-                  <circle cx="8" cy="7" r="0.8" fill="#ffffff" fill-opacity="0.14"/>
+                <pattern id="feat1-dot-grid" x="0" y="0" width="16.89" height="14.9" patternUnits="userSpaceOnUse">
+                  <circle cx="8.445" cy="7.45" r="0.8" fill="#ffffff" opacity="0.1"/>
                 </pattern>
+                <linearGradient id="feat1-gradient" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#ffffff" stop-opacity="0.4"/>
+                  <stop offset="20%" stop-color="#ffffff" stop-opacity="0.25"/>
+                  <stop offset="40%" stop-color="#ffffff" stop-opacity="0.15"/>
+                  <stop offset="70%" stop-color="#ffffff" stop-opacity="0.05"/>
+                  <stop offset="90%" stop-color="#ffffff" stop-opacity="0.01"/>
+                  <stop offset="100%" stop-color="transparent" stop-opacity="0"/>
+                </linearGradient>
                 <clipPath id="feat1-plot-clip">
-                  <rect x="18" y="18" width="384" height="244" rx="0"/>
+                  <path d="M1 1h149.894v131.772L135.145 147.521H1V1z" />
                 </clipPath>
               </defs>
-              <rect width="420" height="280" fill="#080808"/>
-              <rect x="1" y="1" width="418" height="278" fill="url(#feat1-dot-grid)"/>
-              <rect class="feat1-entry-bloom" width="420" height="280" fill="url(#feat1-bloom-grad)"/>
-              <rect x="0" y="0" width="118" height="280" fill="url(#feat1-zone-grad)"/>
-              <line x1="0" y1="94" x2="420" y2="94" stroke="white" stroke-opacity="0.05" stroke-width="1" stroke-dasharray="3 8"/>
-              <line x1="0" y1="188" x2="420" y2="188" stroke="white" stroke-opacity="0.045" stroke-width="1" stroke-dasharray="3 8"/>
+              <rect x="1" y="1" width="150.894" height="146.521" fill="url(#feat1-dot-grid)"/>
               <g clip-path="url(#feat1-plot-clip)">
-                <path class="feat1-fill"
-                  d="M 20 226 L 58 226 L 58 204 L 118 204 L 118 178 L 196 178 L 196 150 L 276 150 L 276 122 L 346 122 L 346 94 L 402 94 L 402 262 L 20 262 Z"
-                  fill="url(#feat1-fill-grad)"/>
-                <path class="feat1-safe-band"
-                  d="M 20 212 C 56 201,88 186,120 166 C 156 145,188 126,222 107 C 252 91,286 76,324 64 C 350 57,376 53,402 50 L 402 94 L 346 94 L 346 122 L 276 122 L 276 150 L 196 150 L 196 178 L 118 178 L 118 204 L 58 204 L 58 226 L 20 226 Z"
-                  fill="white" fill-opacity="0.05"/>
-                <path class="feat1-path-market"
-                  d="M 20 212 C 56 201,88 186,120 166 C 156 145,188 126,222 107 C 252 91,286 76,324 64 C 350 57,376 53,402 50"
-                  fill="none" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-opacity="0.64"/>
-                <path class="feat1-path-floor"
-                  d="M 20 226 L 58 226 L 58 204 L 118 204 L 118 178 L 196 178 L 196 150 L 276 150 L 276 122 L 346 122 L 346 94 L 402 94"
-                  fill="none" stroke="#ffffff" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
-                <g class="feat1-step-dots">
-                  <circle cx="58" cy="204" r="2.8" fill="#ffffff" opacity="0.82"/>
-                  <circle cx="118" cy="178" r="2.8" fill="#ffffff" opacity="0.82"/>
-                  <circle cx="196" cy="150" r="2.8" fill="#ffffff" opacity="0.82"/>
-                  <circle cx="276" cy="122" r="2.8" fill="#ffffff" opacity="0.82"/>
-                  <circle cx="346" cy="94" r="2.8" fill="#ffffff" opacity="0.82"/>
-                </g>
-                <line class="feat1-gap-line" x1="391" y1="56" x2="391" y2="92" stroke="white" stroke-opacity="0.18" stroke-width="1" stroke-dasharray="2 4"/>
-                <circle class="feat1-dot-market" cx="391" cy="50" r="3" fill="white"/>
-                <circle class="feat1-dot-floor" cx="391" cy="94" r="3.4" fill="#ffffff"/>
+                <path id="feat1-area-path" class="feat1-plot-fill" d="M 4 126 C 19 122, 30 115, 42 105 C 53 95, 64 83, 77 70 C 91 57, 107 45, 124 35 C 132 30, 140 27, 148 25 L 148 147.521 L 1 147.521 L 1 132 C 2.5 130.8, 3.2 128.6, 4 126 Z" fill="url(#feat1-gradient)"/>
+                <path id="feat1-line-path" class="feat1-plot-line" d="M 4 126 C 19 122, 30 115, 42 105 C 53 95, 64 83, 77 70 C 91 57, 107 45, 124 35 C 132 30, 140 27, 148 25" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"/>
+                <rect id="feat1-chart-hit" x="1" y="1" width="150" height="146.521" fill="transparent"/>
+                <circle id="feat1-hover-dot" class="feat1-hover-dot" cx="4" cy="126" r="1.8" fill="#ffffff"/>
               </g>
-              <g class="feat1-label" font-family="monospace" font-size="8.5" letter-spacing="0.45">
-                <rect x="286" y="37" width="94" height="16" fill="white" fill-opacity="0.08" stroke="white" stroke-opacity="0.18"/>
-                <text x="292" y="48" fill="white" fill-opacity="0.76">MARKET PRICE</text>
-                <rect x="286" y="98" width="116" height="16" fill="white" fill-opacity="0.06" stroke="white" stroke-opacity="0.22"/>
-                <text x="292" y="109" fill="white" fill-opacity="0.88">FLOOR PRICE (MIN)</text>
-              </g>
-              <circle class="feat1-pulse-ring" cx="20" cy="226" r="7" fill="none" stroke="#ffffff" stroke-width="1.4"/>
-              <circle class="feat1-entry-dot" cx="20" cy="226" r="4.3" fill="#ffffff"/>
-              <rect class="feat1-scan" x="-90" y="0" width="180" height="280" fill="url(#feat1-scan-grad)"/>
-              <g class="feat1-caption" font-family="monospace" font-size="9" fill="white" fill-opacity="0.56" letter-spacing="0.6">
-                <text x="16" y="24">MARKET PRICE &gt;= FLOOR PRICE</text>
-                <text x="326" y="24">LOCKED</text>
-              </g>
-              <rect width="420" height="280" fill="url(#feat1-top-fade)" pointer-events="none"/>
+              <path d="M136.145 148.521H0V0H151.894V132.772L136.145 148.521ZM1 147.521H135.73L150.894 132.358V1H1V147.521Z" fill="#ffffff"/>
             </svg>
+            <div id="feat1-hover-readout" class="feat1-hover-readout">T0 : 0</div>
           </div>
         </div>
       </div>
@@ -1097,6 +947,61 @@
       var initFeatureOneIllustration = function () {
         var feat1El = document.getElementById('feat1-visual');
         if (!feat1El) return;
+
+        var hoverHitArea = document.getElementById('feat1-chart-hit');
+        var hoverDot = document.getElementById('feat1-hover-dot');
+        var hoverReadout = document.getElementById('feat1-hover-readout');
+        var hoverSeries = [
+          { x: 4, y: 126, time: 'T1', value: 76 },
+          { x: 19, y: 122, time: 'T2', value: 79 },
+          { x: 30, y: 115, time: 'T3', value: 84 },
+          { x: 42, y: 105, time: 'T4', value: 91 },
+          { x: 53, y: 95, time: 'T5', value: 99 },
+          { x: 64, y: 83, time: 'T6', value: 108 },
+          { x: 77, y: 70, time: 'T7', value: 119 },
+          { x: 91, y: 57, time: 'T8', value: 131 },
+          { x: 107, y: 45, time: 'T9', value: 144 },
+          { x: 124, y: 35, time: 'T10', value: 156 },
+          { x: 132, y: 30, time: 'T11', value: 163 },
+          { x: 140, y: 27, time: 'T12', value: 167 },
+          { x: 148, y: 25, time: 'T13', value: 170 }
+        ];
+
+        var bindHover = function () {
+          if (!hoverHitArea || !hoverDot || !hoverReadout) return;
+
+          var onMove = function (event) {
+            var rect = hoverHitArea.getBoundingClientRect();
+            if (!rect.width) return;
+
+            var ratioX = (event.clientX - rect.left) / rect.width;
+            var dataX = Math.max(0, Math.min(151.894, ratioX * 151.894));
+            var nearest = hoverSeries[0];
+            var i = 1;
+            for (; i < hoverSeries.length; i += 1) {
+              if (Math.abs(hoverSeries[i].x - dataX) < Math.abs(nearest.x - dataX)) {
+                nearest = hoverSeries[i];
+              }
+            }
+
+            hoverDot.setAttribute('cx', String(nearest.x));
+            hoverDot.setAttribute('cy', String(nearest.y));
+            hoverReadout.textContent = nearest.time + ' : ' + nearest.value;
+            feat1El.classList.add('is-hovering');
+            hoverReadout.classList.add('is-visible');
+          };
+
+          var onLeave = function () {
+            feat1El.classList.remove('is-hovering');
+            hoverReadout.classList.remove('is-visible');
+          };
+
+          hoverHitArea.addEventListener('mousemove', onMove);
+          hoverHitArea.addEventListener('mouseleave', onLeave);
+        };
+
+        bindHover();
+
         if (reduceMotion) {
           feat1El.classList.add('feat1--animate');
           return;
@@ -1463,5 +1368,6 @@
   </script>
 </body>
 </html>
+
 
 
