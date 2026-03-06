@@ -363,11 +363,73 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
     }
+    .feat1-step-wrap { margin-top: 12px; }
+    .feat1-step-grid {
+      height: 110px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      align-items: end;
+    }
+    .feat1-step-col {
+      position: relative;
+      height: 100%;
+      border-radius: 8px 8px 0 0;
+      background: rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+    }
+    .feat1-step-fill {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: var(--h, 50%);
+      border-radius: 8px 8px 0 0;
+      background: rgba(255, 255, 255, 0.34);
+      transform-origin: bottom center;
+      transform: scaleY(0);
+      transition: transform 0.7s cubic-bezier(0.22, 0.8, 0.24, 1);
+    }
+    .feat1-step-fill--accent { background: rgba(190, 255, 176, 0.72); }
+    .feat1-step-cap {
+      position: absolute;
+      left: 50%;
+      top: 8px;
+      width: 36%;
+      height: 2px;
+      border-radius: 99px;
+      transform: translateX(-50%);
+      background: rgba(255, 255, 255, 0.36);
+    }
+    .feat1-step-base {
+      margin-top: 10px;
+      height: 2px;
+      border-radius: 99px;
+      background: rgba(255, 255, 255, 0.14);
+      overflow: hidden;
+    }
+    .feat1-step-base-fill {
+      display: block;
+      width: 86%;
+      height: 100%;
+      border-radius: 99px;
+      background: rgba(255, 255, 255, 0.34);
+      transform-origin: left center;
+      transform: scaleX(0);
+      transition: transform 0.7s cubic-bezier(0.22, 0.8, 0.24, 1) 0.2s;
+    }
     .feat1--animate { opacity: 1; transform: translateY(0) scale(1); }
     .feat1--animate .feat1-card { opacity: 1; transform: translateY(0); }
+    .feat1--animate .feat1-step-fill { transform: scaleY(1); }
+    .feat1--animate .feat1-step-col:nth-child(1) .feat1-step-fill { transition-delay: 0.06s; }
+    .feat1--animate .feat1-step-col:nth-child(2) .feat1-step-fill { transition-delay: 0.14s; }
+    .feat1--animate .feat1-step-col:nth-child(3) .feat1-step-fill { transition-delay: 0.22s; }
+    .feat1--animate .feat1-step-base-fill { transform: scaleX(1); }
     @media (prefers-reduced-motion: reduce) {
       .feat1-visual,
-      .feat1-card {
+      .feat1-card,
+      .feat1-step-fill,
+      .feat1-step-base-fill {
         transition: none !important;
       }
     }
@@ -435,8 +497,6 @@
     .feat-rail-fill--focus { background: rgba(255, 255, 255, 0.34); }
     .feat-floorline { margin-top: 10px; height: 1px; background: rgba(255, 255, 255, 0.08); position: relative; }
     .feat-floorline-fill { position: absolute; left: 0; top: 0; width: 72%; height: 1px; background: rgba(255, 255, 255, 0.34); }
-    .feat-steps { display: flex; flex-direction: column; gap: 8px; }
-    .feat-baseline { margin-top: 8px; display: flex; justify-content: flex-start; }
     .feat-pill {
       display: inline-flex;
       align-items: center;
@@ -890,14 +950,22 @@
           <div class="feat1-shell">
             <article class="feat1-card">
               <p class="feat1-card-label">Floor Price</p>
-              <div class="feat-ui">
-                <div class="feat-steps">
-                  <div class="feat-line-row"><span class="feat-node feat-node--soft"></span><span class="feat-line" style="--w:34%;"></span></div>
-                  <div class="feat-line-row"><span class="feat-node feat-node--soft"></span><span class="feat-line" style="--w:52%;"></span></div>
-                  <div class="feat-line-row"><span class="feat-node feat-node--soft"></span><span class="feat-line" style="--w:69%;"></span></div>
-                  <div class="feat-line-row"><span class="feat-node"></span><span class="feat-line feat-line--accent" style="--w:86%;"></span></div>
+              <div class="feat-ui feat1-step-wrap">
+                <div class="feat1-step-grid" aria-hidden="true">
+                  <span class="feat1-step-col">
+                    <span class="feat1-step-fill" style="--h:38%;"></span>
+                    <span class="feat1-step-cap"></span>
+                  </span>
+                  <span class="feat1-step-col">
+                    <span class="feat1-step-fill" style="--h:63%;"></span>
+                    <span class="feat1-step-cap"></span>
+                  </span>
+                  <span class="feat1-step-col">
+                    <span class="feat1-step-fill feat1-step-fill--accent" style="--h:86%;"></span>
+                    <span class="feat1-step-cap"></span>
+                  </span>
                 </div>
-                <div class="feat-baseline"><span class="feat-line" style="--w:90%;"></span></div>
+                <div class="feat1-step-base"><span class="feat1-step-base-fill"></span></div>
               </div>
             </article>
           </div>
