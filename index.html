@@ -378,6 +378,7 @@
     .feat1--animate { opacity: 1; transform: translateY(0) scale(1); }
     .feat1--animate .feat1-lottie-only { opacity: 1; transform: translateY(0); }
     .feat2--animate .feat1-lottie-only { opacity: 1; transform: translateY(0); }
+    .feat3--animate .feat1-lottie-only { opacity: 1; transform: translateY(0); }
     @media (prefers-reduced-motion: reduce) {
       .feat1-visual,
       .feat1-card,
@@ -936,24 +937,8 @@
       </div>
       <div class="feature-spacer" aria-hidden="true">
         <div class="feat3-visual" id="feat3-visual">
-          <div class="feat1-shell">
-            <article class="feat1-card">
-              <p class="feat1-card-label">Borrow Health</p>
-              <div class="fmock">
-                <div class="fmock-route">
-                  <span class="fmock-node"></span>
-                  <span class="fmock-line"></span>
-                  <span class="fmock-node"></span>
-                  <span class="fmock-line fmock-line--accent"></span>
-                  <span class="fmock-node fmock-node--accent"></span>
-                </div>
-                <div class="fmock-chip-row">
-                  <span class="fmock-chip"></span>
-                  <span class="fmock-chip"></span>
-                  <span class="fmock-chip fmock-chip--accent"></span>
-                </div>
-              </div>
-            </article>
+          <div class="feat1-lottie-only" aria-hidden="true">
+            <div id="feature-f3-lottie"></div>
           </div>
         </div>
       </div>
@@ -1235,6 +1220,7 @@
       };
       initFeatureLottie('feature-f1-lottie', 'feat1-visual', 'Animations/F1.json');
       initFeatureLottie('feature-f2-lottie', 'feat2-visual', 'Animations/F2.json');
+      initFeatureLottie('feature-f3-lottie', 'feat3-visual', 'Animations/F3.json');
 
       if (!window.lottie) return;
 
