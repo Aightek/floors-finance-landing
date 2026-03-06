@@ -1201,11 +1201,18 @@
         var animation = window.lottie.loadAnimation({
           container: container,
           renderer: 'svg',
-          loop: !reduceMotion,
+          loop: false,
           autoplay: false,
           path: 'Animations/F1.json',
           rendererSettings: { preserveAspectRatio: 'xMidYMid meet' }
         });
+
+        var lockAtIdleFrame = function () {
+          var totalFrames = animation.totalFrames || animation.getDuration(true) || 0;
+          if (totalFrames > 0) {
+            animation.goToAndStop(Math.max(0, Math.floor(totalFrames - 1)), true);
+          }
+        };
 
         if (reduceMotion) {
           animation.addEventListener('DOMLoaded', function () {
@@ -1213,6 +1220,8 @@
           });
           return;
         }
+
+        animation.addEventListener('complete', lockAtIdleFrame);
 
         var played = false;
         var play = function () {
