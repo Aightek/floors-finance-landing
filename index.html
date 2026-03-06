@@ -363,24 +363,24 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
     }
-    .feat1-lottie-frame {
-      margin-top: 14px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 11px;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.022) 0%, rgba(255, 255, 255, 0.008) 100%);
-      overflow: hidden;
-      height: 160px;
+    .feat1-lottie-only {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.7s ease 0.18s, transform 0.9s cubic-bezier(0.22, 0.8, 0.24, 1) 0.18s;
     }
-    .feat1-lottie-frame > div,
-    .feat1-lottie-frame > svg {
+    .feat1-lottie-only > div,
+    .feat1-lottie-only > svg {
       width: 100%;
       height: 100%;
     }
     .feat1--animate { opacity: 1; transform: translateY(0) scale(1); }
-    .feat1--animate .feat1-card { opacity: 1; transform: translateY(0); }
+    .feat1--animate .feat1-lottie-only { opacity: 1; transform: translateY(0); }
     @media (prefers-reduced-motion: reduce) {
       .feat1-visual,
-      .feat1-card {
+      .feat1-card,
+      .feat1-lottie-only {
         transition: none !important;
       }
     }
@@ -907,13 +907,8 @@
       </div>
       <div class="feature-spacer" aria-hidden="true">
         <div class="feat1-visual" id="feat1-visual">
-          <div class="feat1-shell">
-            <article class="feat1-card">
-              <p class="feat1-card-label">Floor Price</p>
-              <div class="feat1-lottie-frame" aria-hidden="true">
-                <div id="feature-f1-lottie"></div>
-              </div>
-            </article>
+          <div class="feat1-lottie-only" aria-hidden="true">
+            <div id="feature-f1-lottie"></div>
           </div>
         </div>
       </div>
