@@ -363,73 +363,26 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
     }
-    .feat1-step-wrap { margin-top: 12px; }
-    .feat1-step-grid {
-      height: 110px;
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 8px;
-      align-items: end;
-    }
-    .feat1-step-col {
-      position: relative;
-      height: 100%;
-      border-radius: 8px 8px 0 0;
-      background: rgba(255, 255, 255, 0.08);
+    .feat1-asset-wrap {
+      margin-top: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 11px;
+      padding: 8px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.008) 100%);
       overflow: hidden;
     }
-    .feat1-step-fill {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      height: var(--h, 50%);
-      border-radius: 8px 8px 0 0;
-      background: rgba(255, 255, 255, 0.34);
-      transform-origin: bottom center;
-      transform: scaleY(0);
-      transition: transform 0.7s cubic-bezier(0.22, 0.8, 0.24, 1);
-    }
-    .feat1-step-fill--accent { background: rgba(190, 255, 176, 0.72); }
-    .feat1-step-cap {
-      position: absolute;
-      left: 50%;
-      top: 8px;
-      width: 36%;
-      height: 2px;
-      border-radius: 99px;
-      transform: translateX(-50%);
-      background: rgba(255, 255, 255, 0.36);
-    }
-    .feat1-step-base {
-      margin-top: 10px;
-      height: 2px;
-      border-radius: 99px;
-      background: rgba(255, 255, 255, 0.14);
-      overflow: hidden;
-    }
-    .feat1-step-base-fill {
+    .feat1-asset {
+      width: 100%;
+      height: 132px;
       display: block;
-      width: 86%;
-      height: 100%;
-      border-radius: 99px;
-      background: rgba(255, 255, 255, 0.34);
-      transform-origin: left center;
-      transform: scaleX(0);
-      transition: transform 0.7s cubic-bezier(0.22, 0.8, 0.24, 1) 0.2s;
+      object-fit: cover;
+      border-radius: 8px;
     }
     .feat1--animate { opacity: 1; transform: translateY(0) scale(1); }
     .feat1--animate .feat1-card { opacity: 1; transform: translateY(0); }
-    .feat1--animate .feat1-step-fill { transform: scaleY(1); }
-    .feat1--animate .feat1-step-col:nth-child(1) .feat1-step-fill { transition-delay: 0.06s; }
-    .feat1--animate .feat1-step-col:nth-child(2) .feat1-step-fill { transition-delay: 0.14s; }
-    .feat1--animate .feat1-step-col:nth-child(3) .feat1-step-fill { transition-delay: 0.22s; }
-    .feat1--animate .feat1-step-base-fill { transform: scaleX(1); }
     @media (prefers-reduced-motion: reduce) {
       .feat1-visual,
-      .feat1-card,
-      .feat1-step-fill,
-      .feat1-step-base-fill {
+      .feat1-card {
         transition: none !important;
       }
     }
@@ -950,22 +903,8 @@
           <div class="feat1-shell">
             <article class="feat1-card">
               <p class="feat1-card-label">Floor Price</p>
-              <div class="feat-ui feat1-step-wrap">
-                <div class="feat1-step-grid" aria-hidden="true">
-                  <span class="feat1-step-col">
-                    <span class="feat1-step-fill" style="--h:38%;"></span>
-                    <span class="feat1-step-cap"></span>
-                  </span>
-                  <span class="feat1-step-col">
-                    <span class="feat1-step-fill" style="--h:63%;"></span>
-                    <span class="feat1-step-cap"></span>
-                  </span>
-                  <span class="feat1-step-col">
-                    <span class="feat1-step-fill feat1-step-fill--accent" style="--h:86%;"></span>
-                    <span class="feat1-step-cap"></span>
-                  </span>
-                </div>
-                <div class="feat1-step-base"><span class="feat1-step-base-fill"></span></div>
+              <div class="feat1-asset-wrap" aria-hidden="true">
+                <img class="feat1-asset" src="Illustrations/Price_Floor.svg" alt="" loading="lazy" decoding="async" />
               </div>
             </article>
           </div>
