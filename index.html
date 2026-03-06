@@ -1151,7 +1151,7 @@
         var container = document.getElementById(containerId);
         var host = document.getElementById(hostId);
         if (!container || !host) return;
-        var hoverTarget = host.closest('.feature-spacer') || host;
+        var hoverTarget = host.closest('.feature-row') || host.closest('.feature-spacer') || host;
 
         var animation = window.lottie.loadAnimation({
           container: container,
@@ -1209,20 +1209,6 @@
           animation.goToAndPlay(0, true);
         };
 
-        if ('IntersectionObserver' in window) {
-          var observer = new IntersectionObserver(function(entries) {
-            entries.forEach(function(entry) {
-              if (entry.isIntersecting) {
-                play();
-                observer.disconnect();
-              }
-            });
-          }, { threshold: 0.35 });
-          observer.observe(host);
-          return;
-        }
-        play();
-
         hoverTarget.addEventListener('mouseenter', function () {
           if (!played || isHovering) return;
           isHovering = true;
@@ -1236,6 +1222,20 @@
           isHovering = false;
           lockAtIdleFrame();
         });
+
+        if ('IntersectionObserver' in window) {
+          var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+              if (entry.isIntersecting) {
+                play();
+                observer.disconnect();
+              }
+            });
+          }, { threshold: 0.35 });
+          observer.observe(host);
+          return;
+        }
+        play();
       };
       initFeatureLottie('feature-f1-lottie', 'feat1-visual', 'Animations/F1.json');
       initFeatureLottie('feature-f2-lottie', 'feat2-visual', 'Animations/F2.json');
