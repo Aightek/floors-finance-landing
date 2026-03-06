@@ -363,21 +363,6 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
     }
-    .feat1-card-value {
-      margin: 8px 0 0;
-      color: var(--accent);
-      font-size: 40px;
-      font-weight: 600;
-      line-height: 1;
-      letter-spacing: -0.03em;
-    }
-    .feat1-card-sub {
-      margin: 0;
-      color: rgba(250, 250, 250, 0.45);
-      font-size: 11px;
-      letter-spacing: 0.04em;
-      line-height: 1.4;
-    }
     .feat1-stair { width: 100%; height: 72px; display: block; margin: 10px 0 6px; }
     .feat1-card-meta {
       margin-top: 2px;
@@ -435,29 +420,20 @@
       .feat5-ring-fill--lg { transition: none !important; }
     }
     /* -- Feature 2: Before / After ------------------------------------------- */
-    .feat2-ba { margin: 14px 0 8px; }
-    .feat2-ba-row { display: flex; align-items: baseline; justify-content: space-between; padding: 11px 0; }
+    .feat2-ba { margin: 20px 0 0; }
+    .feat2-ba-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; }
     .feat2-ba-row--entry { border-bottom: 1px solid rgba(255,255,255,0.08); }
     .feat2-ba-k { color: rgba(250,250,250,0.38); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; }
-    .feat2-ba-v--dim { color: rgba(250,250,250,0.25); font-size: 22px; font-weight: 600; letter-spacing: -0.02em; }
-    .feat2-ba-v--accent { color: var(--accent); font-size: 22px; font-weight: 600; letter-spacing: -0.02em; }
-    .feat2-gain { font-size: 52px; font-weight: 600; letter-spacing: -0.04em; color: var(--accent); line-height: 1; margin: 10px 0 0; }
-    .feat2-gain-label { color: rgba(250,250,250,0.32); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; margin: 5px 0 0; }
+    .feat2-ba-bar { display: block; height: 2px; border-radius: 2px; background: rgba(255,255,255,0.14); width: 52px; }
+    .feat2-ba-bar--accent { background: var(--accent); width: 80px; }
     /* -- Feature 3: Status badge + split ------------------------------------- */
     .feat3-badge { display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(190,255,176,0.2); border-radius: 9999px; padding: 9px 16px; margin: 14px 0 12px; }
     .feat3-badge-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
     .feat3-badge-text { color: var(--accent); font-size: 14px; font-weight: 500; letter-spacing: 0.04em; }
-    .feat3-split { display: flex; border-top: 1px solid rgba(255,255,255,0.08); }
-    .feat3-split-col { flex: 1; padding: 12px 0; }
-    .feat3-split-col + .feat3-split-col { border-left: 1px solid rgba(255,255,255,0.08); padding-left: 16px; }
-    .feat3-split-k { color: rgba(250,250,250,0.38); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; margin: 0 0 5px; }
-    .feat3-split-v { color: #fafafa; font-size: 22px; font-weight: 600; letter-spacing: -0.02em; margin: 0; }
     .feat3-no-liq { color: rgba(250,250,250,0.3); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; margin: 6px 0 0; }
     /* -- Feature 4: Sparkline ------------------------------------------------ */
     .feat4-spark-wrap { margin: 12px 0 4px; }
     .feat4-spark { width: 100%; height: 56px; overflow: visible; display: block; }
-    .feat4-big { font-size: 48px; font-weight: 600; letter-spacing: -0.04em; color: var(--accent); line-height: 1; margin: 10px 0 0; }
-    .feat4-sub { color: rgba(250,250,250,0.35); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; margin: 6px 0 0; }
     /* -- Feature 5: Ring centered -------------------------------------------- */
     .feat5-center { position: relative; display: flex; align-items: center; justify-content: center; flex: 1; }
     .feat5-ring--lg { width: 110px; height: 110px; transform: rotate(-90deg); overflow: visible; }
@@ -472,10 +448,6 @@
       transition: stroke-dashoffset 1.3s cubic-bezier(0.22, 0.8, 0.24, 1) 0.45s;
     }
     .feat5--animate .feat5-ring-fill--lg { stroke-dashoffset: 60; }
-    .feat5-ring-over { position: absolute; display: flex; flex-direction: column; align-items: center; }
-    .feat5-ring-ratio { color: var(--accent); font-size: 28px; font-weight: 600; letter-spacing: -0.03em; line-height: 1; }
-    .feat5-ring-backed { color: rgba(250,250,250,0.35); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 4px; }
-    .feat5-ring-caption { color: rgba(250,250,250,0.3); font-size: 11px; letter-spacing: 0.04em; margin: 0; }
     .feature-panel {
       grid-column: span 2;
       padding: 44px;
@@ -854,14 +826,12 @@
           <div class="feat1-shell">
             <article class="feat1-card">
               <p class="feat1-card-label">Floor Price</p>
-              <p class="feat1-card-value">$0.42</p>
               <svg class="feat1-stair" viewBox="0 0 220 72" preserveAspectRatio="none" aria-hidden="true">
                 <polyline points="0,72 55,72 55,54 110,54 110,36 165,36 165,18 220,18"
                   fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1.5" stroke-linejoin="round"/>
                 <line x1="165" y1="18" x2="220" y2="18" stroke="#beffb0" stroke-width="2" stroke-linecap="round"/>
                 <circle cx="220" cy="18" r="3.5" fill="#beffb0"/>
               </svg>
-              <p class="feat1-card-sub">Only moves up</p>
             </article>
           </div>
         </div>
@@ -876,15 +846,13 @@
               <div class="feat2-ba">
                 <div class="feat2-ba-row feat2-ba-row--entry">
                   <span class="feat2-ba-k">Entry</span>
-                  <span class="feat2-ba-v--dim">$0.30</span>
+                  <span class="feat2-ba-bar"></span>
                 </div>
                 <div class="feat2-ba-row">
                   <span class="feat2-ba-k">Floor now</span>
-                  <span class="feat2-ba-v--accent">$0.42</span>
+                  <span class="feat2-ba-bar feat2-ba-bar--accent"></span>
                 </div>
               </div>
-              <p class="feat2-gain">+40%</p>
-              <p class="feat2-gain-label">Protected gain</p>
             </article>
           </div>
         </div>
@@ -910,16 +878,6 @@
                 <span class="feat3-badge-dot"></span>
                 <span class="feat3-badge-text">Safe</span>
               </div>
-              <div class="feat3-split">
-                <div class="feat3-split-col">
-                  <p class="feat3-split-k">Collateral</p>
-                  <p class="feat3-split-v">$840</p>
-                </div>
-                <div class="feat3-split-col">
-                  <p class="feat3-split-k">Borrowed</p>
-                  <p class="feat3-split-v">$210</p>
-                </div>
-              </div>
               <p class="feat3-no-liq">No liquidation threshold</p>
             </article>
           </div>
@@ -939,8 +897,6 @@
                   <circle cx="220" cy="3" r="3" fill="#beffb0"/>
                 </svg>
               </div>
-              <p class="feat4-big">+$3,600</p>
-              <p class="feat4-sub">Reserve growth today</p>
             </article>
           </div>
         </div>
@@ -967,12 +923,7 @@
                   <circle class="feat5-ring-track--lg" cx="50" cy="50" r="38"/>
                   <circle class="feat5-ring-fill--lg" cx="50" cy="50" r="38"/>
                 </svg>
-                <div class="feat5-ring-over">
-                  <span class="feat5-ring-ratio">1.24x</span>
-                  <span class="feat5-ring-backed">backed</span>
-                </div>
               </div>
-              <p class="feat5-ring-caption">Each mint strengthens the floor</p>
             </article>
           </div>
         </div>
