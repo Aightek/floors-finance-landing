@@ -810,7 +810,7 @@
       min-width: 0px;
       height: 48px;
       border-radius: 9999px;
-      border: 1px solid var(--border);
+      border: 1px solid transparent;
       background: #111;
       color: var(--text);
       font-family: Poppins, sans-serif;
@@ -853,10 +853,12 @@
       width: min(520px, calc(100vw - 64px));
     }
     .inline-capture.is-open .inline-capture-trigger {
-      transform: translateX(0);
+      width: 170px;
+      transform: translateX(-50px);
     }
     .inline-capture.is-open .inline-capture-input {
-      width: calc(100% - 270px);
+      width: calc(100% - 230px);
+      border-color: var(--border);
       opacity: 1;
       transform: translateX(0);
     }
@@ -865,12 +867,15 @@
       opacity: 1;
       transform: scale(1);
       pointer-events: auto;
+      position: absolute;
+      right: 0;
+      top: 4px;
     }
     .inline-capture.is-success .inline-capture-trigger {
       background: #beffb0;
       color: #0a0a0a;
     }
-    .inline-capture.is-success .inline-capture-input {
+    .inline-capture.is-success.is-open .inline-capture-input {
       border-color: #beffb0;
       box-shadow: 0 0 0 1px rgba(190,255,176,.26);
     }
@@ -938,10 +943,10 @@
       .inline-capture { width: min(100%, 420px); }
       .inline-capture.is-open { width: 100%; }
       .inline-capture-trigger { width: 100%; }
-      .inline-capture.is-open .inline-capture-trigger { width: 140px; }
+      .inline-capture.is-open .inline-capture-trigger { width: 132px; transform: translateX(-46px); }
       .inline-capture.is-open .inline-capture-input { width: calc(100% - 186px); }
       .inline-capture-close { width: 36px; height: 36px; font-size: 18px; }
-      .inline-capture.is-open .inline-capture-close { width: 36px; }
+      .inline-capture.is-open .inline-capture-close { width: 36px; top: 6px; }
     }
   </style>
 </head>
@@ -1268,24 +1273,29 @@
         var modules = Array.prototype.slice.call(document.querySelectorAll('[data-inline-capture]'));
         if (!modules.length) return;
 
-        var closeModule = function (module, resetSuccess) {
+        var closeModule = function (module, clearSuccess, resetForm) {
           var trigger = module.querySelector('.inline-capture-trigger');
           var form = module.querySelector('.inline-capture-form');
           var input = module.querySelector('.inline-capture-input');
           if (!trigger || !form || !input) return;
 
           var baseLabel = trigger.getAttribute('data-base-label') || 'Get Early Access';
+          var doneLabel = trigger.getAttribute('data-done-label') || '\u2713 Done';
           module.classList.remove('is-open');
-          trigger.textContent = baseLabel;
           if (input.value) input.blur();
-          if (resetSuccess) {
+          if (resetForm) {
             form.reset();
           }
-          if (resetSuccess) module.classList.remove('is-success');
+          if (clearSuccess) {
+            module.classList.remove('is-success');
+            trigger.textContent = baseLabel;
+            return;
+          }
+          trigger.textContent = module.classList.contains('is-success') ? doneLabel : baseLabel;
         };
         var closeOthers = function (active) {
           modules.forEach(function (module) {
-            if (module !== active) closeModule(module, true);
+            if (module !== active) closeModule(module, false, false);
           });
         };
 
@@ -1298,8 +1308,9 @@
 
           var openLabel = trigger.getAttribute('data-open-label') || 'Join';
           var baseLabel = trigger.textContent.trim() || 'Get Early Access';
+          var doneLabel = trigger.getAttribute('data-done-label') || '\u2713 Done';
+          var hoverLabel = trigger.getAttribute('data-hover-label') || 'Another email?';
           trigger.setAttribute('data-base-label', baseLabel);
-          var successTimer = null;
 
           var submitCurrent = function () {
             if (typeof form.requestSubmit === 'function') {
@@ -1309,22 +1320,14 @@
             form.dispatchEvent(new Event('submit', { cancelable: true }));
           };
           var open = function () {
-            if (successTimer) {
-              window.clearTimeout(successTimer);
-              successTimer = null;
-            }
             closeOthers(module);
-            module.classList.remove('is-success');
+            closeModule(module, true, true);
             module.classList.add('is-open');
             trigger.textContent = openLabel;
             window.setTimeout(function () { input.focus(); }, 260);
           };
           var close = function () {
-            if (successTimer) {
-              window.clearTimeout(successTimer);
-              successTimer = null;
-            }
-            closeModule(module, true);
+            closeModule(module, false, false);
           };
 
           trigger.addEventListener('click', function (event) {
@@ -1344,23 +1347,35 @@
               input.reportValidity();
               return;
             }
+            module.classList.remove('is-open');
             module.classList.add('is-success');
-            trigger.textContent = '\u2713 Joined';
-            successTimer = window.setTimeout(function () {
-              closeModule(module, true);
-              successTimer = null;
-            }, 1900);
+            trigger.textContent = doneLabel;
+            form.reset();
+          });
+          module.addEventListener('mouseenter', function () {
+            if (!module.classList.contains('is-open') && module.classList.contains('is-success')) {
+              trigger.textContent = hoverLabel;
+            }
+          });
+          module.addEventListener('mouseleave', function () {
+            if (!module.classList.contains('is-open') && module.classList.contains('is-success')) {
+              trigger.textContent = doneLabel;
+            }
           });
         });
 
         document.addEventListener('click', function (event) {
           modules.forEach(function (module) {
-            if (!module.contains(event.target)) closeModule(module, true);
+            if (!module.contains(event.target) && module.classList.contains('is-open')) {
+              closeModule(module, false, false);
+            }
           });
         });
         document.addEventListener('keydown', function (event) {
           if (event.key === 'Escape') {
-            modules.forEach(function (module) { closeModule(module, true); });
+            modules.forEach(function (module) {
+              if (module.classList.contains('is-open')) closeModule(module, false, false);
+            });
           }
         });
       };
