@@ -394,6 +394,8 @@
     }
     @media (prefers-reduced-motion: reduce) {
       .feat2-visual, .feat3-visual, .feat4-visual, .feat5-visual { transition: none !important; }
+      .feat4-bar-fill,
+      .feat4-reserve-fill { transition: none !important; }
     }
     .feat-ui {
       margin-top: 14px;
@@ -446,11 +448,64 @@
     }
     .feat-pill-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(154, 190, 255, 0.82); }
     .feat-pill-line { width: 24px; height: 2px; border-radius: 2px; background: rgba(255, 255, 255, 0.2); }
-    .feat4-spark-wrap { margin-top: 2px; }
-    .feat4-spark { width: 100%; height: 56px; overflow: visible; display: block; }
-    .feat4-cells { margin-top: 8px; display: flex; gap: 6px; }
-    .feat4-cell { width: 16px; height: 8px; border-radius: 3px; background: rgba(255, 255, 255, 0.14); }
-    .feat4-cell--focus { background: rgba(154, 190, 255, 0.7); }
+    .feat4-head { margin-top: 2px; }
+    .feat4-chart {
+      margin-top: 10px;
+      height: 92px;
+      display: flex;
+      align-items: flex-end;
+      gap: 5px;
+      padding: 0 1px 2px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .feat4-bar {
+      position: relative;
+      flex: 1;
+      height: 100%;
+      border-radius: 4px 4px 0 0;
+      background: rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+    }
+    .feat4-bar-fill {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: var(--h, 52%);
+      border-radius: 4px 4px 0 0;
+      background: rgba(154, 190, 255, 0.78);
+      transform-origin: bottom center;
+      transform: scaleY(0);
+      transition: transform 0.68s cubic-bezier(0.22, 0.8, 0.24, 1);
+    }
+    .feat4-bar-fill--accent { background: rgba(190, 255, 176, 0.7); }
+    .feat4-reserve {
+      margin-top: 10px;
+      height: 3px;
+      border-radius: 99px;
+      background: rgba(255, 255, 255, 0.1);
+      overflow: hidden;
+    }
+    .feat4-reserve-fill {
+      display: block;
+      width: 74%;
+      height: 100%;
+      border-radius: 99px;
+      background: rgba(154, 190, 255, 0.8);
+      transform-origin: left center;
+      transform: scaleX(0);
+      transition: transform 0.8s cubic-bezier(0.22, 0.8, 0.24, 1) 0.3s;
+    }
+    .feat4--animate .feat4-bar-fill { transform: scaleY(1); }
+    .feat4--animate .feat4-bar:nth-child(1) .feat4-bar-fill { transition-delay: 0.04s; }
+    .feat4--animate .feat4-bar:nth-child(2) .feat4-bar-fill { transition-delay: 0.08s; }
+    .feat4--animate .feat4-bar:nth-child(3) .feat4-bar-fill { transition-delay: 0.12s; }
+    .feat4--animate .feat4-bar:nth-child(4) .feat4-bar-fill { transition-delay: 0.16s; }
+    .feat4--animate .feat4-bar:nth-child(5) .feat4-bar-fill { transition-delay: 0.2s; }
+    .feat4--animate .feat4-bar:nth-child(6) .feat4-bar-fill { transition-delay: 0.24s; }
+    .feat4--animate .feat4-bar:nth-child(7) .feat4-bar-fill { transition-delay: 0.28s; }
+    .feat4--animate .feat4-bar:nth-child(8) .feat4-bar-fill { transition-delay: 0.32s; }
+    .feat4--animate .feat4-reserve-fill { transform: scaleX(1); }
     .feat5-center { display: flex; align-items: center; justify-content: center; }
     .feat5-ring { width: 88px; height: 88px; transform: rotate(-90deg); overflow: visible; flex-shrink: 0; }
     .feat5-ring-track { fill: none; stroke: rgba(255, 255, 255, 0.1); stroke-width: 6; }
@@ -913,20 +968,24 @@
             <article class="feat1-card">
               <p class="feat1-card-label">Reserve Growth</p>
               <div class="feat-ui">
-                <div class="feat4-spark-wrap">
-                  <svg class="feat4-spark" viewBox="0 0 220 56" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-                    <polyline points="0,48 44,38 88,29 132,20 176,12 220,6"
-                      fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="1.35" stroke-linejoin="round" stroke-linecap="round"/>
-                    <polyline points="0,51 44,44 88,36 132,30 176,24 220,18"
-                      fill="none" stroke="rgba(154,190,255,0.58)" stroke-width="1.25" stroke-linejoin="round" stroke-linecap="round"/>
-                    <circle cx="220" cy="6" r="2.8" fill="rgba(190,255,176,0.8)"/>
-                  </svg>
+                <div class="feat4-head">
+                  <div class="feat-line-row">
+                    <span class="feat-node feat-node--soft"></span><span class="feat-line" style="--w:24%;"></span>
+                    <span class="feat-node feat-node--soft"></span><span class="feat-line" style="--w:20%;"></span>
+                    <span class="feat-line feat-line--accent" style="--w:16%;"></span>
+                  </div>
                 </div>
-                <div class="feat4-cells">
-                  <span class="feat4-cell"></span>
-                  <span class="feat4-cell feat4-cell--focus"></span>
-                  <span class="feat4-cell"></span>
+                <div class="feat4-chart" aria-hidden="true">
+                  <span class="feat4-bar"><span class="feat4-bar-fill" style="--h:22%;"></span></span>
+                  <span class="feat4-bar"><span class="feat4-bar-fill" style="--h:36%;"></span></span>
+                  <span class="feat4-bar"><span class="feat4-bar-fill" style="--h:33%;"></span></span>
+                  <span class="feat4-bar"><span class="feat4-bar-fill" style="--h:54%;"></span></span>
+                  <span class="feat4-bar"><span class="feat4-bar-fill feat4-bar-fill--accent" style="--h:65%;"></span></span>
+                  <span class="feat4-bar"><span class="feat4-bar-fill" style="--h:58%;"></span></span>
+                  <span class="feat4-bar"><span class="feat4-bar-fill" style="--h:74%;"></span></span>
+                  <span class="feat4-bar"><span class="feat4-bar-fill" style="--h:88%;"></span></span>
                 </div>
+                <div class="feat4-reserve"><span class="feat4-reserve-fill"></span></div>
               </div>
             </article>
           </div>
