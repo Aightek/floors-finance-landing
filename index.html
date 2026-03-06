@@ -396,6 +396,8 @@
       .feat2-visual, .feat3-visual, .feat4-visual, .feat5-visual { transition: none !important; }
       .fmock-mini,
       .fmock-band > span,
+      .fmock-floor-fill,
+      .fmock-floor-meter > span,
       .fmock-route .fmock-line,
       .fmock-chip,
       .fmock-flow-row .fmock-line,
@@ -417,16 +419,44 @@
     .fmock-node { width: 6px; height: 6px; border-radius: 50%; background: rgba(255, 255, 255, 0.34); flex-shrink: 0; }
     .fmock-node--accent { background: rgba(190, 255, 176, 0.78); }
 
-    .fmock-floor-frame {
+    .fmock-floor-steps {
       height: 96px;
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 8px;
-      overflow: hidden;
+      padding: 8px;
       background: rgba(255, 255, 255, 0.03);
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 6px;
+      align-items: end;
+      overflow: hidden;
     }
-    .fmock-floor-frame img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.94; }
+    .fmock-floor-col {
+      height: 100%;
+      border-radius: 6px 6px 0 0;
+      background: rgba(255, 255, 255, 0.08);
+      position: relative;
+      overflow: hidden;
+    }
+    .fmock-floor-fill {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: var(--h, 50%);
+      border-radius: 6px 6px 0 0;
+      background: rgba(255, 255, 255, 0.3);
+      transform-origin: bottom center;
+      transform: scaleY(0);
+      transition: transform 0.65s cubic-bezier(0.22, 0.8, 0.24, 1);
+    }
+    .fmock-floor-fill--accent { background: rgba(190, 255, 176, 0.72); }
     .fmock-floor-meter { margin-top: 10px; height: 2px; background: rgba(255, 255, 255, 0.12); border-radius: 99px; overflow: hidden; }
-    .fmock-floor-meter > span { display: block; width: 88%; height: 100%; background: rgba(190, 255, 176, 0.72); transform: scaleX(0); transform-origin: left center; transition: transform 0.65s cubic-bezier(0.22, 0.8, 0.24, 1) 0.16s; }
+    .fmock-floor-meter > span { display: block; width: 88%; height: 100%; background: rgba(190, 255, 176, 0.72); transform: scaleX(0); transform-origin: left center; transition: transform 0.65s cubic-bezier(0.22, 0.8, 0.24, 1) 0.2s; }
+    .feat1--animate .fmock-floor-fill { transform: scaleY(1); }
+    .feat1--animate .fmock-floor-col:nth-child(1) .fmock-floor-fill { transition-delay: 0.04s; }
+    .feat1--animate .fmock-floor-col:nth-child(2) .fmock-floor-fill { transition-delay: 0.1s; }
+    .feat1--animate .fmock-floor-col:nth-child(3) .fmock-floor-fill { transition-delay: 0.16s; }
     .feat1--animate .fmock-floor-meter > span { transform: scaleX(1); }
 
     .fmock-mini-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; margin-bottom: 10px; }
@@ -868,8 +898,10 @@
             <article class="feat1-card">
               <p class="feat1-card-label">Floor Price</p>
               <div class="fmock" aria-hidden="true">
-                <div class="fmock-floor-frame">
-                  <img src="Illustrations/Price_Floor.svg" alt="" loading="lazy" decoding="async" />
+                <div class="fmock-floor-steps">
+                  <span class="fmock-floor-col"><span class="fmock-floor-fill" style="--h:36%;"></span></span>
+                  <span class="fmock-floor-col"><span class="fmock-floor-fill" style="--h:62%;"></span></span>
+                  <span class="fmock-floor-col"><span class="fmock-floor-fill fmock-floor-fill--accent" style="--h:86%;"></span></span>
                 </div>
                 <div class="fmock-floor-meter"><span></span></div>
               </div>
