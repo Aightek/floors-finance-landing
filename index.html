@@ -15,6 +15,11 @@
       --text: #fafafa;
       --muted: #a1a1a1;
       --accent: #beffb0;
+      --rank-gold: #f8ca62;
+      --rank-teal: #39d0c6;
+      --rank-purple: #8c63ff;
+      --rank-dim: #c7d3e9;
+      --tier-label: #565656;
       --col-pad: 44px;
     }
     * { box-sizing: border-box; }
@@ -35,10 +40,19 @@
       align-items: center;
       justify-content: center;
       font-weight: 500;
+      cursor: pointer;
+      transition: opacity 150ms, background 150ms, box-shadow 150ms, color 150ms;
     }
-    .btn-primary { background: #fafafa; color: #0a0a0a; height: 48px; padding: 0 18px; font-size: 16px; }
+    .btn-primary { background: #fafafa; color: #0a0a0a; height: 48px; padding: 0 24px; font-size: 16px; }
     .btn-secondary { background: #0a0a0a; color: #fafafa; height: 48px; padding: 0 30px; font-size: 16px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.2); }
-    .btn-ghost { background: #0a0a0a; color: #fafafa; height: 40px; padding: 0 14px; font-size: 14px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.2); }
+    .btn-ghost { background: #0a0a0a; color: #fafafa; height: 40px; padding: 0 16px; font-size: 14px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.2); }
+    .btn-primary:hover { opacity: .88; }
+    .btn-secondary:hover, .btn-ghost:hover { box-shadow: inset 0 0 0 1px rgba(255,255,255,.45); }
+    .btn-primary:focus-visible, .btn-secondary:focus-visible, .btn-ghost:focus-visible, .main-nav-link:focus-visible, .nav-btn:focus-visible, .lb-view-all:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    .btn-disabled { opacity: .35; cursor: not-allowed; pointer-events: none; }
     .topbar {
       height: 86px;
       margin-top: 32px;
@@ -62,6 +76,8 @@
       display: inline-flex;
       align-items: center;
       gap: 4px;
+      transition: color 150ms;
+      cursor: pointer;
     }
     .main-nav-link:hover { color: var(--text); }
     .nav-actions { display: inline-flex; align-items: center; gap: 12px; padding-left: 52px; }
@@ -79,7 +95,10 @@
       align-items: center;
       border: none;
       box-shadow: none;
+      cursor: pointer;
+      transition: background 150ms, color 150ms;
     }
+    .nav-btn:hover { background: rgba(255,255,255,.06); }
     .hero { height: 720px; position: relative; overflow: hidden; }
     .hero { border-top: 1px solid var(--border); }
     .hero-grid {
@@ -652,8 +671,8 @@
       letter-spacing: -.96px;
     }
     .lb-tier-label {
-      color: #565656;
-      font-size: 8px;
+      color: var(--tier-label);
+      font-size: 11px;
       line-height: 1;
       letter-spacing: .04px;
     }
@@ -676,16 +695,16 @@
       line-height: 1.43;
     }
     .lb-rank-left {
-      color: #c7d3e9;
+      color: var(--rank-dim);
       min-width: 0;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
-    .lb-rank-item.top1 .lb-rank-left { color: #f8ca62; font-weight: 500; }
-    .lb-rank-item.top2 .lb-rank-left { color: #39d0c6; font-weight: 500; }
-    .lb-rank-item.top3 .lb-rank-left { color: #8c63ff; font-weight: 500; }
-    .lb-rank-right { color: #c7d3e9; font-weight: 500; flex: 0 0 auto; }
+    .lb-rank-item.top1 .lb-rank-left { color: var(--rank-gold); font-weight: 500; }
+    .lb-rank-item.top2 .lb-rank-left { color: var(--rank-teal); font-weight: 500; }
+    .lb-rank-item.top3 .lb-rank-left { color: var(--rank-purple); font-weight: 500; }
+    .lb-rank-right { color: var(--rank-dim); font-weight: 500; flex: 0 0 auto; }
     .lb-tasks { padding: 64px 44px; display: flex; flex-direction: column; gap: 16px; }
     .lb-task-list { border: none; }
     .lb-task { min-height: 108px; padding: 16px; display: flex; flex-direction: column; border: none; }
@@ -717,7 +736,7 @@
     .lb-view-all {
       height: 40px;
       border-radius: 9999px;
-      border: none;
+      border: 1px solid var(--border);
       color: var(--muted);
       text-decoration: none;
       display: flex;
@@ -728,7 +747,10 @@
       font-family: "Poppins", sans-serif;
       font-weight: 400;
       line-height: 1.43;
+      cursor: pointer;
+      transition: color 150ms, border-color 150ms;
     }
+    .lb-view-all:hover { color: var(--text); border-color: rgba(255,255,255,.25); }
     .product {
       border-right: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
