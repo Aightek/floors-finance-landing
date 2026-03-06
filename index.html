@@ -377,6 +377,7 @@
     }
     .feat1--animate { opacity: 1; transform: translateY(0) scale(1); }
     .feat1--animate .feat1-lottie-only { opacity: 1; transform: translateY(0); }
+    .feat2--animate .feat1-lottie-only { opacity: 1; transform: translateY(0); }
     @media (prefers-reduced-motion: reduce) {
       .feat1-visual,
       .feat1-card,
@@ -916,20 +917,8 @@
     <article class="feature-row">
       <div class="feature-spacer" aria-hidden="true">
         <div class="feat2-visual" id="feat2-visual">
-          <div class="feat1-shell">
-            <article class="feat1-card">
-              <p class="feat1-card-label">Your Position</p>
-              <div class="fmock">
-                <div class="fmock-mini-grid">
-                  <span class="fmock-mini"></span>
-                  <span class="fmock-mini"></span>
-                  <span class="fmock-mini"></span>
-                  <span class="fmock-mini"></span>
-                </div>
-                <div class="fmock-band"><span class="fmock-band-a" style="--w:62%;"></span></div>
-                <div class="fmock-band"><span class="fmock-band-b" style="--w:82%;"></span></div>
-              </div>
-            </article>
+          <div class="feat1-lottie-only" aria-hidden="true">
+            <div id="feature-f2-lottie"></div>
           </div>
         </div>
       </div>
@@ -1192,10 +1181,10 @@
       initFeatIllustration('feat4-visual', 'feat4--animate');
       initFeatIllustration('feat5-visual', 'feat5--animate');
 
-      var initFeatureOneLottie = function () {
+      var initFeatureLottie = function (containerId, hostId, jsonPath) {
         if (!window.lottie) return;
-        var container = document.getElementById('feature-f1-lottie');
-        var host = document.getElementById('feat1-visual');
+        var container = document.getElementById(containerId);
+        var host = document.getElementById(hostId);
         if (!container || !host) return;
 
         var animation = window.lottie.loadAnimation({
@@ -1203,7 +1192,7 @@
           renderer: 'svg',
           loop: false,
           autoplay: false,
-          path: 'Animations/F1.json',
+          path: jsonPath,
           rendererSettings: { preserveAspectRatio: 'xMidYMid meet' }
         });
 
@@ -1244,7 +1233,8 @@
         }
         play();
       };
-      initFeatureOneLottie();
+      initFeatureLottie('feature-f1-lottie', 'feat1-visual', 'Animations/F1.json');
+      initFeatureLottie('feature-f2-lottie', 'feat2-visual', 'Animations/F2.json');
 
       if (!window.lottie) return;
 
