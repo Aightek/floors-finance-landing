@@ -340,7 +340,7 @@
       border-radius: 2px;
       border: 1px solid rgba(255, 255, 255, 0.14);
       background:
-        radial-gradient(130% 90% at -12% 112%, rgba(190, 255, 176, 0.14), rgba(190, 255, 176, 0) 56%),
+        radial-gradient(130% 90% at -12% 112%, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0) 56%),
         radial-gradient(120% 80% at 90% -18%, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0) 45%),
         #080808;
     }
@@ -415,7 +415,7 @@
       stroke-dasharray: 620;
       stroke-dashoffset: 620;
       transition: stroke-dashoffset 0.95s cubic-bezier(0.18, 0.78, 0.22, 1) 0.12s;
-      filter: drop-shadow(0 0 5px rgba(190, 255, 176, 0.45)) drop-shadow(0 0 12px rgba(190, 255, 176, 0.18));
+      filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.4)) drop-shadow(0 0 10px rgba(255, 255, 255, 0.16));
     }
     .feat1-path-market {
       stroke-dasharray: 680;
@@ -423,9 +423,9 @@
       transition: stroke-dashoffset 1.05s cubic-bezier(0.22, 0.8, 0.24, 1) 0.22s;
     }
     .feat1-step-dots { opacity: 0; transition: opacity 0.32s ease 0.95s; }
-    .feat1-entry-dot { opacity: 0; transition: opacity 0.24s ease 1.02s; filter: drop-shadow(0 0 5px rgba(190, 255, 176, 0.82)); }
+    .feat1-entry-dot { opacity: 0; transition: opacity 0.24s ease 1.02s; filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.8)); }
     .feat1-pulse-ring { opacity: 0; transform-box: fill-box; transform-origin: 50% 50%; }
-    .feat1-dot-floor { opacity: 0; transition: opacity 0.26s ease 0.92s; filter: drop-shadow(0 0 5px rgba(190, 255, 176, 0.72)); }
+    .feat1-dot-floor { opacity: 0; transition: opacity 0.26s ease 0.92s; filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.68)); }
     .feat1-dot-market { opacity: 0; transition: opacity 0.26s ease 0.88s; }
     .feat1-gap-line { opacity: 0; transition: opacity 0.26s ease 0.92s; }
     .feat1-safe-band { opacity: 0; transition: opacity 0.4s ease 0.72s; }
@@ -446,7 +446,7 @@
     .feat1--animate .feat1-step-dots { opacity: 1; }
     .feat1--animate .feat1-entry-dot { opacity: 1; }
     .feat1--animate .feat1-dot-floor { opacity: 1; }
-    .feat1--animate .feat1-dot-market { opacity: 0.55; }
+    .feat1--animate .feat1-dot-market { opacity: 0.72; }
     .feat1--animate .feat1-gap-line { opacity: 1; }
     .feat1--animate .feat1-safe-band { opacity: 1; }
     .feat1--animate .feat1-label { opacity: 1; }
@@ -864,31 +864,35 @@
             <svg class="feat1-svg" viewBox="0 0 420 280" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
               <defs>
                 <linearGradient id="feat1-fill-grad" x1="0" x2="0" y1="0" y2="1">
-                  <stop offset="0%" stop-color="#beffb0" stop-opacity="0.2"/>
-                  <stop offset="100%" stop-color="#beffb0" stop-opacity="0.01"/>
+                  <stop offset="0%" stop-color="#ffffff" stop-opacity="0.24"/>
+                  <stop offset="100%" stop-color="#ffffff" stop-opacity="0.01"/>
                 </linearGradient>
                 <linearGradient id="feat1-zone-grad" x1="0" x2="1" y1="0" y2="0">
-                  <stop offset="0%" stop-color="#beffb0" stop-opacity="0.1"/>
-                  <stop offset="100%" stop-color="#beffb0" stop-opacity="0"/>
+                  <stop offset="0%" stop-color="#ffffff" stop-opacity="0.1"/>
+                  <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
                 </linearGradient>
                 <radialGradient id="feat1-bloom-grad" cx="0" cy="1" r="0.95" fx="0" fy="1">
-                  <stop offset="0%" stop-color="#beffb0" stop-opacity="0.22"/>
-                  <stop offset="100%" stop-color="#beffb0" stop-opacity="0"/>
+                  <stop offset="0%" stop-color="#ffffff" stop-opacity="0.18"/>
+                  <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
                 </radialGradient>
                 <linearGradient id="feat1-top-fade" x1="0" x2="0" y1="0" y2="1">
                   <stop offset="0%" stop-color="#060606" stop-opacity="0.56"/>
                   <stop offset="24%" stop-color="#060606" stop-opacity="0"/>
                 </linearGradient>
                 <linearGradient id="feat1-scan-grad" x1="0" x2="1" y1="0" y2="0">
-                  <stop offset="0%" stop-color="#beffb0" stop-opacity="0"/>
-                  <stop offset="50%" stop-color="#beffb0" stop-opacity="0.26"/>
-                  <stop offset="100%" stop-color="#beffb0" stop-opacity="0"/>
+                  <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
+                  <stop offset="50%" stop-color="#ffffff" stop-opacity="0.2"/>
+                  <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
                 </linearGradient>
+                <pattern id="feat1-dot-grid" x="0" y="0" width="16" height="14" patternUnits="userSpaceOnUse">
+                  <circle cx="8" cy="7" r="0.8" fill="#ffffff" fill-opacity="0.14"/>
+                </pattern>
                 <clipPath id="feat1-plot-clip">
                   <rect x="18" y="18" width="384" height="244" rx="0"/>
                 </clipPath>
               </defs>
               <rect width="420" height="280" fill="#080808"/>
+              <rect x="1" y="1" width="418" height="278" fill="url(#feat1-dot-grid)"/>
               <rect class="feat1-entry-bloom" width="420" height="280" fill="url(#feat1-bloom-grad)"/>
               <rect x="0" y="0" width="118" height="280" fill="url(#feat1-zone-grad)"/>
               <line x1="0" y1="94" x2="420" y2="94" stroke="white" stroke-opacity="0.05" stroke-width="1" stroke-dasharray="3 8"/>
@@ -902,33 +906,33 @@
                   fill="white" fill-opacity="0.05"/>
                 <path class="feat1-path-market"
                   d="M 20 212 C 56 201,88 186,120 166 C 156 145,188 126,222 107 C 252 91,286 76,324 64 C 350 57,376 53,402 50"
-                  fill="none" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-opacity="0.38"/>
+                  fill="none" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-opacity="0.64"/>
                 <path class="feat1-path-floor"
                   d="M 20 226 L 58 226 L 58 204 L 118 204 L 118 178 L 196 178 L 196 150 L 276 150 L 276 122 L 346 122 L 346 94 L 402 94"
-                  fill="none" stroke="#beffb0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                  fill="none" stroke="#ffffff" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
                 <g class="feat1-step-dots">
-                  <circle cx="58" cy="204" r="2.8" fill="#beffb0" opacity="0.84"/>
-                  <circle cx="118" cy="178" r="2.8" fill="#beffb0" opacity="0.84"/>
-                  <circle cx="196" cy="150" r="2.8" fill="#beffb0" opacity="0.84"/>
-                  <circle cx="276" cy="122" r="2.8" fill="#beffb0" opacity="0.84"/>
-                  <circle cx="346" cy="94" r="2.8" fill="#beffb0" opacity="0.84"/>
+                  <circle cx="58" cy="204" r="2.8" fill="#ffffff" opacity="0.82"/>
+                  <circle cx="118" cy="178" r="2.8" fill="#ffffff" opacity="0.82"/>
+                  <circle cx="196" cy="150" r="2.8" fill="#ffffff" opacity="0.82"/>
+                  <circle cx="276" cy="122" r="2.8" fill="#ffffff" opacity="0.82"/>
+                  <circle cx="346" cy="94" r="2.8" fill="#ffffff" opacity="0.82"/>
                 </g>
                 <line class="feat1-gap-line" x1="391" y1="56" x2="391" y2="92" stroke="white" stroke-opacity="0.18" stroke-width="1" stroke-dasharray="2 4"/>
                 <circle class="feat1-dot-market" cx="391" cy="50" r="3" fill="white"/>
-                <circle class="feat1-dot-floor" cx="391" cy="94" r="3.4" fill="#beffb0"/>
+                <circle class="feat1-dot-floor" cx="391" cy="94" r="3.4" fill="#ffffff"/>
               </g>
               <g class="feat1-label" font-family="monospace" font-size="8.5" letter-spacing="0.45">
                 <rect x="286" y="37" width="94" height="16" fill="white" fill-opacity="0.08" stroke="white" stroke-opacity="0.18"/>
                 <text x="292" y="48" fill="white" fill-opacity="0.76">MARKET PRICE</text>
-                <rect x="286" y="98" width="86" height="16" fill="#beffb0" fill-opacity="0.09" stroke="#beffb0" stroke-opacity="0.28"/>
-                <text x="292" y="109" fill="#beffb0" fill-opacity="0.88">FLOOR PRICE</text>
+                <rect x="286" y="98" width="116" height="16" fill="white" fill-opacity="0.06" stroke="white" stroke-opacity="0.22"/>
+                <text x="292" y="109" fill="white" fill-opacity="0.88">FLOOR PRICE (MIN)</text>
               </g>
-              <circle class="feat1-pulse-ring" cx="20" cy="226" r="7" fill="none" stroke="#beffb0" stroke-width="1.4"/>
-              <circle class="feat1-entry-dot" cx="20" cy="226" r="4.3" fill="#beffb0"/>
+              <circle class="feat1-pulse-ring" cx="20" cy="226" r="7" fill="none" stroke="#ffffff" stroke-width="1.4"/>
+              <circle class="feat1-entry-dot" cx="20" cy="226" r="4.3" fill="#ffffff"/>
               <rect class="feat1-scan" x="-90" y="0" width="180" height="280" fill="url(#feat1-scan-grad)"/>
               <g class="feat1-caption" font-family="monospace" font-size="9" fill="white" fill-opacity="0.56" letter-spacing="0.6">
-                <text x="16" y="24">NO BREACH BELOW FLOOR</text>
-                <text x="304" y="24">PRESALE LOCK</text>
+                <text x="16" y="24">MARKET PRICE &gt;= FLOOR PRICE</text>
+                <text x="326" y="24">LOCKED</text>
               </g>
               <rect width="420" height="280" fill="url(#feat1-top-fade)" pointer-events="none"/>
             </svg>
