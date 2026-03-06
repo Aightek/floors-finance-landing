@@ -371,38 +371,15 @@
       transition: opacity 0.16s ease;
       filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.65));
     }
-    .feat1-hover-readout {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 2;
-      color: #ffffff;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-      font-size: 12px;
-      line-height: 1.4;
-      letter-spacing: 0.04em;
-      text-align: center;
-      background: rgba(8, 8, 8, 0.58);
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      padding: 8px 12px;
-      border-radius: 3px;
-      opacity: 0.74;
-      transition: opacity 0.16s ease;
-      pointer-events: none;
-      white-space: nowrap;
-    }
     .feat1--animate { opacity: 1; transform: translateY(0) scale(1); }
     .feat1--animate .feat1-plot-fill { opacity: 1; }
     .feat1--animate .feat1-plot-line { opacity: 0.96; stroke-dashoffset: 0; }
     .feat1-visual.is-hovering .feat1-hover-dot { opacity: 0.95; }
-    .feat1-visual.is-hovering .feat1-hover-readout { opacity: 0.95; }
     @media (prefers-reduced-motion: reduce) {
       .feat1-visual,
       .feat1-plot-fill,
       .feat1-plot-line,
-      .feat1-hover-dot,
-      .feat1-hover-readout {
+      .feat1-hover-dot {
         transition: none !important;
       }
     }
@@ -775,7 +752,7 @@
       <div class="feature-spacer" aria-hidden="true">
         <div class="feat1-visual" id="feat1-visual">
           <div class="feat1-shell">
-            <svg class="feat1-svg" viewBox="0 0 152 149" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+            <svg class="feat1-svg" viewBox="0 0 152 149" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
               <defs>
                 <pattern id="feat1-dot-grid" x="0" y="0" width="16.89" height="14.9" patternUnits="userSpaceOnUse">
                   <circle cx="8.445" cy="7.45" r="0.8" fill="#ffffff" opacity="0.1"/>
@@ -794,15 +771,14 @@
               </defs>
               <rect x="1" y="1" width="150.894" height="146.521" fill="url(#feat1-dot-grid)"/>
               <g clip-path="url(#feat1-plot-clip)">
-                <path id="feat1-area-path" class="feat1-plot-fill" d="M 6 92 C 16 86, 24 88, 34 82 C 46 75, 52 78, 62 70 C 74 61, 84 64, 95 56 C 106 48, 115 52, 126 42 C 134 35, 140 39, 146 31 L 146 147.521 L 1 147.521 L 1 116 C 3 108, 5 99, 6 92 Z" fill="url(#feat1-gradient)"/>
-                <path id="feat1-market-path" class="feat1-plot-line feat1-market-line" d="M 6 92 C 16 86, 24 88, 34 82 C 46 75, 52 78, 62 70 C 74 61, 84 64, 95 56 C 106 48, 115 52, 126 42 C 134 35, 140 39, 146 31" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"/>
-                <path id="feat1-floor-path" class="feat1-plot-line feat1-floor-line" d="M 6 118 H 52 Q 56 118 56 114 V 98 Q 56 94 60 94 H 100 Q 104 94 104 90 V 76 Q 104 72 108 72 H 146" fill="none" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+                <path id="feat1-area-path" class="feat1-plot-fill" d="M 6 96 C 14 82, 22 100, 30 84 C 38 70, 46 92, 54 114 C 60 88, 68 62, 78 74 C 86 86, 94 106, 100 94 C 106 70, 112 48, 118 58 C 124 72, 130 86, 136 72 C 140 60, 143 66, 146 72 L 146 147.521 L 1 147.521 L 1 116 C 3 108, 5 102, 6 96 Z" fill="url(#feat1-gradient)"/>
+                <path id="feat1-market-path" class="feat1-plot-line feat1-market-line" d="M 6 96 C 14 82, 22 100, 30 84 C 38 70, 46 92, 54 114 C 60 88, 68 62, 78 74 C 86 86, 94 106, 100 94 C 106 70, 112 48, 118 58 C 124 72, 130 86, 136 72 C 140 60, 143 66, 146 72" fill="none" stroke="#ffffff" stroke-width="1" stroke-linecap="round"/>
+                <path id="feat1-floor-path" class="feat1-plot-line feat1-floor-line" d="M 6 118 H 52 Q 56 118 56 114 V 98 Q 56 94 60 94 H 100 Q 104 94 104 90 V 76 Q 104 72 108 72 H 146" fill="none" stroke="var(--accent)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
                 <rect id="feat1-chart-hit" x="1" y="1" width="150" height="146.521" fill="transparent"/>
-                <circle id="feat1-hover-dot-market" class="feat1-hover-dot" cx="6" cy="92" r="1.8" fill="#ffffff"/>
-                <circle id="feat1-hover-dot-floor" class="feat1-hover-dot" cx="6" cy="118" r="1.9" fill="#ffffff"/>
+                <circle id="feat1-hover-dot-market" class="feat1-hover-dot" cx="6" cy="96" r="1.8" fill="#ffffff"/>
+                <circle id="feat1-hover-dot-floor" class="feat1-hover-dot" cx="6" cy="118" r="1.9" fill="var(--accent)"/>
               </g>
             </svg>
-            <div id="feat1-hover-readout" class="feat1-hover-readout">MKT 0<br/>FLOOR 0</div>
           </div>
         </div>
       </div>
@@ -968,31 +944,33 @@
         var hoverHitArea = document.getElementById('feat1-chart-hit');
         var hoverDotMarket = document.getElementById('feat1-hover-dot-market');
         var hoverDotFloor = document.getElementById('feat1-hover-dot-floor');
-        var hoverReadout = document.getElementById('feat1-hover-readout');
         var hoverSeries = [
-          { x: 6, marketY: 92, floorY: 118, market: 102, floor: 80 },
-          { x: 16, marketY: 86, floorY: 118, market: 108, floor: 80 },
-          { x: 24, marketY: 88, floorY: 118, market: 105, floor: 80 },
-          { x: 34, marketY: 82, floorY: 118, market: 112, floor: 80 },
-          { x: 46, marketY: 75, floorY: 118, market: 120, floor: 80 },
-          { x: 56, marketY: 78, floorY: 114, market: 117, floor: 88 },
-          { x: 62, marketY: 70, floorY: 108, market: 126, floor: 94 },
-          { x: 74, marketY: 61, floorY: 98, market: 136, floor: 102 },
-          { x: 84, marketY: 64, floorY: 94, market: 133, floor: 106 },
-          { x: 95, marketY: 56, floorY: 94, market: 142, floor: 106 },
-          { x: 106, marketY: 48, floorY: 90, market: 151, floor: 111 },
-          { x: 115, marketY: 52, floorY: 82, market: 147, floor: 119 },
-          { x: 126, marketY: 42, floorY: 76, market: 159, floor: 126 },
-          { x: 134, marketY: 35, floorY: 72, market: 167, floor: 130 },
-          { x: 140, marketY: 39, floorY: 72, market: 163, floor: 130 },
-          { x: 146, marketY: 31, floorY: 72, market: 172, floor: 130 }
+          { x: 6, marketY: 96, floorY: 118 },
+          { x: 14, marketY: 82, floorY: 118 },
+          { x: 22, marketY: 100, floorY: 118 },
+          { x: 30, marketY: 84, floorY: 118 },
+          { x: 38, marketY: 70, floorY: 118 },
+          { x: 46, marketY: 92, floorY: 118 },
+          { x: 54, marketY: 114, floorY: 114 },
+          { x: 60, marketY: 88, floorY: 94 },
+          { x: 68, marketY: 62, floorY: 94 },
+          { x: 78, marketY: 74, floorY: 94 },
+          { x: 86, marketY: 86, floorY: 94 },
+          { x: 94, marketY: 106, floorY: 94 },
+          { x: 100, marketY: 94, floorY: 94 },
+          { x: 106, marketY: 70, floorY: 72 },
+          { x: 112, marketY: 48, floorY: 72 },
+          { x: 118, marketY: 58, floorY: 72 },
+          { x: 124, marketY: 72, floorY: 72 },
+          { x: 130, marketY: 86, floorY: 72 },
+          { x: 136, marketY: 72, floorY: 72 },
+          { x: 140, marketY: 60, floorY: 72 },
+          { x: 143, marketY: 66, floorY: 72 },
+          { x: 146, marketY: 72, floorY: 72 }
         ];
-        if (hoverReadout) {
-          hoverReadout.innerHTML = 'MKT ' + hoverSeries[0].market + '<br/>FLOOR ' + hoverSeries[0].floor;
-        }
 
         var bindHover = function () {
-          if (!hoverHitArea || !hoverDotMarket || !hoverDotFloor || !hoverReadout) return;
+          if (!hoverHitArea || !hoverDotMarket || !hoverDotFloor) return;
 
           var onMove = function (event) {
             var rect = hoverHitArea.getBoundingClientRect();
@@ -1012,7 +990,6 @@
             hoverDotMarket.setAttribute('cy', String(nearest.marketY));
             hoverDotFloor.setAttribute('cx', String(nearest.x));
             hoverDotFloor.setAttribute('cy', String(nearest.floorY));
-            hoverReadout.innerHTML = 'MKT ' + nearest.market + '<br/>FLOOR ' + nearest.floor;
             feat1El.classList.add('is-hovering');
           };
 
