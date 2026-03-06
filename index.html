@@ -339,40 +339,49 @@
       overflow: hidden;
       background: var(--bg);
     }
-    .feat1-svg {
+    .feat1-card {
       position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
-    .feat1-plot-fill {
+      left: 18px;
+      right: 18px;
+      bottom: -108px;
+      height: 220px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 14px;
+      background:
+        radial-gradient(120% 90% at 12% -24%, rgba(190, 255, 176, 0.18), rgba(190, 255, 176, 0) 56%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.015) 100%),
+        #0f0f0f;
+      padding: 18px;
       opacity: 0;
-      transition: opacity 0.9s ease 0.5s;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease 0.18s, transform 0.9s cubic-bezier(0.22, 0.8, 0.24, 1) 0.18s;
     }
-    .feat1-plot-line {
-      opacity: 0;
-      stroke-dasharray: 280;
-      stroke-dashoffset: 280;
-      transition: opacity 0.35s ease 0.16s, stroke-dashoffset 1.7s cubic-bezier(0.22, 0.8, 0.24, 1) 0.28s;
+    .feat1-card-label {
+      margin: 0;
+      color: rgba(250, 250, 250, 0.7);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
     }
-    .feat1-market-line {
-      stroke-dasharray: 320;
-      stroke-dashoffset: 320;
-      stroke-opacity: 0.9;
+    .feat1-card-value {
+      margin: 8px 0 0;
+      color: var(--accent);
+      font-size: 40px;
+      font-weight: 600;
+      line-height: 1;
+      letter-spacing: -0.03em;
     }
-    .feat1-floor-line {
-      stroke-dasharray: 260;
-      stroke-dashoffset: 260;
-      stroke-opacity: 1;
+    .feat1-card-sub {
+      margin: 8px 0 0;
+      color: rgba(250, 250, 250, 0.6);
+      font-size: 12px;
+      line-height: 1.4;
     }
     .feat1--animate { opacity: 1; transform: translateY(0) scale(1); }
-    .feat1--animate .feat1-plot-fill { opacity: 1; }
-    .feat1--animate .feat1-plot-line { opacity: 0.96; stroke-dashoffset: 0; }
+    .feat1--animate .feat1-card { opacity: 1; transform: translateY(0); }
     @media (prefers-reduced-motion: reduce) {
       .feat1-visual,
-      .feat1-plot-fill,
-      .feat1-plot-line {
+      .feat1-card {
         transition: none !important;
       }
     }
@@ -745,32 +754,11 @@
       <div class="feature-spacer" aria-hidden="true">
         <div class="feat1-visual" id="feat1-visual">
           <div class="feat1-shell">
-            <svg class="feat1-svg" viewBox="0 0 152 149" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <pattern id="feat1-dot-grid" x="0" y="0" width="16.89" height="14.9" patternUnits="userSpaceOnUse">
-                  <circle cx="8.445" cy="7.45" r="0.8" fill="#ffffff" opacity="0.1"/>
-                </pattern>
-                <linearGradient id="feat1-gradient" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#ffffff" stop-opacity="0.4"/>
-                  <stop offset="20%" stop-color="#ffffff" stop-opacity="0.25"/>
-                  <stop offset="40%" stop-color="#ffffff" stop-opacity="0.15"/>
-                  <stop offset="70%" stop-color="#ffffff" stop-opacity="0.05"/>
-                  <stop offset="90%" stop-color="#ffffff" stop-opacity="0.01"/>
-                  <stop offset="100%" stop-color="transparent" stop-opacity="0"/>
-                </linearGradient>
-                <clipPath id="feat1-plot-clip">
-                  <path d="M1 1h149.894v131.772L135.145 147.521H1V1z" />
-                </clipPath>
-              </defs>
-              <rect x="1" y="1" width="150.894" height="146.521" fill="url(#feat1-dot-grid)"/>
-              <g clip-path="url(#feat1-plot-clip)">
-                <g transform="translate(-18 -18) scale(1.24 1.24)">
-                  <path id="feat1-area-path" class="feat1-plot-fill" d="M 8 12 C 34 14, 56 26, 70 54 C 76 70, 80 88, 84 100 C 90 92, 100 76, 114 62 C 126 52, 138 50, 152 54 L 152 147.521 L 1 147.521 L 1 18 C 3 14, 5 13, 8 12 Z" fill="url(#feat1-gradient)"/>
-                  <path id="feat1-market-path" class="feat1-plot-line feat1-market-line" d="M 8 12 C 34 14, 56 26, 70 54 C 76 70, 80 88, 84 100 C 90 92, 100 76, 114 62 C 126 52, 138 50, 152 54" fill="none" stroke="#ffffff" stroke-width="1.85" stroke-linecap="round"/>
-                  <path id="feat1-floor-path" class="feat1-plot-line feat1-floor-line" d="M 8 102 C 34 101, 56 100, 76 100 C 96 100, 124 99, 152 98" fill="none" stroke="var(--accent)" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
-                </g>
-              </g>
-            </svg>
+            <article class="feat1-card">
+              <p class="feat1-card-label">Floor Price</p>
+              <p class="feat1-card-value">$0.42</p>
+              <p class="feat1-card-sub">Guaranteed minimum value</p>
+            </article>
           </div>
         </div>
       </div>
