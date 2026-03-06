@@ -4,46 +4,51 @@ _Last updated: 2026-03-06_
 ---
 
 ## Project Overview
-Static single-page marketing site for Floors Finance (DeFi protocol), built entirely in vanilla HTML/CSS/JS in [`index.html`](./index.html). No framework, no build step. Animations live in `Animations/`. Deploy: GitHub → Vercel, branch `master` (`Aightek/floors-finance-landing`). No `CLAUDE.md` in project root.
+Static single-page marketing site for Floors Finance (DeFi protocol), built entirely in vanilla HTML/CSS/JS in [`index.html`](./index.html). No framework, no build step. Animations live in `Animations/`. Deploy: GitHub → Vercel, branch `master` (`Aightek/floors-finance-landing`). Design system reference: [`design-system.html`](./design-system.html) (untracked, use for component tokens).
 
 ## Current Status
-**Completed this session:** All 5 feature row visuals are now implemented. Features 2–5 were empty spacer cells; all are now filled with animated stat cards matching the Feature 1 visual language.
+**Completed this session:** Full redesign of all 5 feature card visuals + addition of eyebrow labels to feature text panels.
 
-Latest commit: `d9e2802` — pushed to `master`, Vercel auto-deploy triggered.
+Latest commit: `3097ab1` — pushed to `master`, Vercel auto-deploy triggered.
 
-**Feature card summary** (all markup + CSS in `index.html`):
-- **Feature 1** (~lines 882–910): Floor Price card — existing, unchanged
-- **Feature 2** (~lines 912–950): "Your Position" — entry `$0.30` vs floor `$0.42`, scaleX gap bar
-- **Feature 3** (~lines 961–995): "Borrow Health" — Safe status + green health bar fill
-- **Feature 4** (~lines 996–1047): "Reserve Growth" — `+2.4%` + sequential fee ticker rows
-- **Feature 5** (~lines 1048–1090): "Supply & Backing" — SVG ring stroke + `1.24x` ratio
+**Feature card visuals** (all markup + CSS in `index.html`):
+- **F1** (~line 851): Floor Price — staircase SVG line art, `$0.42`, "Only moves up"
+- **F2** (~line 868): Your Position — Entry/floor before-after rows + large `+40%` hero
+- **F3** (~line 899): Borrow Health — outlined `● Safe` pill badge + collateral/borrowed split
+- **F4** (~line 927): Reserve Growth — upward sparkline SVG + `+$3,600` single number
+- **F5** (~line 953): Supply & Backing — large centered ring (110px), `1.24x` overlaid
 
-CSS blocks for Features 2–5 at ~lines 413–515 (inserted after the Feature 1 reduced-motion block).
+**Feature panel labels** — `.f-label` eyebrow above each `h4`:
+- Price Floor / Downside Protection / Zero Liquidations / Fee Capture / Supply Backing
+- CSS at ~line 491: `color: var(--accent)`, `font-size: 14px`, `letter-spacing: -.28px`, `margin-bottom: 24px`
+- Matches design system `.t-label` / Accent Label token (see `design-system.html` line 103, 286, 617)
 
-JS: shared `initFeatIllustration(id, animClass)` factory at ~line 1236, triggers Features 2–5 via IntersectionObserver.
+**Card background:** Removed — transparent, border only (`1px solid rgba(255,255,255,0.14)`).
 
 No blockers.
 
 ## Key Decisions
-- **Reused `.feat1-card`, `.feat1-shell`, `.feat1-card-meta`, `.feat1-card-k/v` classes** for Features 2–5 rather than duplicating CSS — only unique visual elements per feature get new classes (`feat2-*`, `feat3-*`, etc.)
-- **`transform: scaleX()` not `width` for progress bars** (Features 2 & 3) — per UX guideline: animate composited properties only
-- **`stroke-dashoffset` for SVG ring** (Feature 5) — composited, smooth 60fps
-- **Sequential `animation-delay`** for fee ticker rows (Feature 4) — 0.45s / 0.65s / 0.85s, creates live-feed feel without JS
-- **No infinite decorative animations** — Feature 3 dot is static green, not pulsing (UX: infinite animations are distracting)
-- **`threshold: 0.25`** for IntersectionObserver on Features 2–5 (vs 0.35 on Feature 1) — slightly earlier trigger since cards have more content
+- **Removed 2×2 stat grids from all 5 cards** — primary clutter source; each card now has one focal visual element
+- **Each card uses a distinct concept** (staircase / before-after / status badge / sparkline / ring) — not variations of same template; Vercel-style minimal
+- **Card background set to transparent** — `background: transparent` on `.feat1-card`, border only
+- **`.f-label` uses design system Accent Label token** (`color: var(--accent)`, `14px`, `letter-spacing: -.28px`) — sourced from `design-system.html` line 617, not custom
+- **Card padding increased 18px → 24px, gap reduced 12px → 6px** — more breathing room per Vercel reference
+- **F5 ring enlarged**: radius 38 (was 26), `stroke-dasharray: 239`, 110px SVG (was 66px) — centered layout with flex: 1
+- **Accent color restrained** — used on single key value per card only
 
 ## Next Steps
-1. **Visual QA all 5 cards** at desktop (1060px) and ensure truncation/clipping feels intentional — check `top: 32px` and `height: 320px` on `.feat1-card` (shared by all features)
-2. **Finalize copy/values** — all numbers (`$0.42`, `$840`, `42M`, etc.) are placeholder-realistic; confirm before launch
-3. **Rename stale CSS comment** at ~line 324: `/* -- Feature 1: HUD Area Chart Illustration */` → update to reflect current card implementation
-4. **Mobile audit** — `.feature-spacer { display: none }` hides all 5 visuals on mobile; verify text panels read well standalone
-5. **Triage untracked root files** — `Floors UI/`, `Partner Logos/`, `article.md`, `design-system.html`, `email-msxv6.html` — decide include vs delete
-6. **Consider creating `CLAUDE.md`** now that stable patterns exist worth persisting across sessions
+1. **Visual QA** — check all 5 cards at 1060px desktop; verify card truncation (`.feat1-card` is `position: absolute`, `top: 32px`, `height: 320px`)
+2. **F4 sparkline** — currently uses `preserveAspectRatio="none"` which stretches the line; consider `xMidYMid meet` if it looks distorted at narrow widths
+3. **Finalize copy/values** — `$0.42`, `$840`, `$210`, `+$3,600`, `1.24x` are placeholder-realistic; confirm before launch
+4. **Mobile audit** — `.feature-spacer { display: none }` hides all visuals on mobile; verify text panels + `.f-label` + `h4` read well standalone
+5. **Stale CSS comment** at ~line 324: still says `/* -- Feature 1: HUD Area Chart Illustration */` — rename to reflect current card
+6. **Triage untracked root files** — `Floors UI/`, `Partner Logos/`, `article.md`, `design-system.html`, `email-msxv6.html` — decide include vs delete
+7. **Consider `CLAUDE.md`** — stable patterns now exist worth persisting
 
 ## Context Notes
-- All feature visuals share `.feat1-card` CSS (`position: absolute`, `top: 32px`, `height: 320px`, `opacity: 0` default). Each feature's animate class (`.feat[N]--animate .feat1-card`) sets `opacity: 1; transform: translateY(0)`.
-- Keep exactly one `id="feat1-visual"` — `initFeatureOneIllustration()` depends on it.
-- `initFeatIllustration` factory runs **after** `initFeatureOneIllustration()` and **before** the `if (!window.lottie) return` guard — order matters.
-- Feature 4 fee ticker uses pure CSS `@keyframes feat4Tick` — no JS needed.
-- Feature 5 SVG ring: `r="26"`, circumference `2π×26 ≈ 163`. `stroke-dashoffset: 41` ≈ 75% fill. Adjust to change fill level.
-- `prefers-reduced-motion` coverage: Feature 1 at ~line 407; Features 2–5 at ~lines 434–437.
+- All 5 feature visuals share `.feat1-card` CSS (position absolute, top 32px, height 320px, opacity 0 default). Animate class per feature sets `opacity: 1; transform: translateY(0)`.
+- JS factory `initFeatIllustration(id, animClass)` at ~line 1236 handles F2–F5 via IntersectionObserver. Order matters: runs after `initFeatureOneIllustration()`, before `if (!window.lottie) return`.
+- F5 ring: `r="38"`, circumference ≈ 239. `stroke-dashoffset: 60` ≈ 75% fill. Adjust to change level.
+- F1 staircase SVG uses hardcoded `#beffb0` (same as `--accent`) — if accent token changes, update SVG stroke/fill manually.
+- `design-system.html` is untracked — safe to read for token reference but don't commit unless intentional.
+- `prefers-reduced-motion` coverage: F1 at ~line 407; F2–F5 at ~line 436 (only `.feat5-ring-fill--lg` transition suppressed now; old bar/gap classes removed).
