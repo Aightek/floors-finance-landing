@@ -322,16 +322,9 @@
     .feature-panel:last-child { border-right: none; }
     .feature-spacer { background: transparent; }
     /* ── Feature 1 — Floor Price Illustration ───────────────────────────── */
-    .feat1-visual {
-      display: flex;
-      flex-direction: column;
-      align-items: stretch;
-      justify-content: center;
-      height: 100%;
-      padding: 28px 24px;
-      gap: 16px;
-    }
-    .feat1-svg { width: 100%; height: auto; display: block; }
+    .feature-spacer { position: relative; }
+    .feat1-visual { position: absolute; inset: 0; overflow: hidden; }
+    .feat1-svg { width: 100%; height: 100%; display: block; }
     .feat1-fill {
       opacity: 0;
       transition: opacity 0.6s ease 1s;
@@ -366,32 +359,6 @@
     .feat1--animate .feat1-dot-floor     { opacity: 1;   transition-delay: 1.3s; }
     .feat1--animate .feat1-dot-market    { opacity: 0.6; transition-delay: 1.2s; }
     .feat1--animate .feat1-gap-line      { opacity: 1;   transition-delay: 1.6s; }
-    .feat1-stats {
-      display: flex;
-      width: 100%;
-      border-top: 1px solid rgba(255,255,255,0.05);
-      padding-top: 14px;
-    }
-    .feat1-stat {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      opacity: 0;
-      transform: translateY(8px);
-      transition: opacity 0.4s ease, transform 0.4s ease;
-      padding: 0 16px;
-    }
-    .feat1-stat:first-child { padding-left: 0; border-right: 1px solid rgba(255,255,255,0.05); }
-    .feat1-stat:last-child  { padding-right: 0; }
-    .feat1--animate .feat1-stat:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: 0.6s; }
-    .feat1--animate .feat1-stat:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: 0.75s; }
-    .feat1-stat-label { font-size: 10px; font-weight: 500; color: rgba(255,255,255,0.3); }
-    .feat1-stat--accent .feat1-stat-label { color: rgba(190,255,176,0.5); }
-    .feat1-stat-value { font-size: 14px; font-weight: 600; color: #fff; margin-top: 2px; }
-    .feat1-stat--accent .feat1-stat-value { color: var(--accent); }
-    .feat1-stat-sub { font-size: 10px; color: rgba(255,255,255,0.2); margin-top: 2px; }
-    .feat1-stat--accent .feat1-stat-sub { color: rgba(190,255,176,0.4); }
     .feature-panel {
       grid-column: span 2;
       padding: 44px;
@@ -760,7 +727,7 @@
       </div>
       <div class="feature-spacer" aria-hidden="true">
         <div class="feat1-visual" id="feat1-visual">
-          <svg class="feat1-svg" viewBox="0 0 280 150" xmlns="http://www.w3.org/2000/svg">
+          <svg class="feat1-svg" viewBox="0 0 280 150" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <linearGradient id="feat1-fill-grad" x1="0" x2="0" y1="0" y2="1">
                 <stop offset="0%" stop-color="#beffb0" stop-opacity="0.1"/>
@@ -784,8 +751,8 @@
             <!-- Market price path -->
             <path class="feat1-path-market" d="M 0 115 C 17 107,22 97,35 93 C 48 89,57 82,70 77 C 83 72,95 65,105 61 C 115 57,128 51,140 49 C 152 47,163 43,175 42 C 187 41,198 49,210 51 C 222 53,234 41,245 40 C 256 39,268 43,280 44" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-opacity="0.35"/>
             <!-- PRESALE badge -->
-            <rect x="1" y="1" width="57" height="15" rx="3" fill="#beffb0" fill-opacity="0.12"/>
-            <text class="feat1-badge-text" x="29.5" y="12" text-anchor="middle" fill="#beffb0" font-size="7.5" font-weight="700" letter-spacing="0.5" font-family="monospace">PRESALE</text>
+            <rect x="14" y="14" width="57" height="15" rx="3" fill="#beffb0" fill-opacity="0.12"/>
+            <text class="feat1-badge-text" x="42.5" y="25" text-anchor="middle" fill="#beffb0" font-size="7.5" font-weight="700" letter-spacing="0.5" font-family="monospace">PRESALE</text>
             <!-- Labels -->
             <text class="feat1-label-floor" x="193" y="58" fill="#beffb0" font-size="8" font-weight="600" letter-spacing="0.3" font-family="monospace">FLOOR ↑</text>
             <text class="feat1-label-market" x="193" y="37" fill="white" font-size="8" letter-spacing="0.3" font-family="monospace">MARKET</text>
@@ -797,18 +764,6 @@
             <circle class="feat1-dot-market" cx="280" cy="44" r="3.5" fill="white"/>
             <circle class="feat1-dot-floor" cx="280" cy="62" r="3.5" fill="#beffb0"/>
           </svg>
-          <div class="feat1-stats">
-            <div class="feat1-stat feat1-stat--accent">
-              <span class="feat1-stat-label">Floor Price</span>
-              <span class="feat1-stat-value">$0.0842</span>
-              <span class="feat1-stat-sub">Only goes up ↑</span>
-            </div>
-            <div class="feat1-stat feat1-stat--neutral">
-              <span class="feat1-stat-label">Market Price</span>
-              <span class="feat1-stat-value">$0.1247</span>
-              <span class="feat1-stat-sub">Always ≥ floor</span>
-            </div>
-          </div>
         </div>
       </div>
     </article>
