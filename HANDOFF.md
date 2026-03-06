@@ -1,38 +1,53 @@
-Ôªø# HANDOFF ‚Äî Floors Finance Modular Landing
+# HANDOFF ó Floors Finance Modular Landing
 _Last updated: 2026-03-06_
 
 ---
 
 ## Project Overview
-Static single-page marketing site for Floors Finance (DeFi, rising floor-price mechanics), built in vanilla HTML/CSS/JS. Main implementation is in `index.html`; motion assets are in `Animations/`; deployment is Vercel via GitHub `master`. `Landing.pen` is the design reference and should be accessed via pencil MCP tools only. No `CLAUDE.md` or `.planning/` directory exists.
+This project is a static single-page marketing site for Floors Finance, built with vanilla HTML/CSS/JS in [`index.html`](/e:/WORKS/Floors%20Finance/Modular%20Landing/index.html). Animation assets live in `Animations/`. Deploy flow is GitHub -> Vercel on branch `master` (`Aightek/floors-finance-landing`).
+
+There is no `CLAUDE.md` in project root and no `.planning/` directory this session.
 
 ## Current Status
-Feature 1 illustration was upgraded this session to a more Vercel-style grid module treatment in `index.html`.
-- Reworked Feature 1 CSS into a structured ‚Äúgrid block‚Äù visual system with guides/crosshair/depth layering (`index.html` around lines 324+).
-- Replaced the old small chart SVG with a larger, layered illustration inside the first feature spacer (`index.html` around line 848).
-- Added early `initFeatureOneIllustration()` so Feature 1 animation no longer depends on Lottie availability (`index.html` around lines 1071‚Äì1093).
-- Added reduced-motion handling for Feature 1 animation paths/effects (same CSS block).
-- Removed duplicate legacy observer logic at script tail (single trigger path now).
+Feature 1 (first right-side visual cell in `.feature-rows`) was fully redesigned from chart-based HUD variants into a **truncated stat-card visual** focused on Floor Price.
 
-No hard blocker during implementation, but visual QA in-browser is still pending in this session (desktop + mobile behavior confirmation). Current git state includes one modified tracked file: `index.html`.
+Current implementation (all in [`index.html`](/e:/WORKS/Floors%20Finance/Modular%20Landing/index.html)):
+- Feature 1 CSS block around lines ~324ñ412 now styles `.feat1-card` instead of SVG line chart animation classes.
+- Feature 1 markup around lines ~773ñ804 uses:
+  - `Floor Price` label
+  - `$0.42` value
+  - `Guaranteed minimum value`
+  - compact details grid (`Reserve Backed`, `Daily Rise`, `Status`, `Floor Mode`)
+- Card is intentionally clipped/truncated from bottom and moved higher with `top: 32px`.
+- Reveal behavior is still one-shot via `initFeatureOneIllustration()` around lines ~963ñ985.
+
+No blockers in code execution. Main open work is visual tuning and content/format confirmation.
 
 ## Key Decisions
-- Chose a **Vercel-like grid-cell composition** (guides + cross anchors + clipped card surface) over the previous plain SVG panel because it creates clearer spatial structure and perceived polish while staying within vanilla stack ‚Äî see Feature 1 CSS/markup in `index.html`.
-- Kept **SVG + CSS animation** (not Lottie) for feature spacers, because these modules are static layout slots and lightweight one-shot draw animations are sufficient.
-- Moved Feature 1 init **before Lottie guard** (`if (!window.lottie) return;`) so the illustration still animates even if CDN/script fails.
-- Set observer threshold to **0.35** for Feature 1 trigger, aligned to ‚Äúanimate once when meaningfully in view,‚Äù then disconnect.
-- Added **prefers-reduced-motion fallback** to disable scan/pulse and instant-set transitions for accessibility.
+- Chose **stat-card metaphor** over chart metaphor for Feature 1 because user preferred a clearer ìFloor Priceî cue over abstract line art ó see `.feat1-card` and Feature 1 markup in [`index.html`](/e:/WORKS/Floors%20Finance/Modular%20Landing/index.html).
+- Chose **bottom-truncated card composition** to preserve visual intrigue while fitting the feature cell ó controlled via `.feat1-shell` overflow + `.feat1-card` positioning.
+- Chose **minimal but meaningful detail set** (`Reserve Backed`, `Daily Rise`, `Status`, `Floor Mode`) to fill vertical space without making the card dense.
+- Kept implementation in **plain HTML/CSS** (no component libraries/framework changes) to match project stack and avoid introducing dependencies.
+- Used Pencil MCP once to inspect `Landing.pen` node `LkOxA`, then reverted from that direction after user feedback.
+
+Recent commit sequence relevant to Feature 1:
+- `b4cb83b` align to `LkOxA`
+- `236d7e1` revert to pre-`LkOxA`
+- `36b2eee` replace with truncated Floor Price card
+- `24e0146` increase card detail density and raise card
+- `e30a0fb` set top offset to 32px
+- `2662ef8` increase meta vertical spacing
 
 ## Next Steps
-1. Validate Feature 1 visually in browser at desktop and tablet widths; check clipping and contrast in the new shell (`index.html` Feature 1 block).
-2. Confirm mobile intent: feature spacers are hidden on mobile (`.feature-spacer { display: none; }`), so Feature 1 visual is desktop-only.
-3. Implement Features 2‚Äì5 illustrations in remaining empty `.feature-spacer` cells, reusing the new Feature 1 structural pattern where appropriate.
-4. Run a quick animation sanity pass across existing Lottie sections to ensure no regressions from script-order changes.
-5. Triage untracked assets (`Email-Logo.svg`, `Illustration.svg`, `Partner Logos/`, `email-msxv6.html`, `article.md`, `image.png`, etc.) and decide commit/integration scope.
+1. Visual QA the current Feature 1 card in desktop/tablet and ensure truncation amount feels intentional (check `.feat1-card` `top/height` in [`index.html`](/e:/WORKS/Floors%20Finance/Modular%20Landing/index.html)).
+2. Decide final copy/values for stats (`$0.42`, `+0.6%`, etc.) to avoid placeholder-like production content.
+3. Rename stale section comment `/* -- Feature 1: HUD Area Chart Illustration ... */` to match current card implementation (it is outdated and may confuse future edits).
+4. Implement Feature 2ñ5 visuals in remaining empty `.feature-spacer` cells with consistent visual language (card-based or chart-based, but unified).
+5. Triage untracked root files/directories (`Floors UI/`, `Partner Logos/`, `article.md`, `design-system.html`, etc.) and decide inclusion vs cleanup.
 
 ## Context Notes
-- Only one `feat1-visual` instance should exist in final markup (currently true); avoid accidental duplicate insertion when patching by line ranges.
-- Keep labels in illustration SVG as `font-family="monospace"` to match site aesthetic.
-- The new Feature 1 implementation is intentionally layered and subtle; avoid adding continuous infinite decorative motion.
-- `HANDOFF.md` previously contained encoding artifacts in older content; keep files UTF-8 when editing to avoid malformed characters.
-- `.pen` workflow constraint remains: do not read `Landing.pen` directly; use MCP tool calls.
+- Keep exactly one `id="feat1-visual"`; animation trigger depends on it.
+- Mobile hides `.feature-spacer` (line ~625), so Feature 1 visual does not render on mobile; only text panel remains.
+- `HANDOFF.md` was stale before this update; use this version as source of truth.
+- Repository currently has unrelated untracked files; commits in this session intentionally scoped to `index.html` plus `HANDOFF.md`.
+- If `.pen` inspection is needed again, prefer Pencil MCP tools (as done for `LkOxA`) rather than hand-reading `.pen` internals.
