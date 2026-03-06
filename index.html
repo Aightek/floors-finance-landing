@@ -1151,6 +1151,7 @@
         var container = document.getElementById(containerId);
         var host = document.getElementById(hostId);
         if (!container || !host) return;
+        var hoverTarget = host.closest('.feature-spacer') || host;
 
         var animation = window.lottie.loadAnimation({
           container: container,
@@ -1161,11 +1162,28 @@
           rendererSettings: { preserveAspectRatio: 'xMidYMid meet' }
         });
 
-        var lockAtIdleFrame = function () {
+        var isHovering = false;
+        var pingDirection = -1;
+        var getLastFrame = function () {
           var totalFrames = animation.totalFrames || animation.getDuration(true) || 0;
-          if (totalFrames > 0) {
-            animation.goToAndStop(Math.max(0, Math.floor(totalFrames - 1)), true);
+          return Math.max(0, Math.floor(totalFrames - 1));
+        };
+        var lockAtIdleFrame = function () {
+          var idleFrame = getLastFrame();
+          if (idleFrame > 0) {
+            animation.goToAndStop(idleFrame, true);
           }
+        };
+        var playPingPongLeg = function () {
+          var idleFrame = getLastFrame();
+          if (idleFrame <= 0) return;
+          if (pingDirection < 0) {
+            animation.setDirection(-1);
+            animation.goToAndPlay(idleFrame, true);
+            return;
+          }
+          animation.setDirection(1);
+          animation.goToAndPlay(0, true);
         };
 
         if (reduceMotion) {
@@ -1175,7 +1193,14 @@
           return;
         }
 
-        animation.addEventListener('complete', lockAtIdleFrame);
+        animation.addEventListener('complete', function () {
+          if (!isHovering) {
+            lockAtIdleFrame();
+            return;
+          }
+          pingDirection = pingDirection * -1;
+          playPingPongLeg();
+        });
 
         var played = false;
         var play = function () {
@@ -1197,6 +1222,20 @@
           return;
         }
         play();
+
+        hoverTarget.addEventListener('mouseenter', function () {
+          if (!played || isHovering) return;
+          isHovering = true;
+          pingDirection = -1;
+          var idleFrame = getLastFrame();
+          if ((animation.currentFrame || 0) >= idleFrame - 0.5) {
+            playPingPongLeg();
+          }
+        });
+        hoverTarget.addEventListener('mouseleave', function () {
+          isHovering = false;
+          lockAtIdleFrame();
+        });
       };
       initFeatureLottie('feature-f1-lottie', 'feat1-visual', 'Animations/F1.json');
       initFeatureLottie('feature-f2-lottie', 'feat2-visual', 'Animations/F2.json');
