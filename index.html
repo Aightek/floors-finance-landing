@@ -162,6 +162,15 @@
       position: relative;
       display: inline-block;
       text-align: left;
+      transition: opacity 180ms ease, transform 180ms ease;
+    }
+    .hero-verb.verb-out {
+      opacity: 0;
+      transform: translateY(-6px);
+    }
+    .hero-verb.verb-in {
+      opacity: 0;
+      transform: translateY(6px);
     }
     .hero-verb::after {
       content: "";
@@ -1667,18 +1676,34 @@
         var sequence = ['Hold', 'Trade', 'Borrow', 'Loop', 'Earn'];
         var index = 0;
         var intervalMs = 2000;
+        var transitionMs = 180;
 
         verb.textContent = sequence[index];
+
+        var swapVerb = function (nextText, isFinal) {
+          verb.classList.add('verb-out');
+          setTimeout(function () {
+            verb.textContent = nextText;
+            verb.classList.remove('verb-out');
+            verb.classList.add('verb-in');
+            requestAnimationFrame(function () {
+              requestAnimationFrame(function () {
+                verb.classList.remove('verb-in');
+                if (isFinal) verb.classList.add('is-final');
+              });
+            });
+          }, transitionMs);
+        };
+
         var timer = window.setInterval(function () {
           index += 1;
           if (index < sequence.length) {
-            verb.textContent = sequence[index];
+            swapVerb(sequence[index], false);
             return;
           }
 
           window.clearInterval(timer);
-          verb.textContent = 'Hold';
-          verb.classList.add('is-final');
+          swapVerb('Hold', true);
         }, intervalMs);
       };
 
