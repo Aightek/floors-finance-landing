@@ -188,7 +188,7 @@
       from { transform: scaleX(0); }
       to { transform: scaleX(1); }
     }
-    .sub { margin: 22px auto 0; max-width: 670px; color: var(--muted); font-size: 20px; line-height: 1.8; }
+    .sub { margin: 22px auto 0; max-width: 670px; color: var(--muted); font-size: 24px; line-height: 1.8; }
     .actions { margin-top: 26px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
     .hook-section {
       min-height: 304px;
@@ -217,6 +217,13 @@
       color: var(--muted);
       font-size: 18px;
       line-height: 1.52;
+    }
+    .hook-panel .hook-highlight {
+      display: inline;
+      font-size: 22px;
+      color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 4px;
     }
     .big-lines { color: var(--muted); font-size: 32px; line-height: 1.5; letter-spacing: -1.28px; }
     .cards { grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--border); }
@@ -992,7 +999,7 @@
           <span>Testnet live</span>
         </div>
         <h1 class="hero-headline"><span class="hero-verb" id="hero-verb">Hold</span> different.</h1>
-      <p class="sub">Always liquid. Zero liquidations. Plugged into DeFi</p>
+      <p class="sub">DeFi with Rising Floor Prices</p>
         <div class="actions">
           <div class="inline-capture" data-inline-capture>
             <button type="button" class="btn-primary inline-capture-trigger">Get Early Access</button>
@@ -1009,7 +1016,7 @@
   <section class="wrap frame hook-section">
     <div class="hook-panel">
       <h3>The Upgrade for Investors and Issuers</h3>
-      <p>As of today, tokens are born incomplete. Thin liquidity. Gated lending. No productive backing. Floors fixes this at the asset level.</p>
+      <p>As of today, tokens are born incomplete. Thin liquidity. Gated lending. No productive backing. <span class="hook-highlight">Floors fixes this at the asset level.</span></p>
     </div>
   </section>
 
@@ -1020,7 +1027,7 @@
       </div>
       <div class="mechanic-copy">
         <h3>Always-On Liquidity</h3>
-        <p>Every floor token has its own market for buying and selling. No external LPs needed.</p>
+        <p>Buy or sell your token anytime to the AMM. No external LPs needed.</p>
       </div>
     </article>
     <article class="card card-with-media mechanic-card">
@@ -1029,7 +1036,7 @@
       </div>
       <div class="mechanic-copy">
         <h3>Rising Floor Price</h3>
-        <p>Fees, liquidity rebalancing, and staking yield compound into the floor over time. Even if everyone sells.</p>
+        <p>Your floor rises whether you hold, borrow, or the market dumps. It never goes back down.</p>
       </div>
     </article>
     <article class="card card-with-media mechanic-card">
@@ -1038,7 +1045,7 @@
       </div>
       <div class="mechanic-copy">
         <h3>Liquidation-free Borrowing</h3>
-        <p>Every floor token can be borrowed up to its floor value with zero liquidations. No expiries.</p>
+        <p>Borrow up to the floor price without liquidations or ongoing interest payments. Repay whenever you want.</p>
       </div>
     </article>
   </section>
