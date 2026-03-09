@@ -785,40 +785,18 @@
     .partner:nth-child(3n) { border-right: none; }
     .partner.partner-empty { color: transparent; }
     .partner.partner-last-middle { border-left: 1px solid var(--border); }
-    .faq { border-top: 1px solid var(--border); }
-    .faq-header { padding: 44px var(--col-pad) 32px; }
-    .faq-header h2 { margin: 0; font-size: 32px; letter-spacing: -1.28px; line-height: 1.2; }
-    .faq-item { border-top: 1px solid var(--border); }
-    .faq-item summary {
-      list-style: none;
+    .faq { border-top: 1px solid var(--border); display: grid; grid-template-columns: repeat(3, 1fr); }
+    .faq-cell {
+      min-height: 304px;
+      padding: 44px;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 24px;
-      padding: 24px var(--col-pad);
-      font-size: 18px;
-      font-weight: 500;
-      cursor: pointer;
-      user-select: none;
+      flex-direction: column;
     }
-    .faq-item summary::-webkit-details-marker { display: none; }
-    .faq-item summary::after {
-      content: "+";
-      font-size: 22px;
-      font-weight: 300;
-      color: var(--muted);
-      flex-shrink: 0;
-      transition: transform 200ms ease;
-    }
-    .faq-item[open] summary::after { transform: rotate(45deg); }
-    .faq-item .faq-body {
-      padding: 0 var(--col-pad) 28px;
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.7;
-      max-width: 760px;
-    }
-    .faq-item .faq-body p { margin: 0; }
+    .faq-cell:nth-child(3n) { border-right: none; }
+    .faq-cell h3 { margin: 0 0 12px; font-size: 18px; letter-spacing: -.36px; line-height: 1.3; font-weight: 500; }
+    .faq-cell p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.6; }
     .newsletter { border-top: 1px solid var(--border); text-align: center; padding: 90px 24px; }
     .newsletter h3 { margin: 0 0 24px; font-size: 24px; letter-spacing: -.9px; }
     .inline-capture {
@@ -969,6 +947,8 @@
       .product { border-right: none; }
       .partner-grid { grid-template-columns: 1fr; }
       .partner { border-right: none; }
+      .faq { grid-template-columns: 1fr; }
+      .faq-cell { border-right: none; }
       .module-3col { grid-template-columns: 1fr; }
       .module-3col .col-span2 {
         grid-column: span 1;
@@ -1297,33 +1277,30 @@
   </section>
 
   <section class="wrap frame faq">
-    <div class="faq-header">
-      <h2>Frequently Asked Questions</h2>
+    <div class="faq-cell">
+      <h3>What is a floor price?</h3>
+      <p>A floor price is the minimum guaranteed value of a Floors token. The protocol backs every token with real reserves — so no matter what the market does, the floor holds and only ever goes up.</p>
     </div>
-    <details class="faq-item">
-      <summary>What is a floor price?</summary>
-      <div class="faq-body"><p>A floor price is the minimum guaranteed value of a Floors token, set at launch and designed to only ever go up. The protocol backs every token with real reserves — so no matter what the market does, the floor holds.</p></div>
-    </details>
-    <details class="faq-item">
-      <summary>How does the floor price rise over time?</summary>
-      <div class="faq-body"><p>Trading fees, liquidity rebalancing, and staking yield all compound into the protocol's reserves. As reserves grow relative to supply, the floor price rises — automatically, without any action required from holders.</p></div>
-    </details>
-    <details class="faq-item">
-      <summary>What does liquidation-free borrowing mean?</summary>
-      <div class="faq-body"><p>You can borrow against your floor value without the risk of being liquidated. Because the floor price never falls, the protocol always knows your collateral is worth at least that amount. There are no health factors to monitor, no margin calls, and no expiry dates. Repay on your own schedule.</p></div>
-    </details>
-    <details class="faq-item">
-      <summary>Why doesn't Floors need external liquidity providers?</summary>
-      <div class="faq-body"><p>Every Floors token launches with its own built-in AMM funded by the protocol reserves. You can buy or sell at any time directly against this pool — no external LPs, no liquidity fragmentation, no slippage surprises from thin order books.</p></div>
-    </details>
-    <details class="faq-item">
-      <summary>Who is Floors Finance for?</summary>
-      <div class="faq-body"><p>Floors is for token issuers who want to launch with credible, sustainable tokenomics, and for investors who want DeFi exposure without the risks of liquidation, rug pulls, or collapsing liquidity. If you've been burned by tokens that dumped to zero, Floors was built for you.</p></div>
-    </details>
-    <details class="faq-item">
-      <summary>When does the presale close?</summary>
-      <div class="faq-body"><p>The presale is live now on testnet. Once it closes, the token price can never fall below the presale price — every participant after you only pushes the floor higher. Join early to lock in the lowest floor ever.</p></div>
-    </details>
+    <div class="faq-cell">
+      <h3>How does the floor price rise?</h3>
+      <p>Trading fees, liquidity rebalancing, and staking yield all compound into the protocol's reserves. As reserves grow relative to supply, the floor rises automatically — no action needed from holders.</p>
+    </div>
+    <div class="faq-cell">
+      <h3>What does liquidation-free borrowing mean?</h3>
+      <p>You borrow against your floor value with no liquidation risk. No health factors, no margin calls, no expiry dates. Because the floor never falls, your collateral is always safe. Repay on your own schedule.</p>
+    </div>
+    <div class="faq-cell">
+      <h3>Why no external liquidity providers?</h3>
+      <p>Every Floors token launches with its own AMM funded by protocol reserves. Buy or sell at any time directly against this pool — no LPs to attract, no liquidity fragmentation, no thin order books.</p>
+    </div>
+    <div class="faq-cell">
+      <h3>Who is Floors Finance for?</h3>
+      <p>Issuers who want credible, sustainable tokenomics — and investors who want DeFi exposure without liquidation risk or collapsing liquidity. If you've been burned by tokens that dumped to zero, Floors was built for you.</p>
+    </div>
+    <div class="faq-cell">
+      <h3>When does the presale close?</h3>
+      <p>The presale is live on testnet now. Once it closes, the token can never fall below the presale price. Every participant after you only pushes the floor higher — join early for the lowest floor ever.</p>
+    </div>
   </section>
 
   <section class="wrap frame newsletter">
