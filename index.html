@@ -261,6 +261,14 @@
       flex-direction: column;
       gap: 22px;
     }
+    .mechanic-copy::before {
+      content: "";
+      position: absolute;
+      inset: -80px -44px -44px;
+      background: linear-gradient(to bottom, transparent, var(--bg) 60%);
+      z-index: -1;
+      pointer-events: none;
+    }
     .mechanic-card h4 {
       margin: 0;
       font-size: 32px;
