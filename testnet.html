@@ -86,6 +86,11 @@
     .section-label { border-top: 1px solid var(--border); min-height: 138px; display: grid; place-items: center; padding: 0 44px; }
     .section-label p { margin: 0; font-size: 24px; letter-spacing: -.96px; text-align: center; color: var(--muted); line-height: 1.5; }
 
+    /* Hook panel */
+    .hook-panel { border-top: 1px solid var(--border); min-height: 304px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 64px 44px; text-align: center; }
+    .hook-panel h3 { margin: 0 0 14px; font-size: 32px; letter-spacing: -1.28px; line-height: 1.2; }
+    .hook-panel .hook-sub { margin: 0 0 28px; color: var(--muted); font-size: 18px; line-height: 1.52; max-width: 620px; }
+
     /* Leaderboard */
     .leaderboard { display: grid; min-height: 608px; border-top: 1px solid var(--border); grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .leaderboard-col { min-height: 608px; }
@@ -132,113 +137,6 @@
     .product p { margin: auto 0 0; color: var(--muted); font-size: 18px; line-height: 1.52; }
     .product-empty { background: transparent; }
 
-    /* Feature rows */
-    .feature-rows { border-top: 1px solid var(--border); }
-    .feature-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); min-height: 304px; }
-    .feature-spacer, .feature-panel { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); min-height: 304px; }
-    .feature-spacer:last-child, .feature-panel:last-child { border-right: none; }
-    .feature-spacer { background: transparent; position: relative; }
-    .feat1-visual { position: absolute; inset: 0; overflow: hidden; opacity: 0; transform: translateY(10px) scale(0.985); transition: opacity 0.55s ease, transform 0.55s ease; }
-    .feat1-card { position: absolute; left: 18px; right: 18px; top: 32px; height: 320px; border: 1px solid rgba(255,255,255,.14); border-radius: 14px; background: transparent; padding: 24px; display: flex; flex-direction: column; gap: 6px; opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease 0.18s, transform 0.9s cubic-bezier(0.22,0.8,0.24,1) 0.18s; }
-    .feat1-card-label { margin: 0; color: rgba(250,250,250,.7); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; }
-    .feat1-lottie-only { position: absolute; inset: 0; opacity: 0; transform: translateY(14px); transition: opacity 0.7s ease 0.18s, transform 0.9s cubic-bezier(0.22,0.8,0.24,1) 0.18s; }
-    .feat1-lottie-only > div, .feat1-lottie-only > svg { width: 100%; height: 100%; }
-    .feat1--animate { opacity: 1; transform: translateY(0) scale(1); }
-    .feat1--animate .feat1-lottie-only,
-    .feat2--animate .feat1-lottie-only,
-    .feat3--animate .feat1-lottie-only,
-    .feat4--animate .feat1-lottie-only,
-    .feat5--animate .feat1-lottie-only { opacity: 1; transform: translateY(0); }
-    @media (prefers-reduced-motion: reduce) {
-      .feat1-visual, .feat1-card, .feat1-lottie-only { transition: none !important; }
-    }
-    .feat2-visual, .feat3-visual, .feat4-visual, .feat5-visual { position: absolute; inset: 0; overflow: hidden; opacity: 0; transform: translateY(10px) scale(0.985); transition: opacity 0.55s ease, transform 0.55s ease; }
-    .feat2--animate, .feat3--animate, .feat4--animate, .feat5--animate { opacity: 1; transform: translateY(0) scale(1); }
-    .feat2--animate .feat1-card, .feat3--animate .feat1-card, .feat4--animate .feat1-card, .feat5--animate .feat1-card { opacity: 1; transform: translateY(0); }
-    @media (prefers-reduced-motion: reduce) {
-      .feat2-visual, .feat3-visual, .feat4-visual, .feat5-visual { transition: none !important; }
-      .fmock-mini, .fmock-band > span, .fmock-floor-fill, .fmock-floor-meter > span,
-      .fmock-route .fmock-line, .fmock-chip, .fmock-flow-row .fmock-line,
-      .fmock-vault-fill, .fmock-cell, .fmock-stack .fmock-line { transition: none !important; }
-    }
-    .fmock { margin-top: 14px; border: 1px solid rgba(255,255,255,.1); border-radius: 11px; padding: 12px; background: linear-gradient(180deg, rgba(255,255,255,.022) 0%, rgba(255,255,255,.008) 100%); }
-    .fmock-line { height: 2px; border-radius: 99px; background: rgba(255,255,255,.2); display: block; transform-origin: left center; }
-    .fmock-line--accent { background: rgba(190,255,176,.7); }
-    .fmock-node { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.34); flex-shrink: 0; }
-    .fmock-node--accent { background: rgba(190,255,176,.78); }
-    .fmock-floor-steps { height: 96px; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 8px; background: rgba(255,255,255,.03); display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 6px; align-items: end; overflow: hidden; }
-    .fmock-floor-col { height: 100%; border-radius: 6px 6px 0 0; background: rgba(255,255,255,.08); position: relative; overflow: hidden; }
-    .fmock-floor-fill { position: absolute; left: 0; right: 0; bottom: 0; height: var(--h, 50%); border-radius: 6px 6px 0 0; background: rgba(255,255,255,.3); transform-origin: bottom center; transform: scaleY(0); transition: transform 0.65s cubic-bezier(0.22,0.8,0.24,1); }
-    .fmock-floor-fill--accent { background: rgba(190,255,176,.72); }
-    .fmock-floor-meter { margin-top: 10px; height: 2px; background: rgba(255,255,255,.12); border-radius: 99px; overflow: hidden; }
-    .fmock-floor-meter > span { display: block; width: 88%; height: 100%; background: rgba(190,255,176,.72); transform: scaleX(0); transform-origin: left center; transition: transform 0.65s cubic-bezier(0.22,0.8,0.24,1) 0.2s; }
-    .feat1--animate .fmock-floor-fill { transform: scaleY(1); }
-    .feat1--animate .fmock-floor-col:nth-child(1) .fmock-floor-fill { transition-delay: 0.04s; }
-    .feat1--animate .fmock-floor-col:nth-child(2) .fmock-floor-fill { transition-delay: 0.1s; }
-    .feat1--animate .fmock-floor-col:nth-child(3) .fmock-floor-fill { transition-delay: 0.16s; }
-    .feat1--animate .fmock-floor-meter > span { transform: scaleX(1); }
-    .fmock-mini-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 6px; margin-bottom: 10px; }
-    .fmock-mini { height: 18px; border: 1px solid rgba(255,255,255,.1); border-radius: 4px; background: rgba(255,255,255,.04); opacity: 0.45; transform: translateY(5px); transition: transform 0.45s ease, opacity 0.45s ease; }
-    .fmock-band { margin-top: 8px; height: 5px; border-radius: 99px; background: rgba(255,255,255,.1); overflow: hidden; }
-    .fmock-band > span { display: block; width: var(--w, 70%); height: 100%; transform: scaleX(0); transform-origin: left center; transition: transform 0.65s cubic-bezier(0.22,0.8,0.24,1); }
-    .fmock-band-a { background: rgba(255,255,255,.32); }
-    .fmock-band-b { background: rgba(190,255,176,.66); }
-    .feat2--animate .fmock-mini { opacity: 1; transform: translateY(0); }
-    .feat2--animate .fmock-mini:nth-child(1) { transition-delay: 0.04s; }
-    .feat2--animate .fmock-mini:nth-child(2) { transition-delay: 0.08s; }
-    .feat2--animate .fmock-mini:nth-child(3) { transition-delay: 0.12s; }
-    .feat2--animate .fmock-mini:nth-child(4) { transition-delay: 0.16s; }
-    .feat2--animate .fmock-band > span { transform: scaleX(1); }
-    .feat2--animate .fmock-band:nth-child(2) > span { transition-delay: 0.18s; }
-    .feat2--animate .fmock-band:nth-child(3) > span { transition-delay: 0.28s; }
-    .fmock-route { display: flex; align-items: center; gap: 7px; margin: 6px 0 12px; }
-    .fmock-route .fmock-line { flex: 1; transform: scaleX(0); transition: transform 0.6s cubic-bezier(0.22,0.8,0.24,1); }
-    .fmock-chip-row { display: flex; gap: 6px; }
-    .fmock-chip { flex: 1; height: 18px; border-radius: 6px; border: 1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.04); transform: scaleX(0); transform-origin: left center; transition: transform 0.55s cubic-bezier(0.22,0.8,0.24,1); }
-    .fmock-chip--accent { border-color: rgba(190,255,176,.3); background: rgba(190,255,176,.12); }
-    .feat3--animate .fmock-route .fmock-line, .feat3--animate .fmock-chip { transform: scaleX(1); }
-    .feat3--animate .fmock-route .fmock-line:nth-of-type(2) { transition-delay: 0.08s; }
-    .feat3--animate .fmock-route .fmock-line:nth-of-type(4) { transition-delay: 0.16s; }
-    .feat3--animate .fmock-chip:nth-child(1) { transition-delay: 0.14s; }
-    .feat3--animate .fmock-chip:nth-child(2) { transition-delay: 0.2s; }
-    .feat3--animate .fmock-chip:nth-child(3) { transition-delay: 0.26s; }
-    .fmock-flow-row { display: flex; align-items: center; gap: 8px; margin-bottom: 7px; }
-    .fmock-flow-row .fmock-line { transform: scaleX(0); transition: transform 0.6s cubic-bezier(0.22,0.8,0.24,1); }
-    .fmock-vault { margin-top: 8px; height: 30px; border-radius: 6px; border: 1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.03); padding: 3px; display: flex; align-items: flex-end; }
-    .fmock-vault-fill { width: 100%; height: 100%; border-radius: 4px; background: linear-gradient(180deg, rgba(190,255,176,.46) 0%, rgba(255,255,255,.28) 100%); transform-origin: bottom center; transform: scaleY(0); transition: transform 0.68s cubic-bezier(0.22,0.8,0.24,1) 0.24s; }
-    .feat4--animate .fmock-flow-row .fmock-line { transform: scaleX(1); }
-    .feat4--animate .fmock-flow-row:nth-child(1) .fmock-line { transition-delay: 0.06s; }
-    .feat4--animate .fmock-flow-row:nth-child(2) .fmock-line { transition-delay: 0.12s; }
-    .feat4--animate .fmock-flow-row:nth-child(3) .fmock-line { transition-delay: 0.18s; }
-    .feat4--animate .fmock-vault-fill { transform: scaleY(1); }
-    .fmock-matrix { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 6px; margin-bottom: 10px; }
-    .fmock-cell { height: 14px; border-radius: 4px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.08); opacity: 0.3; transform: translateY(5px); transition: transform 0.45s ease, opacity 0.45s ease; }
-    .fmock-cell--accent { background: rgba(190,255,176,.2); border-color: rgba(190,255,176,.3); }
-    .fmock-stack { display: flex; flex-direction: column; gap: 6px; }
-    .fmock-stack .fmock-line { width: var(--w, 100%); transform: scaleX(0); transition: transform 0.55s cubic-bezier(0.22,0.8,0.24,1); }
-    .feat5--animate .fmock-cell { opacity: 1; transform: translateY(0); }
-    .feat5--animate .fmock-cell:nth-child(1) { transition-delay: 0.03s; }
-    .feat5--animate .fmock-cell:nth-child(2) { transition-delay: 0.06s; }
-    .feat5--animate .fmock-cell:nth-child(3) { transition-delay: 0.09s; }
-    .feat5--animate .fmock-cell:nth-child(4) { transition-delay: 0.12s; }
-    .feat5--animate .fmock-cell:nth-child(5) { transition-delay: 0.15s; }
-    .feat5--animate .fmock-cell:nth-child(6) { transition-delay: 0.18s; }
-    .feat5--animate .fmock-cell:nth-child(7) { transition-delay: 0.21s; }
-    .feat5--animate .fmock-cell:nth-child(8) { transition-delay: 0.24s; }
-    .feat5--animate .fmock-cell:nth-child(9) { transition-delay: 0.27s; }
-    .feat5--animate .fmock-cell:nth-child(10) { transition-delay: 0.3s; }
-    .feat5--animate .fmock-cell:nth-child(11) { transition-delay: 0.33s; }
-    .feat5--animate .fmock-cell:nth-child(12) { transition-delay: 0.36s; }
-    .feat5--animate .fmock-stack .fmock-line { transform: scaleX(1); }
-    .feat5--animate .fmock-stack .fmock-line:nth-child(1) { transition-delay: 0.16s; }
-    .feat5--animate .fmock-stack .fmock-line:nth-child(2) { transition-delay: 0.22s; }
-    .feat5--animate .fmock-stack .fmock-line:nth-child(3) { transition-delay: 0.28s; }
-    .feature-panel { grid-column: span 2; padding: 44px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; text-align: left; }
-    .feature-panel .f-label { margin: 0 0 24px; color: var(--accent); font-size: 14px; letter-spacing: -.28px; display: inline-flex; align-items: center; gap: 8px; font-weight: 500; }
-    .feature-panel .f-label .f-label-icon { width: 16px; height: 16px; display: inline-flex; align-items: center; justify-content: center; color: var(--accent); opacity: 0.92; flex-shrink: 0; }
-    .feature-panel .f-label .f-label-icon svg { width: 100%; height: 100%; display: block; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-    .feature-panel h4 { margin: 0 0 10px; color: #fafafa; font-size: 24px; letter-spacing: -.96px; line-height: 1.2; }
-    .feature-panel p { margin: 0; color: var(--muted); font-size: 18px; line-height: 1.52; max-width: 760px; }
 
     /* FAQ */
     .faq { border-top: 1px solid var(--border); display: grid; grid-template-columns: repeat(3, 1fr); }
@@ -305,10 +203,7 @@
       .leaderboard-col { min-height: auto; }
       .benefits { grid-template-columns: 1fr; }
       .product { border-right: none; }
-      .feature-row { grid-template-columns: 1fr; }
-      .feature-spacer { display: none; }
-      .feature-panel { grid-column: span 1; border-right: none; }
-      .faq { grid-template-columns: 1fr; }
+.faq { grid-template-columns: 1fr; }
       .faq-cell { border-right: none; }
       .faq-card { min-height: 304px; }
       .newsletter { padding: 64px 20px; }
@@ -375,37 +270,38 @@
     </div>
   </section>
 
+  <!-- HOOK -->
+  <div class="wrap frame hook-panel">
+    <h3>Mathematical Proof of Backing</h3>
+    <p class="hook-sub">Every protocol operation reinforces the Reserve Pool, programmatically raising the floor price without external dependency.</p>
+    <a class="btn-primary" href="#">Launch Testnet</a>
+  </div>
+
   <!-- PROTOCOL PILLARS -->
   <section class="wrap frame row cards" aria-label="Protocol features">
     <article class="card">
       <p class="label">Guaranteed Floor</p>
       <h3>Contract-enforced minimum redemption value backed 1:1 by hard assets.</h3>
-      <p>Every token is backed 1:1 by hard assets held in the Reserve Pool. The floor is a programmatic guarantee — not a promise.</p>
     </article>
     <article class="card">
       <p class="label">Always Liquid</p>
       <h3>Protocol Owned Liquidity (POL) ensures deep depth for instant exit at the floor.</h3>
-      <p>POL ensures deep depth at all times. Buy or sell directly against the protocol reserve — no external LPs, no fragmented order books.</p>
     </article>
     <article class="card">
       <p class="label">Interest-Free</p>
       <h3>Borrow against your assets at the floor value with zero recurring costs.</h3>
-      <p>Take credit against your floor value with no recurring interest, no expiry, and no liquidation risk. Repay on your own schedule.</p>
     </article>
     <article class="card">
       <p class="label">Auto-Scaling</p>
       <h3>Generated fees are re-injected into the treasury to raise the floor price programmatically.</h3>
-      <p>Generated fees are routed back into the treasury, raising the floor price programmatically. Your downside improves while you hold.</p>
     </article>
     <article class="card">
       <p class="label">Permissionless</p>
       <h3>Deploy custom floor-backed markets for any ERC-20 asset autonomously.</h3>
-      <p>Any issuer can deploy a floor-backed market for any ERC-20 asset autonomously — no gatekeeping, no approval required.</p>
     </article>
     <article class="card">
       <p class="label">Cross-Chain</p>
       <h3>Unified liquidity layer deployed across Ethereum, Base, and Arbitrum.</h3>
-      <p>A single liquidity layer deployed across Ethereum, Base, and Arbitrum. One protocol, unified reserves, every major network.</p>
     </article>
   </section>
 
@@ -516,70 +412,6 @@
     </article>
   </section>
 
-  <!-- FEATURE ROWS -->
-  <section class="wrap frame feature-rows" aria-label="Protocol mechanics">
-    <article class="feature-row">
-      <div class="feature-spacer" aria-hidden="true">
-        <div class="feat1-visual" id="feat1-visual">
-          <div class="feat1-lottie-only" aria-hidden="true"><div id="feature-f1-lottie"></div></div>
-        </div>
-      </div>
-      <div class="feature-panel">
-        <p class="f-label"><span class="f-label-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 19.5h16"></path><path d="M6 15.5l4-4 3 3 5-6"></path><path d="M18 8.5h2v2"></path></svg></span><span>Price Floor</span></p>
-        <h4>Presale is the lowest price ever.</h4>
-        <p>Once the presale closes, the token can never fall below that price. Every buyer after you only pushes it higher.</p>
-      </div>
-    </article>
-    <article class="feature-row">
-      <div class="feature-panel">
-        <p class="f-label"><span class="f-label-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3.5l7 3v5.5c0 4.5-2.8 7.6-7 8.8-4.2-1.2-7-4.3-7-8.8V6.5l7-3z"></path><path d="M9.5 12.2l1.8 1.8 3.6-3.6"></path></svg></span><span>Downside Protection</span></p>
-        <h4>Hold with conviction.</h4>
-        <p>A rising floor means your downside improves every day you hold, even at the worst times.</p>
-      </div>
-      <div class="feature-spacer" aria-hidden="true">
-        <div class="feat2-visual" id="feat2-visual">
-          <div class="feat1-lottie-only" aria-hidden="true"><div id="feature-f2-lottie"></div></div>
-        </div>
-      </div>
-    </article>
-    <article class="feature-row">
-      <div class="feature-spacer" aria-hidden="true">
-        <div class="feat3-visual" id="feat3-visual">
-          <div class="feat1-lottie-only" aria-hidden="true"><div id="feature-f3-lottie"></div></div>
-        </div>
-      </div>
-      <div class="feature-panel">
-        <p class="f-label"><span class="f-label-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8.5a4 4 0 0 1 8 0V11"></path><path d="M12 14.2v2.6"></path></svg></span><span>Zero Liquidations</span></p>
-        <h4>Experience no liquidations, ever again.</h4>
-        <p>Borrow against your floor and your position is never force-sold.</p>
-      </div>
-    </article>
-    <article class="feature-row">
-      <div class="feature-panel">
-        <p class="f-label"><span class="f-label-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="6.5" rx="6.5" ry="2.5"></ellipse><path d="M5.5 6.5v6c0 1.4 2.9 2.5 6.5 2.5s6.5-1.1 6.5-2.5v-6"></path><path d="M8.5 17.5h7"></path></svg></span><span>Fee Capture</span></p>
-        <h4>Volatility works for you.</h4>
-        <p>Trading activity and fees compound into reserves, turning market movement into floor growth.</p>
-      </div>
-      <div class="feature-spacer" aria-hidden="true">
-        <div class="feat4-visual" id="feat4-visual">
-          <div class="feat1-lottie-only" aria-hidden="true"><div id="feature-f4-lottie"></div></div>
-        </div>
-      </div>
-    </article>
-    <article class="feature-row">
-      <div class="feature-spacer" aria-hidden="true">
-        <div class="feat5-visual" id="feat5-visual">
-          <div class="feat1-lottie-only" aria-hidden="true"><div id="feature-f5-lottie"></div></div>
-        </div>
-      </div>
-      <div class="feature-panel">
-        <p class="f-label"><span class="f-label-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.5"></circle><path d="M3 12c0-2.5 4-7 9-7s9 4.5 9 7-4 7-9 7-9-4.5-9-7z"></path></svg></span><span>Reserve Growth</span></p>
-        <h4>More supply strengthens your price.</h4>
-        <p>Every new token minted adds to the reserve. Growth in supply doesn't dilute previous holders — it strengthens everyone's positions.</p>
-      </div>
-    </article>
-  </section>
-
   <!-- FAQ -->
   <section class="wrap frame faq" aria-label="Common questions">
     <div class="faq-cell">
@@ -683,78 +515,7 @@
       };
       initInlineCapture();
 
-      // Feature reveal animations
-      var feat1El = document.getElementById('feat1-visual');
-      if (feat1El) {
-        if (reduceMotion) { feat1El.classList.add('feat1--animate'); }
-        else if ('IntersectionObserver' in window) {
-          var feat1Obs = new IntersectionObserver(function(entries) {
-            entries.forEach(function(e) { if (e.isIntersecting) { feat1El.classList.add('feat1--animate'); feat1Obs.disconnect(); } });
-          }, { threshold: 0.35 });
-          feat1Obs.observe(feat1El);
-        } else { feat1El.classList.add('feat1--animate'); }
-      }
-
-      var initFeatIllustration = function(id, animClass) {
-        var el = document.getElementById(id);
-        if (!el) return;
-        if (reduceMotion) { el.classList.add(animClass); return; }
-        if ('IntersectionObserver' in window) {
-          var obs = new IntersectionObserver(function(entries) {
-            entries.forEach(function(e) { if (e.isIntersecting) { el.classList.add(animClass); obs.disconnect(); } });
-          }, { threshold: 0.25 });
-          obs.observe(el);
-        } else { el.classList.add(animClass); }
-      };
-      initFeatIllustration('feat2-visual', 'feat2--animate');
-      initFeatIllustration('feat3-visual', 'feat3--animate');
-      initFeatIllustration('feat4-visual', 'feat4--animate');
-      initFeatIllustration('feat5-visual', 'feat5--animate');
-
       if (!window.lottie) return;
-
-      var initFeatureLottie = function (containerId, hostId, jsonPath) {
-        var container = document.getElementById(containerId);
-        var host = document.getElementById(hostId);
-        if (!container || !host) return;
-        var hoverTarget = host.closest('.feature-row') || host.closest('.feature-spacer') || host;
-        var animation = window.lottie.loadAnimation({
-          container: container, renderer: 'svg', loop: false, autoplay: false,
-          path: jsonPath, rendererSettings: { preserveAspectRatio: 'xMidYMid meet' }
-        });
-        var isHovering = false, pingDirection = -1;
-        var getLastFrame = function () { return Math.max(0, Math.floor((animation.totalFrames || animation.getDuration(true) || 0) - 1)); };
-        var lockAtIdleFrame = function () { var f = getLastFrame(); if (f > 0) animation.goToAndStop(f, true); };
-        var playPingPongLeg = function () {
-          var f = getLastFrame(); if (f <= 0) return;
-          if (pingDirection < 0) { animation.setDirection(-1); animation.goToAndPlay(f, true); return; }
-          animation.setDirection(1); animation.goToAndPlay(0, true);
-        };
-        if (reduceMotion) { animation.addEventListener('DOMLoaded', function () { animation.goToAndStop(0, true); }); return; }
-        animation.addEventListener('complete', function () {
-          if (!isHovering) { lockAtIdleFrame(); return; }
-          pingDirection *= -1; playPingPongLeg();
-        });
-        var played = false;
-        var play = function () { if (played) return; played = true; animation.goToAndPlay(0, true); };
-        hoverTarget.addEventListener('mouseenter', function () {
-          if (!played || isHovering) return; isHovering = true; pingDirection = -1;
-          var f = getLastFrame();
-          if ((animation.currentFrame || 0) >= f - 0.5) playPingPongLeg();
-        });
-        hoverTarget.addEventListener('mouseleave', function () { isHovering = false; lockAtIdleFrame(); });
-        if ('IntersectionObserver' in window) {
-          var obs = new IntersectionObserver(function(entries) {
-            entries.forEach(function(e) { if (e.isIntersecting) { play(); obs.disconnect(); } });
-          }, { threshold: 0.35 });
-          obs.observe(host);
-        } else { play(); }
-      };
-      initFeatureLottie('feature-f1-lottie', 'feat1-visual', 'assets/animations/F1.json');
-      initFeatureLottie('feature-f2-lottie', 'feat2-visual', 'assets/animations/F2.json');
-      initFeatureLottie('feature-f3-lottie', 'feat3-visual', 'assets/animations/F3.json');
-      initFeatureLottie('feature-f4-lottie', 'feat4-visual', 'assets/animations/F4.json');
-      initFeatureLottie('feature-f5-lottie', 'feat5-visual', 'assets/animations/F5.json');
 
       // Hero Lottie
       var introContainer = document.getElementById('hero-intro-lottie');
