@@ -75,12 +75,9 @@
     .actions { margin-top: 28px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
 
     /* Protocol pillars (6 cards) */
-    .cards { grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--border); }
-    .card { min-height: 304px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 44px; }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--border); }
+    .card { min-height: 304px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
     .card:nth-child(3n) { border-right: none; }
-    .card h3 { margin: 8px 0 10px; font-size: 24px; font-weight: 600; letter-spacing: -.96px; line-height: 1.333; }
-    .card p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.429; }
-    .label { color: var(--accent); font-size: 14px; letter-spacing: -.28px; margin: 0; }
 
     /* Section label divider */
     .section-label { border-top: 1px solid var(--border); min-height: 138px; display: grid; place-items: center; padding: 0 44px; }
@@ -131,11 +128,17 @@
 
     /* Benefits (product cards) */
     .benefits { display: grid; min-height: 608px; border-top: 1px solid var(--border); grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .product { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); min-height: 304px; padding: 44px; display: flex; flex-direction: column; gap: 4px; }
+    .product { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); min-height: 304px; display: flex; flex-direction: column; }
     .product:nth-child(3n) { border-right: none; }
-    .product h4 { margin: 0; color: #fafafa; font-size: 24px; font-weight: 600; letter-spacing: -.96px; line-height: 1.333; }
-    .product p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.429; }
     .product-empty { background: transparent; }
+
+    /* Shared design-system card internals */
+    .card-hd { padding: 44px 44px 0; display: flex; flex-direction: column; gap: 4px; }
+    .card-hd h3 { margin: 0; font-size: 24px; font-weight: 600; letter-spacing: -.96px; line-height: 1.333; color: var(--text); }
+    .card-hd p { margin: 0 0 12px; color: var(--muted); font-size: 14px; line-height: 1.429; }
+    .card-btn { width: 40px; height: 40px; border-radius: 40px; background: var(--bg); color: var(--text); display: inline-flex; align-items: center; justify-content: center; text-decoration: none; flex-shrink: 0; box-shadow: 0 0 0 1px #000, 0 1px 1.75px rgba(0,0,0,.16), inset 0 0 0 1px rgba(255,255,255,.145); transition: box-shadow 150ms; }
+    .card-btn:hover { box-shadow: 0 0 0 1px #000, 0 1px 1.75px rgba(0,0,0,.16), inset 0 0 0 1px rgba(255,255,255,.3); }
+    .card-bd { flex: 1; }
 
 
     /* FAQ */
@@ -278,30 +281,54 @@
   </div>
 
   <!-- PROTOCOL PILLARS -->
-  <section class="wrap frame row cards" aria-label="Protocol features">
+  <section class="wrap frame cards" aria-label="Protocol features">
     <article class="card">
-      <p class="label">Guaranteed Floor</p>
-      <h3>Contract-enforced minimum redemption value backed 1:1 by hard assets.</h3>
+      <div class="card-hd">
+        <h3>Guaranteed Floor</h3>
+        <p>Contract-enforced minimum redemption value backed 1:1 by hard assets.</p>
+        <a class="card-btn" href="#" aria-label="Learn more"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4.5 11.5L11.5 4.5M11.5 4.5H5.5M11.5 4.5V10.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+      <div class="card-bd"></div>
     </article>
     <article class="card">
-      <p class="label">Always Liquid</p>
-      <h3>Protocol Owned Liquidity (POL) ensures deep depth for instant exit at the floor.</h3>
+      <div class="card-hd">
+        <h3>Always Liquid</h3>
+        <p>Protocol Owned Liquidity (POL) ensures deep depth for instant exit at the floor.</p>
+        <a class="card-btn" href="#" aria-label="Learn more"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4.5 11.5L11.5 4.5M11.5 4.5H5.5M11.5 4.5V10.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+      <div class="card-bd"></div>
     </article>
     <article class="card">
-      <p class="label">Interest-Free</p>
-      <h3>Borrow against your assets at the floor value with zero recurring costs.</h3>
+      <div class="card-hd">
+        <h3>Interest-Free</h3>
+        <p>Borrow against your assets at the floor value with zero recurring costs.</p>
+        <a class="card-btn" href="#" aria-label="Learn more"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4.5 11.5L11.5 4.5M11.5 4.5H5.5M11.5 4.5V10.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+      <div class="card-bd"></div>
     </article>
     <article class="card">
-      <p class="label">Auto-Scaling</p>
-      <h3>Generated fees are re-injected into the treasury to raise the floor price programmatically.</h3>
+      <div class="card-hd">
+        <h3>Auto-Scaling</h3>
+        <p>Generated fees are re-injected into the treasury to raise the floor price programmatically.</p>
+        <a class="card-btn" href="#" aria-label="Learn more"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4.5 11.5L11.5 4.5M11.5 4.5H5.5M11.5 4.5V10.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+      <div class="card-bd"></div>
     </article>
     <article class="card">
-      <p class="label">Permissionless</p>
-      <h3>Deploy custom floor-backed markets for any ERC-20 asset autonomously.</h3>
+      <div class="card-hd">
+        <h3>Permissionless</h3>
+        <p>Deploy custom floor-backed markets for any ERC-20 asset autonomously.</p>
+        <a class="card-btn" href="#" aria-label="Learn more"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4.5 11.5L11.5 4.5M11.5 4.5H5.5M11.5 4.5V10.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+      <div class="card-bd"></div>
     </article>
     <article class="card">
-      <p class="label">Cross-Chain</p>
-      <h3>Unified liquidity layer deployed across Ethereum, Base, and Arbitrum.</h3>
+      <div class="card-hd">
+        <h3>Cross-Chain</h3>
+        <p>Unified liquidity layer deployed across Ethereum, Base, and Arbitrum.</p>
+        <a class="card-btn" href="#" aria-label="Learn more"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4.5 11.5L11.5 4.5M11.5 4.5H5.5M11.5 4.5V10.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+      <div class="card-bd"></div>
     </article>
   </section>
 
@@ -399,16 +426,28 @@
   <!-- BENEFITS -->
   <section class="wrap frame benefits" aria-label="Genesis participation benefits">
     <article class="product">
-      <h4>Genesis Distribution</h4>
-      <p>Points directly determine your share of the token genesis. Every action you take in the testnet compounds into your final allocation.</p>
+      <div class="card-hd">
+        <h3>Genesis Distribution</h3>
+        <p>Points directly determine your share of the token genesis. Every action you take in the testnet compounds into your final allocation.</p>
+        <a class="card-btn" href="#" aria-label="Learn more"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4.5 11.5L11.5 4.5M11.5 4.5H5.5M11.5 4.5V10.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+      <div class="card-bd"></div>
     </article>
     <article class="product">
-      <h4>Tiered Access</h4>
-      <p>High earners secure priority access to upcoming vault capacity. Early participants lock in the best entry conditions before public launch.</p>
+      <div class="card-hd">
+        <h3>Tiered Access</h3>
+        <p>High earners secure priority access to upcoming vault capacity. Early participants lock in the best entry conditions before public launch.</p>
+        <a class="card-btn" href="#" aria-label="Learn more"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4.5 11.5L11.5 4.5M11.5 4.5H5.5M11.5 4.5V10.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+      <div class="card-bd"></div>
     </article>
     <article class="product">
-      <h4>Governance Alpha</h4>
-      <p>Early contributors receive the first tier of protocol voting power. Shape the direction of Floors Finance from day one.</p>
+      <div class="card-hd">
+        <h3>Governance Alpha</h3>
+        <p>Early contributors receive the first tier of protocol voting power. Shape the direction of Floors Finance from day one.</p>
+        <a class="card-btn" href="#" aria-label="Learn more"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4.5 11.5L11.5 4.5M11.5 4.5H5.5M11.5 4.5V10.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+      <div class="card-bd"></div>
     </article>
   </section>
 
