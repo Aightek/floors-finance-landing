@@ -3,254 +3,800 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Floors Finance | Genesis Testnet</title>
-  <meta name="description" content="Next-generation autonomous liquidity protocol providing deterministic floor price guarantees and interest-free credit." />
+  <title>Floors Finance — Genesis Testnet</title>
+  <meta name="description" content="Join the Floors Finance Genesis Testnet. Earn weighted points clusters, explore protocol mechanics, and secure your place in the genesis distribution." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Figtree:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
-    :root { --bg:#000; --panel:#101114; --line:#2a2c2f; --text:#fff; --muted:#a8abae; --accent:#beffb0; --accent-ink:#101114; --gold:#f8ca62; --teal:#39d0c6; --purple:#8c63ff; --dim:#c7d3e9; --font-ui:"Poppins",sans-serif; --font-metric:"Figtree",sans-serif; color-scheme:dark; }
-    * { box-sizing:border-box; } html { scroll-behavior:smooth; } body { margin:0; color:var(--text); font-family:var(--font-ui); background:radial-gradient(circle at top right, rgba(190,255,176,.09), transparent 28%), radial-gradient(circle at 15% 18%, rgba(255,255,255,.05), transparent 20%), var(--bg); line-height:1.6; letter-spacing:-.02em; -webkit-font-smoothing:antialiased; }
-    a { color:inherit; text-decoration:none; }
-    .skip-link { position:absolute; left:16px; top:12px; z-index:40; padding:10px 14px; border-radius:999px; background:var(--accent); color:var(--accent-ink); transform:translateY(-160%); transition:transform .18s ease; }
-    .skip-link:focus-visible { transform:translateY(0); }
-    .page { width:min(1280px, calc(100vw - 24px)); margin:0 auto; min-height:100vh; border-left:1px solid var(--line); border-right:1px solid var(--line); }
-    .wrap { width:min(1120px, calc(100% - 48px)); margin:0 auto; }
-    .label { display:inline-flex; align-items:center; gap:8px; color:var(--accent); font-size:12px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; }
-    .label::before { content:""; width:8px; height:8px; border-radius:999px; background:currentColor; box-shadow:0 0 0 6px rgba(190,255,176,.08); }
-    .nav { position:sticky; top:0; z-index:20; backdrop-filter:blur(12px); background:rgba(16,17,20,.72); border-bottom:1px solid rgba(168,171,174,.12); }
-    .nav-inner { width:min(1280px, calc(100vw - 24px)); margin:0 auto; min-height:72px; padding:16px 24px; display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; }
-    .brand { display:inline-flex; align-items:center; gap:12px; font-weight:600; } .brand-mark { width:22px; height:22px; border-radius:6px; transform:rotate(45deg); background:linear-gradient(135deg, var(--accent), #fff); box-shadow:0 0 24px rgba(190,255,176,.18); }
-    .nav-links { display:flex; gap:24px; color:var(--muted); font-size:14px; flex-wrap:wrap; } .nav-links a:hover { color:var(--accent); }
-    .btn, .btn-secondary, .ghost { display:inline-flex; align-items:center; justify-content:center; min-height:48px; padding:0 22px; border-radius:999px; font-weight:600; transition:.18s ease; cursor:pointer; }
-    .btn { background:var(--accent); color:var(--accent-ink); box-shadow:0 12px 30px rgba(190,255,176,.14); } .btn:hover { transform:translateY(-2px); }
-    .btn-secondary { background:rgba(255,255,255,.04); color:var(--text); border:1px solid var(--line); } .btn-secondary:hover, .ghost:hover { border-color:#3a3d41; color:var(--text); transform:translateY(-1px); }
-    .ghost { min-height:40px; padding:0 16px; color:var(--muted); border:1px solid var(--line); font-size:13px; }
-    a:focus-visible, button:focus-visible { outline:2px solid var(--accent); outline-offset:3px; }
-    .hero, .section, .faq, .footer { border-bottom:1px solid var(--line); } .hero { position:relative; overflow:hidden; padding:96px 0 72px; } .hero::after { content:""; position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px); background-size:32px 32px; mask-image:linear-gradient(180deg, rgba(0,0,0,.55), transparent 85%); opacity:.4; pointer-events:none; }
-    .hero-grid, .proof-grid, .rewards-grid, .footer-grid, .section-head { position:relative; z-index:1; display:grid; gap:24px; } .hero-grid { grid-template-columns:minmax(0,1.08fr) minmax(320px,.92fr); align-items:end; } .section-head, .proof-grid { grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); align-items:end; } .rewards-grid { grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr); align-items:start; } .footer-grid { grid-template-columns:minmax(0,1fr) auto; }
-    h1, h2, h3, h4, p { margin:0; } h1 { margin-top:18px; font-size:clamp(3rem, 8vw, 6rem); line-height:.94; letter-spacing:-.06em; max-width:7ch; background:linear-gradient(180deg, #fff 0%, #a8abae 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; } h2 { margin-top:16px; font-size:clamp(2rem, 5vw, 3.4rem); line-height:1; letter-spacing:-.06em; } .hero-copy p, .section-head p, .panel p, .reward-card p, .pillar p, .faq-answer, .footer-brand p { color:var(--muted); }
-    .hero-copy p { max-width:560px; font-size:clamp(1rem, 2.4vw, 1.15rem); } .hero-actions { display:flex; gap:16px; flex-wrap:wrap; margin-top:34px; }
-    .stack { display:grid; gap:16px; } .panel, .reward-card, .board-col, .proof-card { background:linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.02)); border:1px solid var(--line); border-radius:18px; padding:24px; backdrop-filter:blur(8px); }
-    .panel strong, .proof-mini span { display:block; margin-bottom:8px; color:var(--accent); font-size:12px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; }
-    .metrics { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border-radius:14px; overflow:hidden; } .metric { padding:18px; background:var(--panel); } .metric span { display:block; color:var(--muted); font-size:11px; letter-spacing:.08em; text-transform:uppercase; } .metric strong { display:block; margin-top:10px; font-family:var(--font-metric); font-size:28px; letter-spacing:-.05em; }
-    .section, .faq, .footer { padding:84px 0; } .pillars { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1px; margin-top:36px; background:var(--line); border:1px solid var(--line); border-radius:18px; overflow:hidden; } .pillar { min-height:220px; padding:32px; background:var(--bg); } .pillar h3 { margin-bottom:14px; font-size:22px; line-height:1.12; letter-spacing:-.05em; }
-    .proof-card { min-height:420px; display:flex; flex-direction:column; justify-content:space-between; } .proof-mini-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:18px; overflow:hidden; } .proof-mini { min-height:208px; padding:28px; background:var(--bg); } .proof-mini h3 { margin-bottom:10px; font-size:22px; line-height:1.12; letter-spacing:-.05em; }
-    .rewards-copy { display:grid; gap:14px; position:sticky; top:96px; } .reward-card h3 { margin-bottom:10px; font-size:20px; line-height:1.15; letter-spacing:-.05em; }
-    .board { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; } .board-col { height:100%; } .lb-live { display:inline-flex; align-items:center; gap:8px; margin-bottom:18px; color:var(--accent); font-size:12px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; } .lb-live-dot { width:8px; height:8px; border-radius:999px; background:var(--accent); box-shadow:0 0 0 8px rgba(190,255,176,.08); }
-    .lb-overview-title { margin-bottom:10px; font-size:30px; line-height:1; letter-spacing:-.06em; } .lb-divider { height:1px; margin:18px 0; background:var(--line); } .lb-stat-row { display:flex; flex-direction:column; gap:8px; } .lb-stat-title, .board-col > .small-head { color:var(--muted); font-size:13px; letter-spacing:.08em; text-transform:uppercase; } .lb-stat-value, .lb-task-points { font-family:var(--font-metric); font-weight:600; letter-spacing:-.05em; } .lb-stat-value { font-size:32px; } .lb-tier-wrap { display:flex; flex-wrap:wrap; gap:14px; } .lb-tier-item { display:inline-flex; flex-direction:column; gap:6px; min-width:44px; } .lb-tier-value { font-size:24px; font-weight:600; } .lb-tier-label { color:var(--tier); font-size:11px; letter-spacing:.08em; text-transform:uppercase; }
-    .rank-list, .task-list, .footer-list { list-style:none; margin:0; padding:0; } .rank-list { display:grid; gap:10px; margin-top:18px; } .rank-item { display:flex; justify-content:space-between; gap:16px; font-size:14px; } .rank-left { min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:var(--dim); } .rank-right { color:var(--dim); font-family:var(--font-metric); font-weight:600; } .top1 .rank-left { color:var(--gold); } .top2 .rank-left { color:var(--teal); } .top3 .rank-left { color:var(--purple); }
-    .task-list { display:grid; gap:16px; margin-top:18px; } .task { padding-bottom:16px; border-bottom:1px solid var(--line); } .task:last-child { padding-bottom:0; border-bottom:none; } .task-head { display:flex; justify-content:space-between; gap:16px; align-items:flex-start; margin-bottom:8px; } .task-head h4 { font-size:18px; line-height:1.14; letter-spacing:-.05em; } .lb-task-points { color:var(--accent); font-size:24px; }
-    .faq-head { text-align:center; margin-bottom:42px; } .faq-list { width:min(900px,100%); margin:0 auto; } .faq-item { border-top:1px solid var(--line); } .faq-item:last-child { border-bottom:1px solid var(--line); } .faq-trigger { width:100%; padding:28px 0; display:flex; align-items:center; justify-content:space-between; gap:24px; background:none; border:none; color:var(--text); text-align:left; font:inherit; font-size:18px; font-weight:600; letter-spacing:-.04em; cursor:pointer; } .faq-icon { position:relative; width:18px; height:18px; flex:0 0 auto; transition:transform .18s ease; } .faq-icon::before, .faq-icon::after { content:""; position:absolute; top:50%; left:0; width:100%; height:2px; background:currentColor; transform:translateY(-50%); } .faq-icon::after { transform:translateY(-50%) rotate(90deg); } .faq-answer { max-height:0; overflow:hidden; transition:max-height .24s ease, padding-bottom .24s ease; font-size:15px; } .faq-item.is-open .faq-trigger { color:var(--accent); } .faq-item.is-open .faq-icon { transform:rotate(45deg); } .faq-item.is-open .faq-answer { max-height:220px; padding-bottom:28px; }
-    .footer-brand { max-width:360px; } .footer-links { display:flex; gap:64px; flex-wrap:wrap; } .footer-col h4 { margin:0 0 18px; color:var(--muted); font-size:12px; letter-spacing:.1em; text-transform:uppercase; } .footer-list { display:grid; gap:12px; } .footer-list a { color:var(--muted); font-size:14px; } .footer-list a:hover { color:var(--accent); } .footer-bottom { margin-top:48px; padding-top:24px; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; color:var(--muted); font-size:13px; }
-    @media (max-width:1100px) { .page { width:100%; border:none; } .hero-grid, .section-head, .proof-grid, .rewards-grid, .board, .footer-grid { grid-template-columns:1fr; } .rewards-copy { position:static; } .pillars { grid-template-columns:repeat(2,minmax(0,1fr)); } }
-    @media (max-width:760px) { .wrap { width:calc(100% - 32px); } .hero { padding-top:64px; } .nav-links { width:100%; } .metrics, .proof-mini-grid, .pillars { grid-template-columns:1fr; } .hero-actions { flex-direction:column; align-items:stretch; } .btn, .btn-secondary, .ghost { width:100%; } .panel, .proof-card, .proof-mini, .pillar, .reward-card, .board-col { padding:22px; } }
+    :root {
+      --bg: #0a0a0a;
+      --border: #262626;
+      --text: #fafafa;
+      --muted: #a1a1a1;
+      --accent: #beffb0;
+      --rank-gold: #f8ca62;
+      --rank-teal: #39d0c6;
+      --rank-purple: #8c63ff;
+      --rank-dim: #c7d3e9;
+      --tier-label: #565656;
+      --col-pad: 44px;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Poppins, sans-serif; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; }
+    .wrap { width: min(1060px, calc(100vw - 32px)); margin: 0 auto; }
+    .frame { border: 1px solid var(--border); border-top: none; }
+
+    /* Buttons */
+    .btn-primary, .btn-secondary, .btn-ghost {
+      text-decoration: none; border-radius: 9999px; display: inline-flex; align-items: center;
+      justify-content: center; font-weight: 500; cursor: pointer;
+      transition: opacity 150ms, background 150ms, box-shadow 150ms, color 150ms;
+    }
+    .btn-primary { background: #fafafa; color: #0a0a0a; height: 48px; padding: 0 24px; font-size: 16px; }
+    .btn-secondary { background: #0a0a0a; color: #fafafa; height: 48px; padding: 0 30px; font-size: 16px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.2); }
+    .btn-ghost { background: #0a0a0a; color: #fafafa; height: 40px; padding: 0 16px; font-size: 14px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.2); }
+    .btn-primary:hover { opacity: .88; }
+    .btn-secondary:hover, .btn-ghost:hover { box-shadow: inset 0 0 0 1px rgba(255,255,255,.45); }
+    .btn-primary:focus-visible, .btn-secondary:focus-visible, .btn-ghost:focus-visible,
+    .main-nav-link:focus-visible, .nav-btn:focus-visible, .lb-view-all:focus-visible {
+      outline: 2px solid var(--accent); outline-offset: 2px;
+    }
+
+    /* Topbar */
+    .topbar { height: 86px; margin-top: 32px; display: grid; grid-template-columns: 111px 1fr auto; align-items: center; gap: 32px; }
+    .brand-logo { display: inline-flex; align-items: center; text-decoration: none; color: var(--text); }
+    .brand-mark { display: block; width: 91px; height: 18px; object-fit: contain; }
+    .main-nav { display: flex; justify-content: flex-start; }
+    .main-nav-list { display: inline-flex; align-items: center; gap: 4px; list-style: none; margin: 0; padding: 0; }
+    .main-nav-link { color: var(--muted); text-decoration: none; font-size: 14px; line-height: 1; padding: 8px 12px; border-radius: 9999px; display: inline-flex; align-items: center; gap: 4px; transition: color 150ms; cursor: pointer; }
+    .main-nav-link:hover { color: var(--text); }
+    .main-nav-link.is-active { color: var(--text); }
+    .nav-actions { display: inline-flex; align-items: center; gap: 12px; padding-left: 52px; }
+    .nav-btn { height: 32px; padding: 0 12px; border-radius: 6px; background: #0a0a0a; color: #ededed; text-decoration: none; font-size: 14px; font-weight: 500; line-height: 1.43; display: inline-flex; align-items: center; border: none; box-shadow: none; cursor: pointer; transition: background 150ms, color 150ms; }
+    .nav-btn:hover { background: rgba(255,255,255,.06); }
+
+    /* Hero */
+    .hero { height: 720px; position: relative; overflow: hidden; border-top: 1px solid var(--border); }
+    .hero-grid { position: absolute; inset: 0; background-image: radial-gradient(circle at 1px 1px, rgba(190,255,176,.25) 1px, transparent 0); background-size: 28px 28px; opacity: .25; z-index: 0; }
+    .hero-lottie { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+    .hero-lottie-track { position: absolute; inset: 0; }
+    .hero-lottie-track > div, .hero-lottie-track > svg { width: 100%; height: 100%; }
+    .hero-content { position: relative; z-index: 2; text-align: center; padding-left: var(--col-pad); padding-right: var(--col-pad); display: flex; flex-direction: column; align-items: center; }
+    .hero-content-box { width: min(860px, 100%); min-height: 420px; padding: 64px 44px 56px; display: flex; flex-direction: column; align-items: center; }
+    .hero-status { display: inline-flex; align-items: center; gap: 6px; color: var(--accent); font-size: 14px; line-height: 1; margin-bottom: 24px; }
+    .hero-status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); animation: pulse-dot 2s ease-in-out infinite; }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(190,255,176,.5); }
+      50% { opacity: .8; box-shadow: 0 0 0 6px rgba(190,255,176,0); }
+    }
+    h1 { margin: 0; font-size: 48px; letter-spacing: -2.4px; line-height: 1; }
+    .sub { margin: 22px auto 0; max-width: 620px; color: var(--muted); font-size: 20px; line-height: 1.7; }
+    .actions { margin-top: 28px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+    /* Protocol pillars (6 cards) */
+    .cards { grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--border); }
+    .card { min-height: 304px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 44px; }
+    .card:nth-child(3n) { border-right: none; }
+    .card h3 { margin: 8px 0 10px; font-size: 24px; letter-spacing: -.96px; line-height: 1.2; }
+    .card p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.6; }
+    .label { color: var(--accent); font-size: 14px; letter-spacing: -.28px; margin: 0; }
+
+    /* Section label divider */
+    .section-label { border-top: 1px solid var(--border); min-height: 138px; display: grid; place-items: center; padding: 0 44px; }
+    .section-label p { margin: 0; font-size: 24px; letter-spacing: -.96px; text-align: center; color: var(--muted); line-height: 1.5; }
+
+    /* Leaderboard */
+    .leaderboard { display: grid; min-height: 608px; border-top: 1px solid var(--border); grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .leaderboard-col { min-height: 608px; }
+    .leaderboard-col + .leaderboard-col { border-left: 1px solid var(--border); }
+    .lb-stats { padding: 64px 44px; display: flex; flex-direction: column; gap: 16px; }
+    .lb-live { display: inline-flex; align-items: center; gap: 6px; height: 34px; width: fit-content; border-radius: 6px; padding: 8px; color: var(--accent); font-size: 14px; line-height: 1.43; }
+    .lb-live-dot { width: 8px; height: 8px; border-radius: 8px; background: var(--accent); animation: pulse-dot 2s ease-in-out infinite; }
+    .lb-overview-title { margin: 0; color: #fafafa; font-size: 32px; font-weight: 600; letter-spacing: -2.4px; line-height: 1.2; }
+    .lb-overview-copy { margin: 0; color: var(--muted); font-size: 18px; line-height: 1.52; }
+    .lb-divider { height: 1px; background: var(--border); }
+    .lb-stat-row { display: flex; flex-direction: column; gap: 6px; }
+    .lb-stat-title { margin: 0; color: var(--muted); font-size: 16px; line-height: 1.33; letter-spacing: -.96px; }
+    .lb-stat-value { margin: 0; color: #fafafa; font-size: 24px; font-weight: 600; line-height: 1; letter-spacing: -.96px; }
+    .lb-tier-wrap { display: inline-flex; align-items: center; gap: 12px; margin-top: 2px; }
+    .lb-tier-item { display: inline-flex; flex-direction: column; align-items: center; gap: 4px; }
+    .lb-tier-value { color: #fafafa; font-size: 24px; font-weight: 600; line-height: 1; letter-spacing: -.96px; }
+    .lb-tier-label { color: var(--tier-label); font-size: 11px; line-height: 1; letter-spacing: .04px; }
+    .lb-rankings { padding: 44px; display: flex; flex-direction: column; justify-content: center; gap: 8px; }
+    .lb-rankings h3 { margin: 0; color: #fafafa; font-size: 16px; font-weight: 600; line-height: 1.4; }
+    .lb-rank-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 4px; }
+    .lb-rank-item { height: 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; font-size: 14px; line-height: 1.43; }
+    .lb-rank-left { color: var(--rank-dim); min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .lb-rank-item.top1 .lb-rank-left { color: var(--rank-gold); font-weight: 500; }
+    .lb-rank-item.top2 .lb-rank-left { color: var(--rank-teal); font-weight: 500; }
+    .lb-rank-item.top3 .lb-rank-left { color: var(--rank-purple); font-weight: 500; }
+    .lb-rank-right { color: var(--rank-dim); font-weight: 500; flex: 0 0 auto; }
+    .lb-tasks { padding: 64px 44px; display: flex; flex-direction: column; gap: 16px; }
+    .lb-task-list { border: none; }
+    .lb-task { min-height: 108px; padding: 16px; display: flex; flex-direction: column; border: none; }
+    .lb-task:not(:last-child) { border-bottom: 1px solid var(--border); }
+    .lb-task-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+    .lb-task-copy { display: flex; flex-direction: column; gap: 6px; margin-top: auto; padding-top: 10px; }
+    .lb-task-head h4 { margin: 0; color: #fafafa; font-size: 16px; line-height: 1.33; letter-spacing: -.96px; font-weight: 600; }
+    .lb-task-copy p { margin: 0; color: var(--muted); font-size: 10px; line-height: 1.43; }
+    .lb-task-points { margin: 0; color: #beffb0; font-size: 24px; line-height: 1; letter-spacing: -.96px; font-weight: 600; }
+    .lb-view-all { height: 40px; border-radius: 9999px; border: 1px solid var(--border); color: var(--muted); text-decoration: none; display: flex; align-items: center; justify-content: center; padding: 0 14px; font-size: 14px; font-family: "Poppins", sans-serif; font-weight: 400; line-height: 1.43; cursor: pointer; transition: color 150ms, border-color 150ms; }
+    .lb-view-all:hover { color: var(--text); border-color: rgba(255,255,255,.25); }
+
+    /* Benefits (product cards) */
+    .benefits { display: grid; min-height: 608px; border-top: 1px solid var(--border); grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .product { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); min-height: 304px; padding: 28px; display: flex; flex-direction: column; justify-content: flex-start; }
+    .product:nth-child(3n) { border-right: none; }
+    .product h4 { margin: 0 0 10px; color: #fafafa; font-size: 24px; letter-spacing: -.96px; line-height: 1.2; }
+    .product p { margin: auto 0 0; color: var(--muted); font-size: 18px; line-height: 1.52; }
+    .product-empty { background: transparent; }
+
+    /* Feature rows */
+    .feature-rows { border-top: 1px solid var(--border); }
+    .feature-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); min-height: 304px; }
+    .feature-spacer, .feature-panel { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); min-height: 304px; }
+    .feature-spacer:last-child, .feature-panel:last-child { border-right: none; }
+    .feature-spacer { background: transparent; position: relative; }
+    .feat1-visual { position: absolute; inset: 0; overflow: hidden; opacity: 0; transform: translateY(10px) scale(0.985); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .feat1-card { position: absolute; left: 18px; right: 18px; top: 32px; height: 320px; border: 1px solid rgba(255,255,255,.14); border-radius: 14px; background: transparent; padding: 24px; display: flex; flex-direction: column; gap: 6px; opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease 0.18s, transform 0.9s cubic-bezier(0.22,0.8,0.24,1) 0.18s; }
+    .feat1-card-label { margin: 0; color: rgba(250,250,250,.7); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; }
+    .feat1-lottie-only { position: absolute; inset: 0; opacity: 0; transform: translateY(14px); transition: opacity 0.7s ease 0.18s, transform 0.9s cubic-bezier(0.22,0.8,0.24,1) 0.18s; }
+    .feat1-lottie-only > div, .feat1-lottie-only > svg { width: 100%; height: 100%; }
+    .feat1--animate { opacity: 1; transform: translateY(0) scale(1); }
+    .feat1--animate .feat1-lottie-only,
+    .feat2--animate .feat1-lottie-only,
+    .feat3--animate .feat1-lottie-only,
+    .feat4--animate .feat1-lottie-only,
+    .feat5--animate .feat1-lottie-only { opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce) {
+      .feat1-visual, .feat1-card, .feat1-lottie-only { transition: none !important; }
+    }
+    .feat2-visual, .feat3-visual, .feat4-visual, .feat5-visual { position: absolute; inset: 0; overflow: hidden; opacity: 0; transform: translateY(10px) scale(0.985); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .feat2--animate, .feat3--animate, .feat4--animate, .feat5--animate { opacity: 1; transform: translateY(0) scale(1); }
+    .feat2--animate .feat1-card, .feat3--animate .feat1-card, .feat4--animate .feat1-card, .feat5--animate .feat1-card { opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce) {
+      .feat2-visual, .feat3-visual, .feat4-visual, .feat5-visual { transition: none !important; }
+      .fmock-mini, .fmock-band > span, .fmock-floor-fill, .fmock-floor-meter > span,
+      .fmock-route .fmock-line, .fmock-chip, .fmock-flow-row .fmock-line,
+      .fmock-vault-fill, .fmock-cell, .fmock-stack .fmock-line { transition: none !important; }
+    }
+    .fmock { margin-top: 14px; border: 1px solid rgba(255,255,255,.1); border-radius: 11px; padding: 12px; background: linear-gradient(180deg, rgba(255,255,255,.022) 0%, rgba(255,255,255,.008) 100%); }
+    .fmock-line { height: 2px; border-radius: 99px; background: rgba(255,255,255,.2); display: block; transform-origin: left center; }
+    .fmock-line--accent { background: rgba(190,255,176,.7); }
+    .fmock-node { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.34); flex-shrink: 0; }
+    .fmock-node--accent { background: rgba(190,255,176,.78); }
+    .fmock-floor-steps { height: 96px; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 8px; background: rgba(255,255,255,.03); display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 6px; align-items: end; overflow: hidden; }
+    .fmock-floor-col { height: 100%; border-radius: 6px 6px 0 0; background: rgba(255,255,255,.08); position: relative; overflow: hidden; }
+    .fmock-floor-fill { position: absolute; left: 0; right: 0; bottom: 0; height: var(--h, 50%); border-radius: 6px 6px 0 0; background: rgba(255,255,255,.3); transform-origin: bottom center; transform: scaleY(0); transition: transform 0.65s cubic-bezier(0.22,0.8,0.24,1); }
+    .fmock-floor-fill--accent { background: rgba(190,255,176,.72); }
+    .fmock-floor-meter { margin-top: 10px; height: 2px; background: rgba(255,255,255,.12); border-radius: 99px; overflow: hidden; }
+    .fmock-floor-meter > span { display: block; width: 88%; height: 100%; background: rgba(190,255,176,.72); transform: scaleX(0); transform-origin: left center; transition: transform 0.65s cubic-bezier(0.22,0.8,0.24,1) 0.2s; }
+    .feat1--animate .fmock-floor-fill { transform: scaleY(1); }
+    .feat1--animate .fmock-floor-col:nth-child(1) .fmock-floor-fill { transition-delay: 0.04s; }
+    .feat1--animate .fmock-floor-col:nth-child(2) .fmock-floor-fill { transition-delay: 0.1s; }
+    .feat1--animate .fmock-floor-col:nth-child(3) .fmock-floor-fill { transition-delay: 0.16s; }
+    .feat1--animate .fmock-floor-meter > span { transform: scaleX(1); }
+    .fmock-mini-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 6px; margin-bottom: 10px; }
+    .fmock-mini { height: 18px; border: 1px solid rgba(255,255,255,.1); border-radius: 4px; background: rgba(255,255,255,.04); opacity: 0.45; transform: translateY(5px); transition: transform 0.45s ease, opacity 0.45s ease; }
+    .fmock-band { margin-top: 8px; height: 5px; border-radius: 99px; background: rgba(255,255,255,.1); overflow: hidden; }
+    .fmock-band > span { display: block; width: var(--w, 70%); height: 100%; transform: scaleX(0); transform-origin: left center; transition: transform 0.65s cubic-bezier(0.22,0.8,0.24,1); }
+    .fmock-band-a { background: rgba(255,255,255,.32); }
+    .fmock-band-b { background: rgba(190,255,176,.66); }
+    .feat2--animate .fmock-mini { opacity: 1; transform: translateY(0); }
+    .feat2--animate .fmock-mini:nth-child(1) { transition-delay: 0.04s; }
+    .feat2--animate .fmock-mini:nth-child(2) { transition-delay: 0.08s; }
+    .feat2--animate .fmock-mini:nth-child(3) { transition-delay: 0.12s; }
+    .feat2--animate .fmock-mini:nth-child(4) { transition-delay: 0.16s; }
+    .feat2--animate .fmock-band > span { transform: scaleX(1); }
+    .feat2--animate .fmock-band:nth-child(2) > span { transition-delay: 0.18s; }
+    .feat2--animate .fmock-band:nth-child(3) > span { transition-delay: 0.28s; }
+    .fmock-route { display: flex; align-items: center; gap: 7px; margin: 6px 0 12px; }
+    .fmock-route .fmock-line { flex: 1; transform: scaleX(0); transition: transform 0.6s cubic-bezier(0.22,0.8,0.24,1); }
+    .fmock-chip-row { display: flex; gap: 6px; }
+    .fmock-chip { flex: 1; height: 18px; border-radius: 6px; border: 1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.04); transform: scaleX(0); transform-origin: left center; transition: transform 0.55s cubic-bezier(0.22,0.8,0.24,1); }
+    .fmock-chip--accent { border-color: rgba(190,255,176,.3); background: rgba(190,255,176,.12); }
+    .feat3--animate .fmock-route .fmock-line, .feat3--animate .fmock-chip { transform: scaleX(1); }
+    .feat3--animate .fmock-route .fmock-line:nth-of-type(2) { transition-delay: 0.08s; }
+    .feat3--animate .fmock-route .fmock-line:nth-of-type(4) { transition-delay: 0.16s; }
+    .feat3--animate .fmock-chip:nth-child(1) { transition-delay: 0.14s; }
+    .feat3--animate .fmock-chip:nth-child(2) { transition-delay: 0.2s; }
+    .feat3--animate .fmock-chip:nth-child(3) { transition-delay: 0.26s; }
+    .fmock-flow-row { display: flex; align-items: center; gap: 8px; margin-bottom: 7px; }
+    .fmock-flow-row .fmock-line { transform: scaleX(0); transition: transform 0.6s cubic-bezier(0.22,0.8,0.24,1); }
+    .fmock-vault { margin-top: 8px; height: 30px; border-radius: 6px; border: 1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.03); padding: 3px; display: flex; align-items: flex-end; }
+    .fmock-vault-fill { width: 100%; height: 100%; border-radius: 4px; background: linear-gradient(180deg, rgba(190,255,176,.46) 0%, rgba(255,255,255,.28) 100%); transform-origin: bottom center; transform: scaleY(0); transition: transform 0.68s cubic-bezier(0.22,0.8,0.24,1) 0.24s; }
+    .feat4--animate .fmock-flow-row .fmock-line { transform: scaleX(1); }
+    .feat4--animate .fmock-flow-row:nth-child(1) .fmock-line { transition-delay: 0.06s; }
+    .feat4--animate .fmock-flow-row:nth-child(2) .fmock-line { transition-delay: 0.12s; }
+    .feat4--animate .fmock-flow-row:nth-child(3) .fmock-line { transition-delay: 0.18s; }
+    .feat4--animate .fmock-vault-fill { transform: scaleY(1); }
+    .fmock-matrix { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 6px; margin-bottom: 10px; }
+    .fmock-cell { height: 14px; border-radius: 4px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.08); opacity: 0.3; transform: translateY(5px); transition: transform 0.45s ease, opacity 0.45s ease; }
+    .fmock-cell--accent { background: rgba(190,255,176,.2); border-color: rgba(190,255,176,.3); }
+    .fmock-stack { display: flex; flex-direction: column; gap: 6px; }
+    .fmock-stack .fmock-line { width: var(--w, 100%); transform: scaleX(0); transition: transform 0.55s cubic-bezier(0.22,0.8,0.24,1); }
+    .feat5--animate .fmock-cell { opacity: 1; transform: translateY(0); }
+    .feat5--animate .fmock-cell:nth-child(1) { transition-delay: 0.03s; }
+    .feat5--animate .fmock-cell:nth-child(2) { transition-delay: 0.06s; }
+    .feat5--animate .fmock-cell:nth-child(3) { transition-delay: 0.09s; }
+    .feat5--animate .fmock-cell:nth-child(4) { transition-delay: 0.12s; }
+    .feat5--animate .fmock-cell:nth-child(5) { transition-delay: 0.15s; }
+    .feat5--animate .fmock-cell:nth-child(6) { transition-delay: 0.18s; }
+    .feat5--animate .fmock-cell:nth-child(7) { transition-delay: 0.21s; }
+    .feat5--animate .fmock-cell:nth-child(8) { transition-delay: 0.24s; }
+    .feat5--animate .fmock-cell:nth-child(9) { transition-delay: 0.27s; }
+    .feat5--animate .fmock-cell:nth-child(10) { transition-delay: 0.3s; }
+    .feat5--animate .fmock-cell:nth-child(11) { transition-delay: 0.33s; }
+    .feat5--animate .fmock-cell:nth-child(12) { transition-delay: 0.36s; }
+    .feat5--animate .fmock-stack .fmock-line { transform: scaleX(1); }
+    .feat5--animate .fmock-stack .fmock-line:nth-child(1) { transition-delay: 0.16s; }
+    .feat5--animate .fmock-stack .fmock-line:nth-child(2) { transition-delay: 0.22s; }
+    .feat5--animate .fmock-stack .fmock-line:nth-child(3) { transition-delay: 0.28s; }
+    .feature-panel { grid-column: span 2; padding: 44px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; text-align: left; }
+    .feature-panel .f-label { margin: 0 0 24px; color: var(--accent); font-size: 14px; letter-spacing: -.28px; display: inline-flex; align-items: center; gap: 8px; font-weight: 500; }
+    .feature-panel .f-label .f-label-icon { width: 16px; height: 16px; display: inline-flex; align-items: center; justify-content: center; color: var(--accent); opacity: 0.92; flex-shrink: 0; }
+    .feature-panel .f-label .f-label-icon svg { width: 100%; height: 100%; display: block; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .feature-panel h4 { margin: 0 0 10px; color: #fafafa; font-size: 24px; letter-spacing: -.96px; line-height: 1.2; }
+    .feature-panel p { margin: 0; color: var(--muted); font-size: 18px; line-height: 1.52; max-width: 760px; }
+
+    /* FAQ */
+    .faq { border-top: 1px solid var(--border); display: grid; grid-template-columns: repeat(3, 1fr); }
+    .faq-cell { min-height: 304px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); perspective: 800px; }
+    .faq-cell:nth-child(3n) { border-right: none; }
+    .faq-card { width: 100%; height: 100%; min-height: 304px; position: relative; transform-style: preserve-3d; transition: transform 550ms cubic-bezier(0.45, 0, 0.15, 1); }
+    .faq-cell:hover .faq-card { transform: rotateY(180deg); }
+    .faq-front, .faq-back { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 44px; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+    .faq-front { text-align: center; }
+    .faq-front h3 { margin: 0; font-size: 18px; letter-spacing: -.36px; line-height: 1.35; font-weight: 500; }
+    .faq-back { transform: rotateY(180deg); align-items: center; }
+    .faq-back p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.7; text-align: left; }
+    @media (prefers-reduced-motion: reduce) { .faq-card { transition: none; } }
+
+    /* Newsletter / CTA */
+    .newsletter { border-top: 1px solid var(--border); text-align: center; padding: 90px 24px; }
+    .newsletter h3 { margin: 0 0 12px; font-size: 32px; letter-spacing: -1.28px; line-height: 1.2; }
+    .newsletter p { margin: 0 0 28px; color: var(--muted); font-size: 18px; line-height: 1.52; }
+    .inline-capture { position: relative; height: 48px; width: 220px; max-width: 100%; transition: width 560ms cubic-bezier(0.22,0.8,0.24,1); }
+    .inline-capture-trigger { position: absolute; right: 0; top: 0; width: 220px; height: 48px; transition: transform 560ms cubic-bezier(0.22,0.8,0.24,1), background 260ms ease, color 260ms ease, box-shadow 260ms ease; z-index: 4; }
+    .inline-capture-trigger:focus-visible { outline: none; box-shadow: 0 0 0 2px rgba(255,255,255,.26); }
+    .inline-capture-form { position: absolute; left: 0; top: 0; height: 48px; width: 100%; display: flex; align-items: center; gap: 10px; overflow: hidden; pointer-events: auto; z-index: 3; }
+    .inline-capture-input { width: 0; min-width: 0px; height: 48px; border-radius: 9999px; border: 1px solid transparent; background: #111; color: var(--text); font-family: Poppins, sans-serif; font-size: 14px; padding: 0 16px; outline: none; opacity: 0; transform: translateX(18px); transition: width 560ms cubic-bezier(0.22,0.8,0.24,1), opacity 280ms ease, transform 560ms cubic-bezier(0.22,0.8,0.24,1), border-color 220ms ease, box-shadow 220ms ease; }
+    .inline-capture-input::placeholder { color: var(--tier-label); }
+    .inline-capture-input:focus-visible { outline: none; border-color: rgba(255,255,255,.34); box-shadow: 0 0 0 1px rgba(255,255,255,.18); }
+    .inline-capture-close { height: 40px; width: 0; border-radius: 9999px; border: 1px solid var(--border); background: #0a0a0a; color: var(--muted); font-size: 20px; line-height: 1; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto; opacity: 0; transform: scale(.82); pointer-events: none; overflow: hidden; transition: width 360ms cubic-bezier(0.22,0.8,0.24,1), opacity 220ms ease, transform 360ms cubic-bezier(0.22,0.8,0.24,1), color 150ms ease, border-color 150ms ease; }
+    .inline-capture-close:hover { color: var(--text); border-color: rgba(255,255,255,.3); }
+    .inline-capture.is-open { width: min(520px, calc(100vw - 64px)); }
+    .inline-capture.is-open .inline-capture-trigger { width: 170px; transform: translateX(-50px); }
+    .inline-capture.is-open .inline-capture-input { width: calc(100% - 230px); border-color: var(--border); opacity: 1; transform: translateX(0); }
+    .inline-capture.is-open .inline-capture-close { width: 40px; opacity: 1; transform: scale(1); pointer-events: auto; position: absolute; right: 0; top: 4px; }
+    .inline-capture.is-success .inline-capture-trigger { background: #beffb0; color: #0a0a0a; }
+    .inline-capture.is-success.is-open .inline-capture-input { border-color: #beffb0; box-shadow: 0 0 0 1px rgba(190,255,176,.26); }
+
+    /* Footer */
+    .footer { padding: 36px 24px 52px; }
+    .footer-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
+    .footer h4 { margin: 0 0 8px; font-size: 14px; }
+    .footer a { color: var(--muted); text-decoration: none; display: block; font-size: 14px; line-height: 1.9; transition: color 150ms; cursor: pointer; }
+    .footer a:hover { color: var(--text); }
+    .footer a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .hero { height: 680px; }
+      .hero-content-box { padding-top: 88px; }
+      h1 { font-size: 42px; }
+      .sub { font-size: 18px; }
+      .leaderboard-col { min-height: 304px; }
+      .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 800px) {
+      .topbar { grid-template-columns: 1fr auto; gap: 12px; }
+      .main-nav { display: none; }
+      .nav-actions { padding-left: 0; gap: 8px; }
+      .hero { height: 620px; }
+      .hero-content-box { padding: 72px 24px 40px; }
+      h1 { font-size: 36px; letter-spacing: -1.8px; }
+      .sub { font-size: 16px; line-height: 1.6; }
+      .cards { grid-template-columns: 1fr; }
+      .card { border-right: none; }
+      .leaderboard { grid-template-columns: 1fr; }
+      .leaderboard-col + .leaderboard-col { border-left: none; border-top: 1px solid var(--border); }
+      .leaderboard-col { min-height: auto; }
+      .benefits { grid-template-columns: 1fr; }
+      .product { border-right: none; }
+      .feature-row { grid-template-columns: 1fr; }
+      .feature-spacer { display: none; }
+      .feature-panel { grid-column: span 1; border-right: none; }
+      .faq { grid-template-columns: 1fr; }
+      .faq-cell { border-right: none; }
+      .faq-card { min-height: 304px; }
+      .newsletter { padding: 64px 20px; }
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 520px) {
+      :root { --col-pad: 28px; }
+      .wrap { width: calc(100vw - 20px); }
+      .lb-stats, .lb-rankings, .lb-tasks { padding: 28px; }
+      .actions { gap: 10px; }
+      .btn-primary, .btn-secondary { width: 100%; }
+      .inline-capture { width: min(100%, 420px); }
+      .inline-capture.is-open { width: 100%; }
+      .inline-capture-trigger { width: 100%; }
+      .inline-capture.is-open .inline-capture-trigger { width: 132px; transform: translateX(-46px); }
+      .inline-capture.is-open .inline-capture-input { width: calc(100% - 186px); }
+      .inline-capture-close { width: 36px; height: 36px; font-size: 18px; }
+      .inline-capture.is-open .inline-capture-close { width: 36px; top: 6px; }
+    }
   </style>
 </head>
 <body>
-  <a class="skip-link" href="#main-content">Skip to content</a>
-  <nav class="nav" aria-label="Primary">
-    <div class="nav-inner">
-      <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"></span><span>Floors</span></a>
-      <div class="nav-links">
-        <a href="#overview">Overview</a>
-        <a href="#pillars">Protocol</a>
-        <a href="#rewards">Points</a>
-        <a href="#faq">FAQ</a>
+
+  <!-- NAV -->
+  <div class="wrap">
+    <header class="topbar">
+      <a class="brand-logo" href="index.html" aria-label="Floors">
+        <img class="brand-mark" src="assets/logos/floors-logo.svg" alt="" aria-hidden="true" />
+      </a>
+      <nav class="main-nav" aria-label="Main">
+        <ul class="main-nav-list">
+          <li><a href="index.html" class="main-nav-link">Protocol</a></li>
+          <li><a href="#" class="main-nav-link">Docs <svg width="16" height="14" viewBox="0 0 16 14" fill="none"><path d="M4.4 5.2 8 8.8l3.6-3.6" stroke="currentColor" stroke-width="1"/></svg></a></li>
+          <li><a href="testnet.html" class="main-nav-link is-active">Testnet</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <a class="nav-btn" href="#">Contact</a>
+        <a class="nav-btn" href="#">Launch App</a>
       </div>
-      <a class="btn" href="#">Enter dApp</a>
+    </header>
+  </div>
+
+  <!-- HERO -->
+  <section class="wrap frame hero">
+    <div class="hero-grid" aria-hidden="true"></div>
+    <div class="hero-lottie">
+      <div class="hero-lottie-track" id="hero-intro-track"><div id="hero-intro-lottie" aria-hidden="true"></div></div>
+      <div class="hero-lottie-track" id="hero-loop-track"><div id="hero-loop-lottie" aria-hidden="true"></div></div>
     </div>
-  </nav>
-
-  <main class="page" id="main-content">
-    <section class="hero">
-      <div class="wrap hero-grid">
-        <div class="hero-copy">
-          <span class="label">Genesis Testnet Live</span>
-          <h1>Floor Only Goes Up</h1>
-          <p>Next-generation autonomous liquidity protocol providing deterministic floor price guarantees and interest-free credit.</p>
-          <div class="hero-actions">
-            <a href="#" class="btn">Enter dApp</a>
-            <a href="#rewards" class="btn-secondary">Check Dashboard</a>
-          </div>
+    <div class="hero-content">
+      <div class="hero-content-box">
+        <div class="hero-status">
+          <span class="hero-status-dot" aria-hidden="true"></span>
+          <span>Genesis Testnet Live</span>
         </div>
-        <div class="stack">
-          <div class="panel">
-            <strong>Testnet Release</strong>
-            <p>This is a dedicated Genesis Testnet page focused on the release, the point system, and why early participation matters.</p>
-          </div>
-          <div class="panel">
-            <strong>What To Expect</strong>
-            <p>Explore the protocol, complete onchain actions, earn weighted points clusters, and track leaderboard movement as Phase One goes live.</p>
-          </div>
-          <div class="metrics" aria-label="Testnet summary">
-            <div class="metric"><span>Total Participated</span><strong>748</strong></div>
-            <div class="metric"><span>Points Distributed</span><strong>140k</strong></div>
-            <div class="metric"><span>Phase</span><strong>One</strong></div>
-          </div>
+        <h1>Floor Only Goes Up</h1>
+        <p class="sub">Join the Genesis Testnet. Earn weighted points clusters, explore protocol mechanics, and secure your place in the genesis distribution.</p>
+        <div class="actions">
+          <a class="btn-primary" href="#">Enter dApp</a>
+          <a class="btn-secondary" href="#">Check Dashboard</a>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="section" id="overview">
-      <div class="wrap proof-grid">
-        <article class="proof-card">
-          <div>
-            <span class="label">Sustainable Yield</span>
-            <h2>Mathematical Proof of Backing</h2>
+  <!-- PROTOCOL PILLARS -->
+  <section class="wrap frame row cards" aria-label="Protocol features">
+    <article class="card">
+      <p class="label">Guaranteed Floor</p>
+      <h3>Contract-enforced minimum value.</h3>
+      <p>Every token is backed 1:1 by hard assets held in the Reserve Pool. The floor is a programmatic guarantee — not a promise.</p>
+    </article>
+    <article class="card">
+      <p class="label">Always Liquid</p>
+      <h3>Protocol Owned Liquidity for instant exit.</h3>
+      <p>POL ensures deep depth at all times. Buy or sell directly against the protocol reserve — no external LPs, no fragmented order books.</p>
+    </article>
+    <article class="card">
+      <p class="label">Interest-Free</p>
+      <h3>Borrow at floor value with zero cost.</h3>
+      <p>Take credit against your floor value with no recurring interest, no expiry, and no liquidation risk. Repay on your own schedule.</p>
+    </article>
+    <article class="card">
+      <p class="label">Auto-Scaling</p>
+      <h3>Fees re-inject into the floor automatically.</h3>
+      <p>Generated fees are routed back into the treasury, raising the floor price programmatically. Your downside improves while you hold.</p>
+    </article>
+    <article class="card">
+      <p class="label">Permissionless</p>
+      <h3>Deploy custom floor-backed markets.</h3>
+      <p>Any issuer can deploy a floor-backed market for any ERC-20 asset autonomously — no gatekeeping, no approval required.</p>
+    </article>
+    <article class="card">
+      <p class="label">Cross-Chain</p>
+      <h3>Unified liquidity across chains.</h3>
+      <p>A single liquidity layer deployed across Ethereum, Base, and Arbitrum. One protocol, unified reserves, every major network.</p>
+    </article>
+  </section>
+
+  <!-- DIVIDER -->
+  <div class="wrap frame section-label">
+    <p>748 participants. 140,000 points distributed. Phase One is live.</p>
+  </div>
+
+  <!-- GENESIS REWARDS / LEADERBOARD -->
+  <section class="wrap frame leaderboard" aria-label="Genesis rewards and leaderboard">
+    <div class="leaderboard-col lb-stats">
+      <div class="lb-live" aria-label="Live">
+        <span class="lb-live-dot" aria-hidden="true"></span>
+        <span>Genesis Phase One</span>
+      </div>
+      <h3 class="lb-overview-title">Genesis Rewards</h3>
+      <p class="lb-overview-copy">Participate in the Testnet ecosystem to earn weighted points clusters.</p>
+      <div class="lb-divider" aria-hidden="true"></div>
+      <article class="lb-stat-row">
+        <p class="lb-stat-title">Total Participated</p>
+        <p class="lb-stat-value">748</p>
+      </article>
+      <div class="lb-divider" aria-hidden="true"></div>
+      <article class="lb-stat-row">
+        <p class="lb-stat-title">Points Distributed</p>
+        <p class="lb-stat-value">140,000</p>
+      </article>
+      <div class="lb-divider" aria-hidden="true"></div>
+      <article class="lb-stat-row">
+        <p class="lb-stat-title">Tier Distribution</p>
+        <div class="lb-tier-wrap">
+          <span class="lb-tier-item"><span class="lb-tier-value">—</span><span class="lb-tier-label">T1</span></span>
+          <span class="lb-tier-item"><span class="lb-tier-value">—</span><span class="lb-tier-label">T2</span></span>
+          <span class="lb-tier-item"><span class="lb-tier-value">—</span><span class="lb-tier-label">T3</span></span>
+          <span class="lb-tier-item"><span class="lb-tier-value">—</span><span class="lb-tier-label">INC</span></span>
+        </div>
+      </article>
+    </div>
+    <div class="leaderboard-col lb-rankings">
+      <h3>Top wallets — Feb 14, 2026</h3>
+      <ul class="lb-rank-list">
+        <li class="lb-rank-item top1"><span class="lb-rank-left">1 floors.eth</span><span class="lb-rank-right">1500pt</span></li>
+        <li class="lb-rank-item top2"><span class="lb-rank-left">2 0x4f3c…a12e</span><span class="lb-rank-right">1380pt</span></li>
+        <li class="lb-rank-item top3"><span class="lb-rank-left">3 whale.eth</span><span class="lb-rank-right">1240pt</span></li>
+        <li class="lb-rank-item"><span class="lb-rank-left">4 0x9d2b…cc21</span><span class="lb-rank-right">980pt</span></li>
+        <li class="lb-rank-item"><span class="lb-rank-left">5 defi_guru.eth</span><span class="lb-rank-right">860pt</span></li>
+        <li class="lb-rank-item"><span class="lb-rank-left">6 0x71f8…2e91</span><span class="lb-rank-right">720pt</span></li>
+        <li class="lb-rank-item"><span class="lb-rank-left">7 alpha_leak.eth</span><span class="lb-rank-right">640pt</span></li>
+        <li class="lb-rank-item"><span class="lb-rank-left">8 0x38a2…f01d</span><span class="lb-rank-right">520pt</span></li>
+        <li class="lb-rank-item"><span class="lb-rank-left">9 0xcc90…77ba</span><span class="lb-rank-right">440pt</span></li>
+        <li class="lb-rank-item"><span class="lb-rank-left">10 0xb5d3…3f8c</span><span class="lb-rank-right">380pt</span></li>
+      </ul>
+      <a href="#" class="lb-view-all"><span>View all rankings</span></a>
+    </div>
+    <div class="leaderboard-col lb-tasks">
+      <div class="lb-task-list">
+        <article class="lb-task">
+          <div class="lb-task-head">
+            <h4>Connect Wallet</h4>
+            <p class="lb-task-points">+30</p>
           </div>
-          <p>Every protocol operation reinforces the Reserve Pool, programmatically raising the floor price without external dependency.</p>
-          <div class="hero-actions" style="margin-top:0;"><a href="#" class="btn">Launch Testnet</a></div>
+          <div class="lb-task-copy">
+            <p>Link your wallet to the testnet dApp to begin earning points.</p>
+          </div>
         </article>
-        <div class="proof-mini-grid">
-          <article class="proof-mini"><span>Release</span><h3>Genesis Testnet is live.</h3><p>The page is focused on the release itself: enter the dApp, follow the mechanics, and understand how participation maps to rewards.</p></article>
-          <article class="proof-mini"><span>System</span><h3>Interest-free credit with deterministic floor backing.</h3><p>The protocol uses autonomous liquidity to anchor downside and remove reliance on external liquidation cascades.</p></article>
-          <article class="proof-mini"><span>Points</span><h3>Action-based progression.</h3><p>Wallet connections, liquidity actions, borrowing, and referrals all ladder into the Genesis Rewards system.</p></article>
-          <article class="proof-mini"><span>Phase One</span><h3>Early participation matters.</h3><p>The point system is designed to make contribution visible before mainnet positioning and access decisions are finalized.</p></article>
+        <article class="lb-task">
+          <div class="lb-task-head">
+            <h4>Provide Liquidity</h4>
+            <p class="lb-task-points">+30</p>
+          </div>
+          <div class="lb-task-copy">
+            <p>Add liquidity to a floor-backed pool and earn reserve-building rewards.</p>
+          </div>
+        </article>
+        <article class="lb-task">
+          <div class="lb-task-head">
+            <h4>Take a Loan</h4>
+            <p class="lb-task-points">+30</p>
+          </div>
+          <div class="lb-task-copy">
+            <p>Borrow against your floor value. Experience zero-liquidation credit in action.</p>
+          </div>
+        </article>
+        <article class="lb-task">
+          <div class="lb-task-head">
+            <h4>Refer a Participant</h4>
+            <p class="lb-task-points">+30</p>
+          </div>
+          <div class="lb-task-copy">
+            <p>Invite a friend to the testnet. Points credited on their first action.</p>
+          </div>
+        </article>
+      </div>
+      <a href="#" class="lb-view-all"><span>View all tasks</span></a>
+    </div>
+  </section>
+
+  <!-- BENEFITS -->
+  <section class="wrap frame benefits" aria-label="Why participate">
+    <article class="product product-empty" aria-hidden="true"></article>
+    <article class="product">
+      <h4>Presale is the lowest price ever.</h4>
+      <p>Once the presale closes, the token can never fall below that price. Every buyer after you only pushes it higher.</p>
+    </article>
+    <article class="product">
+      <h4>Hold with conviction.</h4>
+      <p>A rising floor means your downside improves every day you hold, even at the worst times.</p>
+    </article>
+    <article class="product">
+      <h4>Experience no liquidations, ever again.</h4>
+      <p>Borrow against your floor and your position is never force-sold.</p>
+    </article>
+    <article class="product">
+      <h4>Volatility works for you.</h4>
+      <p>Trading activity and fees compound into reserves, turning market movement into floor growth.</p>
+    </article>
+    <article class="product">
+      <h4>More supply strengthens your price.</h4>
+      <p>Every new token minted adds to the reserve. Growth in supply doesn't dilute previous holders — it strengthens everyone's positions.</p>
+    </article>
+  </section>
+
+  <!-- FEATURE ROWS -->
+  <section class="wrap frame feature-rows" aria-label="Protocol mechanics">
+    <article class="feature-row">
+      <div class="feature-spacer" aria-hidden="true">
+        <div class="feat1-visual" id="feat1-visual">
+          <div class="feat1-lottie-only" aria-hidden="true"><div id="feature-f1-lottie"></div></div>
         </div>
       </div>
-    </section>
-
-    <section class="section" id="pillars">
-      <div class="wrap">
-        <div class="section-head">
-          <div><span class="label">Architecture</span><h2>Protocol Pillars</h2></div>
-          <p>The release page keeps the explanation focused on what the protocol guarantees, how liquidity works, and why those mechanics make the testnet worth participating in.</p>
-        </div>
-        <div class="pillars">
-          <article class="pillar"><h3>Guaranteed Floor</h3><p>Contract-enforced minimum redemption value backed 1:1 by hard assets.</p></article>
-          <article class="pillar"><h3>Always Liquid</h3><p>Protocol Owned Liquidity (POL) ensures deep depth for instant exit at the floor.</p></article>
-          <article class="pillar"><h3>Interest-Free</h3><p>Borrow against your assets at the floor value with zero recurring costs.</p></article>
-          <article class="pillar"><h3>Auto-Scaling</h3><p>Generated fees are re-injected into the treasury to raise the floor price programmatically.</p></article>
-          <article class="pillar"><h3>Permissionless</h3><p>Deploy custom floor-backed markets for any ERC-20 asset autonomously.</p></article>
-          <article class="pillar"><h3>Cross-Chain</h3><p>Unified liquidity layer deployed across Ethereum, Base, and Arbitrum.</p></article>
+      <div class="feature-panel">
+        <p class="f-label"><span class="f-label-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 19.5h16"></path><path d="M6 15.5l4-4 3 3 5-6"></path><path d="M18 8.5h2v2"></path></svg></span><span>Price Floor</span></p>
+        <h4>Presale is the lowest price ever.</h4>
+        <p>Once the presale closes, the token can never fall below that price. Every buyer after you only pushes it higher.</p>
+      </div>
+    </article>
+    <article class="feature-row">
+      <div class="feature-panel">
+        <p class="f-label"><span class="f-label-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3.5l7 3v5.5c0 4.5-2.8 7.6-7 8.8-4.2-1.2-7-4.3-7-8.8V6.5l7-3z"></path><path d="M9.5 12.2l1.8 1.8 3.6-3.6"></path></svg></span><span>Downside Protection</span></p>
+        <h4>Hold with conviction.</h4>
+        <p>A rising floor means your downside improves every day you hold, even at the worst times.</p>
+      </div>
+      <div class="feature-spacer" aria-hidden="true">
+        <div class="feat2-visual" id="feat2-visual">
+          <div class="feat1-lottie-only" aria-hidden="true"><div id="feature-f2-lottie"></div></div>
         </div>
       </div>
-    </section>
-
-    <section class="section" id="rewards">
-      <div class="wrap rewards-grid">
-        <div class="rewards-copy">
-          <div><span class="label">Genesis Rewards</span><h2>Participate in the Testnet ecosystem to earn weighted points clusters.</h2></div>
-          <article class="reward-card"><h3>Genesis Distribution</h3><p>Points directly determine your share of the token genesis.</p></article>
-          <article class="reward-card"><h3>Tiered Access</h3><p>High earners secure priority access to upcoming vault capacity.</p></article>
-          <article class="reward-card"><h3>Governance Alpha</h3><p>Early contributors receive the first tier of protocol voting power.</p></article>
-          <a href="#" class="btn">Join Phase One</a>
-        </div>
-
-        <section class="board" aria-label="Genesis rewards and leaderboard">
-          <div class="board-col">
-            <div class="lb-live"><span class="lb-live-dot" aria-hidden="true"></span><span>Genesis Phase One</span></div>
-            <h3 class="lb-overview-title">Genesis Rewards</h3>
-            <p class="lb-overview-copy">Participate in the Testnet ecosystem to earn weighted points clusters.</p>
-            <div class="lb-divider"></div>
-            <article class="lb-stat-row"><p class="lb-stat-title">Total Participated</p><p class="lb-stat-value">748</p></article>
-            <div class="lb-divider"></div>
-            <article class="lb-stat-row"><p class="lb-stat-title">Points Distributed</p><p class="lb-stat-value">140,000</p></article>
-            <div class="lb-divider"></div>
-            <article class="lb-stat-row">
-              <p class="lb-stat-title">Tier Distribution</p>
-              <div class="lb-tier-wrap">
-                <span class="lb-tier-item"><span class="lb-tier-value">-</span><span class="lb-tier-label">T1</span></span>
-                <span class="lb-tier-item"><span class="lb-tier-value">-</span><span class="lb-tier-label">T2</span></span>
-                <span class="lb-tier-item"><span class="lb-tier-value">-</span><span class="lb-tier-label">T3</span></span>
-                <span class="lb-tier-item"><span class="lb-tier-value">-</span><span class="lb-tier-label">INC</span></span>
-              </div>
-            </article>
-          </div>
-
-          <div class="board-col">
-            <p class="small-head">Leaderboard snapshot</p>
-            <ul class="rank-list">
-              <li class="rank-item top1"><span class="rank-left">1 floors.eth</span><span class="rank-right">1500pt</span></li>
-              <li class="rank-item top2"><span class="rank-left">2 0x4f3c...a12e</span><span class="rank-right">1380pt</span></li>
-              <li class="rank-item top3"><span class="rank-left">3 whale.eth</span><span class="rank-right">1240pt</span></li>
-              <li class="rank-item"><span class="rank-left">4 0x9d2b...cc21</span><span class="rank-right">980pt</span></li>
-              <li class="rank-item"><span class="rank-left">5 defi_guru.eth</span><span class="rank-right">860pt</span></li>
-              <li class="rank-item"><span class="rank-left">6 0x71f8...2e91</span><span class="rank-right">720pt</span></li>
-              <li class="rank-item"><span class="rank-left">7 alpha_leak.eth</span><span class="rank-right">640pt</span></li>
-              <li class="rank-item"><span class="rank-left">8 0x38a2...f01d</span><span class="rank-right">520pt</span></li>
-              <li class="rank-item"><span class="rank-left">9 0xcc90...77ba</span><span class="rank-right">440pt</span></li>
-              <li class="rank-item"><span class="rank-left">10 0xb5d3...3f8c</span><span class="rank-right">380pt</span></li>
-            </ul>
-            <a href="#" class="ghost">View all rankings</a>
-          </div>
-
-          <div class="board-col">
-            <p class="small-head">Point-earning actions</p>
-            <div class="task-list">
-              <article class="task"><div class="task-head"><h4>Connect Wallet</h4><p class="lb-task-points">+30</p></div><p>Link your wallet to the testnet dApp to begin earning points.</p></article>
-              <article class="task"><div class="task-head"><h4>Provide Liquidity</h4><p class="lb-task-points">+30</p></div><p>Add liquidity to a floor-backed pool and earn reserve-building rewards.</p></article>
-              <article class="task"><div class="task-head"><h4>Take a Loan</h4><p class="lb-task-points">+30</p></div><p>Borrow against your floor value. Experience zero-liquidation credit in action.</p></article>
-              <article class="task"><div class="task-head"><h4>Refer a Participant</h4><p class="lb-task-points">+30</p></div><p>Invite a friend to the testnet. Points credited on their first action.</p></article>
-            </div>
-            <a href="#" class="ghost">View all tasks</a>
-          </div>
-        </section>
-      </div>
-    </section>
-
-    <section class="faq" id="faq">
-      <div class="wrap">
-        <div class="faq-head"><span class="label">FAQ</span><h2>Common Questions</h2></div>
-        <div class="faq-list">
-          <div class="faq-item is-open">
-            <button class="faq-trigger" type="button" aria-expanded="true" aria-controls="faq-answer-floor"><span>What defines a "Floor Price"?</span><span class="faq-icon" aria-hidden="true"></span></button>
-            <div class="faq-answer" id="faq-answer-floor">Floors Finance uses Protocol Owned Liquidity (POL) to back tokens. This creates a programmatic guarantee where the treasury acts as the redeemer at the floor price.</div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-trigger" type="button" aria-expanded="false" aria-controls="faq-answer-risk"><span>Is there liquidation risk?</span><span class="faq-icon" aria-hidden="true"></span></button>
-            <div class="faq-answer" id="faq-answer-risk" hidden>Zero. Because you borrow against the floor price, and the floor price is backed by hard reserves, your collateral value can never drop below your debt position.</div>
-          </div>
+    </article>
+    <article class="feature-row">
+      <div class="feature-spacer" aria-hidden="true">
+        <div class="feat3-visual" id="feat3-visual">
+          <div class="feat1-lottie-only" aria-hidden="true"><div id="feature-f3-lottie"></div></div>
         </div>
       </div>
-    </section>
-
-    <footer class="footer">
-      <div class="wrap">
-        <div class="footer-grid">
-          <div class="footer-brand">
-            <div class="brand"><span class="brand-mark" aria-hidden="true"></span><span>Floors</span></div>
-            <p>The foundational liquidity layer for autonomous DeFi assets. Sustainable. Non-custodial. Transparent.</p>
-          </div>
-          <div class="footer-links">
-            <div class="footer-col"><h4>Protocol</h4><ul class="footer-list"><li><a href="#">Whitepaper</a></li><li><a href="#">Docs</a></li></ul></div>
-            <div class="footer-col"><h4>Social</h4><ul class="footer-list"><li><a href="#">X / Twitter</a></li><li><a href="#">Discord</a></li></ul></div>
-          </div>
-        </div>
-        <div class="footer-bottom"><span>&copy; 2026 Floors Finance. Built on Ethereum.</span><span>v1.4.2-ALPHA</span></div>
+      <div class="feature-panel">
+        <p class="f-label"><span class="f-label-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8.5a4 4 0 0 1 8 0V11"></path><path d="M12 14.2v2.6"></path></svg></span><span>Zero Liquidations</span></p>
+        <h4>Experience no liquidations, ever again.</h4>
+        <p>Borrow against your floor and your position is never force-sold.</p>
       </div>
-    </footer>
-  </main>
+    </article>
+    <article class="feature-row">
+      <div class="feature-panel">
+        <p class="f-label"><span class="f-label-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="6.5" rx="6.5" ry="2.5"></ellipse><path d="M5.5 6.5v6c0 1.4 2.9 2.5 6.5 2.5s6.5-1.1 6.5-2.5v-6"></path><path d="M8.5 17.5h7"></path></svg></span><span>Fee Capture</span></p>
+        <h4>Volatility works for you.</h4>
+        <p>Trading activity and fees compound into reserves, turning market movement into floor growth.</p>
+      </div>
+      <div class="feature-spacer" aria-hidden="true">
+        <div class="feat4-visual" id="feat4-visual">
+          <div class="feat1-lottie-only" aria-hidden="true"><div id="feature-f4-lottie"></div></div>
+        </div>
+      </div>
+    </article>
+    <article class="feature-row">
+      <div class="feature-spacer" aria-hidden="true">
+        <div class="feat5-visual" id="feat5-visual">
+          <div class="feat1-lottie-only" aria-hidden="true"><div id="feature-f5-lottie"></div></div>
+        </div>
+      </div>
+      <div class="feature-panel">
+        <p class="f-label"><span class="f-label-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.5"></circle><path d="M3 12c0-2.5 4-7 9-7s9 4.5 9 7-4 7-9 7-9-4.5-9-7z"></path></svg></span><span>Reserve Growth</span></p>
+        <h4>More supply strengthens your price.</h4>
+        <p>Every new token minted adds to the reserve. Growth in supply doesn't dilute previous holders — it strengthens everyone's positions.</p>
+      </div>
+    </article>
+  </section>
 
+  <!-- FAQ -->
+  <section class="wrap frame faq" aria-label="Common questions">
+    <div class="faq-cell">
+      <div class="faq-card">
+        <div class="faq-front"><h3>What defines a floor price?</h3></div>
+        <div class="faq-back"><p>Floors Finance uses Protocol Owned Liquidity to back tokens. This creates a programmatic guarantee where the treasury acts as the redeemer at the floor price — backed by real reserves, not promises.</p></div>
+      </div>
+    </div>
+    <div class="faq-cell">
+      <div class="faq-card">
+        <div class="faq-front"><h3>Is there liquidation risk?</h3></div>
+        <div class="faq-back"><p>Zero. Because you borrow against the floor price, and the floor is backed by hard reserves, your collateral value can never drop below your debt position. No margin calls. No health factors.</p></div>
+      </div>
+    </div>
+    <div class="faq-cell">
+      <div class="faq-card">
+        <div class="faq-front"><h3>How does the floor price rise?</h3></div>
+        <div class="faq-back"><p>Trading fees, liquidity rebalancing, and staking yield all compound into the protocol's reserves. As reserves grow relative to supply, the floor rises automatically — no action needed from holders.</p></div>
+      </div>
+    </div>
+    <div class="faq-cell">
+      <div class="faq-card">
+        <div class="faq-front"><h3>What are Genesis Rewards?</h3></div>
+        <div class="faq-back"><p>Points earned during the Genesis Testnet directly determine your share of the token genesis distribution. High earners secure priority access to vault capacity and the first tier of protocol voting power.</p></div>
+      </div>
+    </div>
+    <div class="faq-cell">
+      <div class="faq-card">
+        <div class="faq-front"><h3>Has the protocol been audited?</h3></div>
+        <div class="faq-back"><p>Yes. The Floors Finance protocol has been independently audited. The full report is available under Protocol → Audit in the footer. Security is a first-class concern at every layer of the system.</p></div>
+      </div>
+    </div>
+    <div class="faq-cell">
+      <div class="faq-card">
+        <div class="faq-front"><h3>When does Phase One end?</h3></div>
+        <div class="faq-back"><p>Phase One is live now. Once the presale closes, the token floor is set permanently. Every participant after the close only pushes it higher — join early for the lowest floor ever.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="wrap frame newsletter">
+    <h3>Join Genesis Phase One</h3>
+    <p>The floor only goes up from here. Secure the lowest entry price ever.</p>
+    <div class="actions" style="margin-top:0">
+      <a class="btn-primary" href="#">Enter dApp</a>
+      <div class="inline-capture" data-inline-capture>
+        <button type="button" class="btn-secondary inline-capture-trigger">Get Early Access</button>
+        <form class="inline-capture-form" novalidate>
+          <input class="inline-capture-input" type="email" name="email" placeholder="Enter your email" required />
+          <button type="button" class="inline-capture-close" aria-label="Close email capture">&times;</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="wrap footer">
+    <div class="footer-grid">
+      <div><h4>Protocol</h4><a href="#">Litepaper</a><a href="#">Audit</a><a href="#">Contact</a></div>
+      <div><h4>Resources</h4><a href="#">Blog</a><a href="#">Docs</a><a href="#">FAQ</a><a href="#">Terms Of Use</a><a href="#">Privacy Policy</a><a href="#">GitHub</a><a href="#">Media Kit</a></div>
+      <div><h4>Company</h4><a href="#">Contact Us</a><a href="#">Partners</a><a href="#">Events</a><a href="#">Ecosystem</a><a href="#">Security</a></div>
+      <div><h4>Social</h4><a href="#">GitHub</a><a href="#">X / Twitter</a><a href="#">Discord</a><a href="#">Telegram</a></div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js" defer></script>
   <script>
-    window.addEventListener("DOMContentLoaded", function () {
-      var items = Array.prototype.slice.call(document.querySelectorAll(".faq-item"));
-      var setItemState = function (item, isOpen) {
-        item.classList.toggle("is-open", isOpen);
-        var button = item.querySelector(".faq-trigger");
-        var answer = item.querySelector(".faq-answer");
-        if (button) button.setAttribute("aria-expanded", isOpen ? "true" : "false");
-        if (answer) answer.hidden = !isOpen;
-      };
+    window.addEventListener('DOMContentLoaded', function () {
+      var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      items.forEach(function (item) {
-        setItemState(item, item.classList.contains("is-open"));
-      });
-
-      items.forEach(function (item) {
-        var trigger = item.querySelector(".faq-trigger");
-        if (!trigger) return;
-        trigger.addEventListener("click", function () {
-          var isOpen = item.classList.contains("is-open");
-          items.forEach(function (entry) {
-            setItemState(entry, false);
+      // Inline email capture
+      var initInlineCapture = function () {
+        var modules = Array.prototype.slice.call(document.querySelectorAll('[data-inline-capture]'));
+        if (!modules.length) return;
+        modules.forEach(function (module) {
+          var trigger = module.querySelector('.inline-capture-trigger');
+          var closeBtn = module.querySelector('.inline-capture-close');
+          var input = module.querySelector('.inline-capture-input');
+          var form = module.querySelector('.inline-capture-form');
+          if (!trigger || !closeBtn || !input || !form) return;
+          var open = function () { module.classList.add('is-open'); setTimeout(function () { input.focus(); }, 320); };
+          var close = function () { module.classList.remove('is-open', 'is-success'); input.value = ''; };
+          trigger.addEventListener('click', function () {
+            if (module.classList.contains('is-open')) {
+              if (!input.value.trim()) { close(); return; }
+              module.classList.add('is-success'); trigger.textContent = 'Thanks!';
+              setTimeout(close, 2400);
+            } else { open(); }
           });
-          if (!isOpen) {
-            setItemState(item, true);
-          }
+          closeBtn.addEventListener('click', close);
+          form.addEventListener('submit', function (e) { e.preventDefault(); });
+          input.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') close();
+            if (e.key === 'Enter') {
+              if (!input.value.trim()) return;
+              module.classList.add('is-success'); trigger.textContent = 'Thanks!';
+              setTimeout(close, 2400);
+            }
+          });
         });
+      };
+      initInlineCapture();
+
+      // Feature reveal animations
+      var feat1El = document.getElementById('feat1-visual');
+      if (feat1El) {
+        if (reduceMotion) { feat1El.classList.add('feat1--animate'); }
+        else if ('IntersectionObserver' in window) {
+          var feat1Obs = new IntersectionObserver(function(entries) {
+            entries.forEach(function(e) { if (e.isIntersecting) { feat1El.classList.add('feat1--animate'); feat1Obs.disconnect(); } });
+          }, { threshold: 0.35 });
+          feat1Obs.observe(feat1El);
+        } else { feat1El.classList.add('feat1--animate'); }
+      }
+
+      var initFeatIllustration = function(id, animClass) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        if (reduceMotion) { el.classList.add(animClass); return; }
+        if ('IntersectionObserver' in window) {
+          var obs = new IntersectionObserver(function(entries) {
+            entries.forEach(function(e) { if (e.isIntersecting) { el.classList.add(animClass); obs.disconnect(); } });
+          }, { threshold: 0.25 });
+          obs.observe(el);
+        } else { el.classList.add(animClass); }
+      };
+      initFeatIllustration('feat2-visual', 'feat2--animate');
+      initFeatIllustration('feat3-visual', 'feat3--animate');
+      initFeatIllustration('feat4-visual', 'feat4--animate');
+      initFeatIllustration('feat5-visual', 'feat5--animate');
+
+      if (!window.lottie) return;
+
+      var initFeatureLottie = function (containerId, hostId, jsonPath) {
+        var container = document.getElementById(containerId);
+        var host = document.getElementById(hostId);
+        if (!container || !host) return;
+        var hoverTarget = host.closest('.feature-row') || host.closest('.feature-spacer') || host;
+        var animation = window.lottie.loadAnimation({
+          container: container, renderer: 'svg', loop: false, autoplay: false,
+          path: jsonPath, rendererSettings: { preserveAspectRatio: 'xMidYMid meet' }
+        });
+        var isHovering = false, pingDirection = -1;
+        var getLastFrame = function () { return Math.max(0, Math.floor((animation.totalFrames || animation.getDuration(true) || 0) - 1)); };
+        var lockAtIdleFrame = function () { var f = getLastFrame(); if (f > 0) animation.goToAndStop(f, true); };
+        var playPingPongLeg = function () {
+          var f = getLastFrame(); if (f <= 0) return;
+          if (pingDirection < 0) { animation.setDirection(-1); animation.goToAndPlay(f, true); return; }
+          animation.setDirection(1); animation.goToAndPlay(0, true);
+        };
+        if (reduceMotion) { animation.addEventListener('DOMLoaded', function () { animation.goToAndStop(0, true); }); return; }
+        animation.addEventListener('complete', function () {
+          if (!isHovering) { lockAtIdleFrame(); return; }
+          pingDirection *= -1; playPingPongLeg();
+        });
+        var played = false;
+        var play = function () { if (played) return; played = true; animation.goToAndPlay(0, true); };
+        hoverTarget.addEventListener('mouseenter', function () {
+          if (!played || isHovering) return; isHovering = true; pingDirection = -1;
+          var f = getLastFrame();
+          if ((animation.currentFrame || 0) >= f - 0.5) playPingPongLeg();
+        });
+        hoverTarget.addEventListener('mouseleave', function () { isHovering = false; lockAtIdleFrame(); });
+        if ('IntersectionObserver' in window) {
+          var obs = new IntersectionObserver(function(entries) {
+            entries.forEach(function(e) { if (e.isIntersecting) { play(); obs.disconnect(); } });
+          }, { threshold: 0.35 });
+          obs.observe(host);
+        } else { play(); }
+      };
+      initFeatureLottie('feature-f1-lottie', 'feat1-visual', 'assets/animations/F1.json');
+      initFeatureLottie('feature-f2-lottie', 'feat2-visual', 'assets/animations/F2.json');
+      initFeatureLottie('feature-f3-lottie', 'feat3-visual', 'assets/animations/F3.json');
+      initFeatureLottie('feature-f4-lottie', 'feat4-visual', 'assets/animations/F4.json');
+      initFeatureLottie('feature-f5-lottie', 'feat5-visual', 'assets/animations/F5.json');
+
+      // Hero Lottie
+      var introContainer = document.getElementById('hero-intro-lottie');
+      var loopContainer = document.getElementById('hero-loop-lottie');
+      var introTrack = document.getElementById('hero-intro-track');
+      var loopTrack = document.getElementById('hero-loop-track');
+      var hero = document.querySelector('.hero');
+      if (!introContainer || !loopContainer || !introTrack || !loopTrack || !hero) return;
+      var introAnim = window.lottie.loadAnimation({ container: introContainer, renderer: 'svg', loop: false, autoplay: true, path: 'assets/animations/HeroIntro.json', rendererSettings: { preserveAspectRatio: 'xMidYMid slice' } });
+      var loopAnim = window.lottie.loadAnimation({ container: loopContainer, renderer: 'svg', loop: true, autoplay: false, path: 'assets/animations/HeroLoop.json', rendererSettings: { preserveAspectRatio: 'xMidYMid slice' } });
+      introAnim.setSpeed(1.25); loopAnim.setSpeed(1.25);
+      var introDone = false, wantsHover = false, stopAfterLoop = false;
+      var showIntro = function () { introTrack.style.opacity = '1'; loopTrack.style.opacity = '0'; };
+      var showLoop = function () { introTrack.style.opacity = '0'; loopTrack.style.opacity = '1'; };
+      showIntro();
+      loopAnim.addEventListener('DOMLoaded', function () { stopAfterLoop = false; loopAnim.goToAndStop(0, true); });
+      loopAnim.addEventListener('complete', function () {
+        if (wantsHover && !stopAfterLoop) return;
+        stopAfterLoop = false; loopAnim.loop = false; loopAnim.goToAndStop(0, true);
       });
+      if (reduceMotion) { introAnim.goToAndStop(0, true); introDone = true; showLoop(); loopAnim.goToAndStop(0, true); }
+      else {
+        introAnim.addEventListener('complete', function () {
+          introDone = true; showLoop();
+          if (wantsHover) { stopAfterLoop = false; loopAnim.loop = true; loopAnim.play(); }
+          else { loopAnim.loop = false; loopAnim.goToAndStop(0, true); }
+        });
+      }
+      hero.addEventListener('mouseenter', function () { wantsHover = true; if (!introDone || reduceMotion) return; showLoop(); stopAfterLoop = false; loopAnim.loop = true; loopAnim.play(); });
+      hero.addEventListener('mouseleave', function () { wantsHover = false; if (!introDone) return; showLoop(); stopAfterLoop = true; loopAnim.loop = false; if (loopAnim.isPaused) { stopAfterLoop = false; loopAnim.goToAndStop(0, true); } });
     });
   </script>
 </body>
