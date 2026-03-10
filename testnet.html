@@ -78,8 +78,8 @@
     .cards { grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--border); }
     .card { min-height: 304px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 44px; }
     .card:nth-child(3n) { border-right: none; }
-    .card h3 { margin: 8px 0 10px; font-size: 24px; letter-spacing: -.96px; line-height: 1.2; }
-    .card p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.6; }
+    .card h3 { margin: 8px 0 10px; font-size: 24px; font-weight: 600; letter-spacing: -.96px; line-height: 1.333; }
+    .card p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.429; }
     .label { color: var(--accent); font-size: 14px; letter-spacing: -.28px; margin: 0; }
 
     /* Section label divider */
@@ -131,10 +131,10 @@
 
     /* Benefits (product cards) */
     .benefits { display: grid; min-height: 608px; border-top: 1px solid var(--border); grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .product { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); min-height: 304px; padding: 28px; display: flex; flex-direction: column; justify-content: flex-start; }
+    .product { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); min-height: 304px; padding: 44px; display: flex; flex-direction: column; gap: 4px; }
     .product:nth-child(3n) { border-right: none; }
-    .product h4 { margin: 0 0 10px; color: #fafafa; font-size: 24px; letter-spacing: -.96px; line-height: 1.2; }
-    .product p { margin: auto 0 0; color: var(--muted); font-size: 18px; line-height: 1.52; }
+    .product h4 { margin: 0; color: #fafafa; font-size: 24px; font-weight: 600; letter-spacing: -.96px; line-height: 1.333; }
+    .product p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.429; }
     .product-empty { background: transparent; }
 
 
