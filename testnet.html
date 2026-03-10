@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Floors Finance — Genesis Testnet</title>
-  <meta name="description" content="Join the Floors Finance Genesis Testnet. Earn weighted points clusters, explore protocol mechanics, and secure your place in the genesis distribution." />
+  <meta name="description" content="Earn genesis points on the Floors Finance Testnet. Points determine your Floors Token presale allocation — join Phase One and secure your share before it closes." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -81,10 +81,37 @@
     .section-label { border-top: 1px solid var(--border); min-height: 138px; display: grid; place-items: center; padding: 0 44px; }
     .section-label p { margin: 0; font-size: 24px; letter-spacing: -.96px; text-align: center; color: var(--muted); line-height: 1.5; }
 
+    /* Label utility */
+    .label { color: var(--accent); font-size: 11px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; line-height: 1; margin: 0; }
+
     /* Hook panel */
     .hook-panel { border-top: 1px solid var(--border); min-height: 304px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 64px 44px; text-align: center; }
     .hook-panel h3 { margin: 0 0 14px; font-size: 32px; letter-spacing: -1.28px; line-height: 1.2; }
-    .hook-panel .hook-sub { margin: 0 0 28px; color: var(--muted); font-size: 18px; line-height: 1.52; max-width: 620px; }
+    .hook-panel .hook-sub { margin: 0 0 24px; color: var(--muted); font-size: 18px; line-height: 1.52; max-width: 620px; }
+
+    /* Points metrics row */
+    .points-row { display: flex; border: 1px solid var(--border); margin: 0 0 32px; width: 100%; max-width: 680px; }
+    .points-stat { flex: 1; padding: 20px 28px; display: flex; flex-direction: column; gap: 6px; }
+    .points-stat + .points-stat { border-left: 1px solid var(--border); }
+    .points-stat-val { font-size: 28px; font-weight: 600; letter-spacing: -1.12px; color: var(--accent); line-height: 1; }
+    .points-stat-lbl { font-size: 12px; color: var(--muted); line-height: 1.4; }
+
+    /* Point badge on earn action cards */
+    .card-pts { display: inline-flex; align-items: center; height: 22px; padding: 0 8px; background: rgba(190,255,176,.06); border: 1px solid rgba(190,255,176,.2); border-radius: 3px; color: var(--accent); font-size: 11px; font-weight: 600; letter-spacing: .06em; margin-bottom: 6px; width: fit-content; }
+
+    /* Dashboard teaser */
+    .dash-teaser { border-top: 1px solid var(--border); display: grid; grid-template-columns: 1fr 1fr; }
+    .dash-left { padding: 64px 44px; display: flex; flex-direction: column; justify-content: center; gap: 18px; border-right: 1px solid var(--border); }
+    .dash-left h3 { margin: 0; font-size: 32px; font-weight: 600; letter-spacing: -1.28px; line-height: 1.2; }
+    .dash-left p { margin: 0; color: var(--muted); font-size: 18px; line-height: 1.52; }
+    .dash-right { padding: 44px; display: flex; flex-direction: column; justify-content: center; }
+    .dash-mock { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+    .dash-mock-cell { background: var(--bg); padding: 22px 24px; display: flex; flex-direction: column; gap: 8px; }
+    .dash-mock-lbl { font-size: 10px; color: var(--tier-label); letter-spacing: .1em; text-transform: uppercase; line-height: 1; }
+    .dash-mock-val { font-size: 22px; font-weight: 600; letter-spacing: -.88px; line-height: 1; }
+    .dash-mock-val.is-accent { color: var(--accent); }
+    .dash-mock-val.is-muted { color: var(--muted); }
+    .dash-soon { text-align: center; padding: 10px; font-size: 10px; color: var(--tier-label); letter-spacing: .1em; text-transform: uppercase; background: var(--bg); border: 1px solid var(--border); border-top: none; }
 
     /* Leaderboard */
     .leaderboard { display: grid; min-height: 608px; border-top: 1px solid var(--border); grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -202,6 +229,8 @@
       .leaderboard { grid-template-columns: 1fr; }
       .leaderboard-col + .leaderboard-col { border-left: none; border-top: 1px solid var(--border); }
       .leaderboard-col { min-height: auto; }
+      .dash-teaser { grid-template-columns: 1fr; }
+      .dash-left { border-right: none; border-bottom: 1px solid var(--border); }
       .benefits { grid-template-columns: 1fr; }
       .product { border-right: none; }
 .faq { grid-template-columns: 1fr; }
@@ -256,72 +285,93 @@
       <div class="hero-content-box">
         <div class="hero-status">
           <span class="hero-status-dot" aria-hidden="true"></span>
-          <span>Genesis Testnet Live</span>
+          <span>Genesis Phase One &nbsp;·&nbsp; Live</span>
         </div>
         <h1>Floor Only Goes Up</h1>
-        <p class="sub">Next-generation autonomous liquidity protocol providing deterministic floor price guarantees and interest-free credit.</p>
+        <p class="sub">748 wallets are already earning genesis points. Complete testnet actions to secure your Floors Token allocation — Phase One closes when presale fills.</p>
         <div class="actions">
-          <a class="btn-primary" href="#">Enter dApp</a>
+          <a class="btn-primary" href="#">Start Earning Points</a>
           <a class="btn-secondary" href="#">Check Dashboard</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- HOOK -->
+  <!-- POINTS SYSTEM INTRO -->
   <div class="wrap frame hook-panel">
-    <h3>Mathematical Proof of Backing</h3>
-    <p class="hook-sub">Every protocol operation reinforces the Reserve Pool, programmatically raising the floor price without external dependency.</p>
-    <a class="btn-primary" href="#">Launch Testnet</a>
+    <p class="label" style="margin-bottom:16px">Genesis Points System</p>
+    <h3>Earn Points. Secure Your Allocation.</h3>
+    <p class="hook-sub">Every testnet action earns weighted genesis points. Points determine your share of the Floors Token genesis — the earlier you earn, the higher your multiplier.</p>
+    <div class="points-row">
+      <div class="points-stat">
+        <span class="points-stat-val">4×</span>
+        <span class="points-stat-lbl">Multiplier for Phase One early participants</span>
+      </div>
+      <div class="points-stat">
+        <span class="points-stat-val">15%</span>
+        <span class="points-stat-lbl">of total supply reserved for genesis holders</span>
+      </div>
+      <div class="points-stat">
+        <span class="points-stat-val">T1–T3</span>
+        <span class="points-stat-lbl">Tier system unlocks vault priority access</span>
+      </div>
+    </div>
+    <a class="btn-primary" href="#">Start Earning Points</a>
   </div>
 
-  <!-- PROTOCOL PILLARS -->
-  <section class="wrap frame cards" aria-label="Protocol features">
+  <!-- EARN ACTIONS -->
+  <section class="wrap frame cards" aria-label="Point earning actions">
     <article class="card">
       <div class="card-hd">
-        <h3>Guaranteed Floor</h3>
-        <p>Contract-enforced minimum redemption value backed 1:1 by hard assets.</p>
-        <a class="card-btn" href="#" aria-label="Learn more"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4.5 11.5L11.5 4.5M11.5 4.5H5.5M11.5 4.5V10.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <span class="card-pts">+30 pts</span>
+        <h3>Connect Wallet</h3>
+        <p>Link your wallet to the testnet dApp. One-time action that registers you for genesis distribution and unlocks all earning features.</p>
+        <a class="card-btn" href="#" aria-label="Start earning"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4.5 11.5L11.5 4.5M11.5 4.5H5.5M11.5 4.5V10.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
       <div class="card-bd"></div>
     </article>
     <article class="card">
       <div class="card-hd">
-        <h3>Always Liquid</h3>
-        <p>Protocol Owned Liquidity (POL) ensures deep depth for instant exit at the floor.</p>
-        <a class="card-btn" href="#" aria-label="Learn more"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4.5 11.5L11.5 4.5M11.5 4.5H5.5M11.5 4.5V10.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <span class="card-pts">+120 pts</span>
+        <h3>Provide Liquidity</h3>
+        <p>Add to a floor-backed pool and earn reserve-building rewards. The highest single-action point yield in the testnet.</p>
+        <a class="card-btn" href="#" aria-label="Provide liquidity"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4.5 11.5L11.5 4.5M11.5 4.5H5.5M11.5 4.5V10.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
       <div class="card-bd"></div>
     </article>
     <article class="card">
       <div class="card-hd">
-        <h3>Interest-Free</h3>
-        <p>Borrow against your assets at the floor value with zero recurring costs.</p>
-        <a class="card-btn" href="#" aria-label="Learn more"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4.5 11.5L11.5 4.5M11.5 4.5H5.5M11.5 4.5V10.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <span class="card-pts">+90 pts</span>
+        <h3>Take a Loan</h3>
+        <p>Borrow interest-free against your floor value. Experience zero-liquidation credit in action — each loan earns full allocation points.</p>
+        <a class="card-btn" href="#" aria-label="Take a loan"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4.5 11.5L11.5 4.5M11.5 4.5H5.5M11.5 4.5V10.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
       <div class="card-bd"></div>
     </article>
     <article class="card">
       <div class="card-hd">
-        <h3>Auto-Scaling</h3>
-        <p>Generated fees are re-injected into the treasury to raise the floor price programmatically.</p>
-        <a class="card-btn" href="#" aria-label="Learn more"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4.5 11.5L11.5 4.5M11.5 4.5H5.5M11.5 4.5V10.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <span class="card-pts">+60 pts</span>
+        <h3>Make a Trade</h3>
+        <p>Swap through the trading pool. Earns recurring points with each volume tier reached — the more you trade, the more you accumulate.</p>
+        <a class="card-btn" href="#" aria-label="Make a trade"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4.5 11.5L11.5 4.5M11.5 4.5H5.5M11.5 4.5V10.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
       <div class="card-bd"></div>
     </article>
     <article class="card">
       <div class="card-hd">
-        <h3>Permissionless</h3>
-        <p>Deploy custom floor-backed markets for any ERC-20 asset autonomously.</p>
-        <a class="card-btn" href="#" aria-label="Learn more"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4.5 11.5L11.5 4.5M11.5 4.5H5.5M11.5 4.5V10.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <span class="card-pts">+50 pts each</span>
+        <h3>Refer a Friend</h3>
+        <p>Earn 50 points for every wallet you bring in on their first verified testnet action. No cap — refer as many as you want.</p>
+        <a class="card-btn" href="#" aria-label="Refer a friend"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4.5 11.5L11.5 4.5M11.5 4.5H5.5M11.5 4.5V10.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
       <div class="card-bd"></div>
     </article>
     <article class="card">
       <div class="card-hd">
-        <h3>Cross-Chain</h3>
-        <p>Unified liquidity layer deployed across Ethereum, Base, and Arbitrum.</p>
-        <a class="card-btn" href="#" aria-label="Learn more"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4.5 11.5L11.5 4.5M11.5 4.5H5.5M11.5 4.5V10.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <span class="card-pts">+40 pts</span>
+        <h3>Governance Vote</h3>
+        <p>Cast a signal vote on protocol parameters. Earns governance alpha status and the first tier of protocol voting rights at launch.</p>
+        <a class="card-btn" href="#" aria-label="Governance vote"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4.5 11.5L11.5 4.5M11.5 4.5H5.5M11.5 4.5V10.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
       <div class="card-bd"></div>
     </article>
@@ -329,7 +379,7 @@
 
   <!-- DIVIDER -->
   <div class="wrap frame section-label">
-    <p>748 participants. 140,000 points distributed. Phase One is live.</p>
+    <p>748 wallets competing. 140,000 points distributed. Your rank determines your allocation.</p>
   </div>
 
   <!-- GENESIS REWARDS / LEADERBOARD -->
@@ -339,8 +389,8 @@
         <span class="lb-live-dot" aria-hidden="true"></span>
         <span>Live Network Activity</span>
       </div>
-      <h3 class="lb-overview-title">Genesis Rewards</h3>
-      <p class="lb-overview-copy">Participate in the Testnet ecosystem to earn weighted points clusters.</p>
+      <h3 class="lb-overview-title">Compete for Allocation</h3>
+      <p class="lb-overview-copy">Your rank determines your tier. Your tier determines your Floors Token allocation. Top wallets earn up to 4× multipliers and first-access vault capacity.</p>
       <a class="btn-primary" href="#" style="width:fit-content;margin-top:4px">Join Phase One</a>
       <div class="lb-divider" aria-hidden="true"></div>
       <article class="lb-stat-row">
@@ -383,34 +433,34 @@
             <p class="lb-task-points">+30</p>
           </div>
           <div class="lb-task-copy">
-            <p>Link your wallet to the testnet dApp to begin earning points.</p>
+            <p>One-time action. Registers you for genesis distribution.</p>
           </div>
         </article>
         <article class="lb-task">
           <div class="lb-task-head">
             <h4>Provide Liquidity</h4>
-            <p class="lb-task-points">+30</p>
+            <p class="lb-task-points">+120</p>
           </div>
           <div class="lb-task-copy">
-            <p>Add liquidity to a floor-backed pool and earn reserve-building rewards.</p>
+            <p>Highest point yield. Add to a floor-backed pool.</p>
           </div>
         </article>
         <article class="lb-task">
           <div class="lb-task-head">
             <h4>Take a Loan</h4>
-            <p class="lb-task-points">+30</p>
+            <p class="lb-task-points">+90</p>
           </div>
           <div class="lb-task-copy">
-            <p>Borrow against your floor value. Experience zero-liquidation credit in action.</p>
+            <p>Borrow interest-free against floor value. Zero liquidation risk.</p>
           </div>
         </article>
         <article class="lb-task">
           <div class="lb-task-head">
-            <h4>Refer a Participant</h4>
-            <p class="lb-task-points">+30</p>
+            <h4>Refer a Friend</h4>
+            <p class="lb-task-points">+50</p>
           </div>
           <div class="lb-task-copy">
-            <p>Invite a friend to the testnet. Points credited on their first action.</p>
+            <p>Per wallet. Credited on their first verified action. Uncapped.</p>
           </div>
         </article>
       </div>
@@ -418,28 +468,59 @@
     </div>
   </section>
 
+  <!-- DASHBOARD TEASER -->
+  <div class="wrap frame dash-teaser" aria-label="Dashboard preview">
+    <div class="dash-left">
+      <p class="label">Coming Phase Two</p>
+      <h3>Your Allocation Dashboard</h3>
+      <p>Track your points in real-time, monitor your tier progress, and see your estimated Floors Token allocation as Phase One unfolds.</p>
+      <a class="btn-secondary" href="#" style="width:fit-content">Check Dashboard</a>
+    </div>
+    <div class="dash-right">
+      <div class="dash-mock">
+        <div class="dash-mock-cell">
+          <span class="dash-mock-lbl">Total Points</span>
+          <span class="dash-mock-val is-accent">—</span>
+        </div>
+        <div class="dash-mock-cell">
+          <span class="dash-mock-lbl">Current Tier</span>
+          <span class="dash-mock-val is-muted">—</span>
+        </div>
+        <div class="dash-mock-cell">
+          <span class="dash-mock-lbl">Est. Allocation</span>
+          <span class="dash-mock-val is-muted">—</span>
+        </div>
+        <div class="dash-mock-cell">
+          <span class="dash-mock-lbl">Leaderboard Rank</span>
+          <span class="dash-mock-val is-muted">—</span>
+        </div>
+      </div>
+      <div class="dash-soon">Dashboard launches in Phase Two</div>
+    </div>
+  </div>
+
   <!-- BENEFITS -->
   <section class="wrap frame benefits" aria-label="Genesis participation benefits">
     <article class="product">
       <div class="card-hd">
-        <h3>Genesis Distribution</h3>
-        <p>Points directly determine your share of the token genesis. Every action you take in the testnet compounds into your final allocation.</p>
+        <h3>Your Points, Your Tokens</h3>
+        <p>Phase One points convert directly into your genesis token allocation. No hidden caps. No late-entry discounts. The share you earn is the share you keep.</p>
         <a class="card-btn" href="#" aria-label="Learn more"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4.5 11.5L11.5 4.5M11.5 4.5H5.5M11.5 4.5V10.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
       <div class="card-bd"></div>
     </article>
     <article class="product">
       <div class="card-hd">
-        <h3>Tiered Access</h3>
-        <p>High earners secure priority access to upcoming vault capacity. Early participants lock in the best entry conditions before public launch.</p>
+        <h3>Rank Up, Get In First</h3>
+        <p>High-tier wallets access vault capacity and presale slots before public open. Lock in the floor price before it rises — and it will rise.</p>
         <a class="card-btn" href="#" aria-label="Learn more"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4.5 11.5L11.5 4.5M11.5 4.5H5.5M11.5 4.5V10.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
       <div class="card-bd"></div>
     </article>
     <article class="product">
       <div class="card-hd">
-        <h3>Governance Alpha</h3>
-        <p>Early contributors receive the first tier of protocol voting power. Shape the direction of Floors Finance from day one.</p>
+        <h3>Shape Floors From Day One</h3>
+        <p>Phase One participants receive the founding tier of protocol voting rights. The protocol you helped stress-test is the one you'll help govern.</p>
         <a class="card-btn" href="#" aria-label="Learn more"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4.5 11.5L11.5 4.5M11.5 4.5H5.5M11.5 4.5V10.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
       <div class="card-bd"></div>
@@ -462,14 +543,14 @@
     </div>
     <div class="faq-cell">
       <div class="faq-card">
-        <div class="faq-front"><h3>How does the floor price rise?</h3></div>
-        <div class="faq-back"><p>Trading fees, liquidity rebalancing, and staking yield all compound into the protocol's reserves. As reserves grow relative to supply, the floor rises automatically — no action needed from holders.</p></div>
+        <div class="faq-front"><h3>What are the tier thresholds?</h3></div>
+        <div class="faq-back"><p>T1 requires 5,000+ points and unlocks maximum allocation multipliers and first vault access. T2 starts at 2,000 points. T3 at 500. Incomplete (INC) wallets still earn a base allocation — but T1 earns disproportionately more.</p></div>
       </div>
     </div>
     <div class="faq-cell">
       <div class="faq-card">
-        <div class="faq-front"><h3>What are Genesis Rewards?</h3></div>
-        <div class="faq-back"><p>Points earned during the Genesis Testnet directly determine your share of the token genesis distribution. High earners secure priority access to vault capacity and the first tier of protocol voting power.</p></div>
+        <div class="faq-front"><h3>How do points convert to tokens?</h3></div>
+        <div class="faq-back"><p>Your final points balance at Phase One close determines your proportional share of the genesis allocation pool — 15% of total Floors Token supply. Higher points = larger share. Tier bonuses apply on top of your base allocation.</p></div>
       </div>
     </div>
     <div class="faq-cell">
@@ -488,8 +569,8 @@
 
   <!-- CTA -->
   <section class="wrap frame newsletter">
-    <h3>Join Genesis Phase One</h3>
-    <p>The floor only goes up from here. Secure the lowest entry price ever.</p>
+    <h3>Your Allocation Window Is Open</h3>
+    <p>Phase One points determine your Floors Token genesis allocation. Every action you skip is points — and allocation — left on the table.</p>
     <div class="actions" style="margin-top:0">
       <a class="btn-primary" href="#">Enter dApp</a>
       <div class="inline-capture" data-inline-capture>
