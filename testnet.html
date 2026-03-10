@@ -336,7 +336,7 @@
   <div class="wrap">
     <header class="topbar">
       <a class="brand-logo" href="index.html" aria-label="Floors">
-        <img class="brand-mark" src="FLoors%20Logo.svg" alt="" aria-hidden="true" />
+        <img class="brand-mark" src="assets/logos/floors-logo.svg" alt="" aria-hidden="true" />
       </a>
       <nav class="main-nav" aria-label="Main">
         <ul class="main-nav-list">
@@ -762,11 +762,11 @@
           obs.observe(host);
         } else { play(); }
       };
-      initFeatureLottie('feature-f1-lottie', 'feat1-visual', 'Animations/F1.json');
-      initFeatureLottie('feature-f2-lottie', 'feat2-visual', 'Animations/F2.json');
-      initFeatureLottie('feature-f3-lottie', 'feat3-visual', 'Animations/F3.json');
-      initFeatureLottie('feature-f4-lottie', 'feat4-visual', 'Animations/F4.json');
-      initFeatureLottie('feature-f5-lottie', 'feat5-visual', 'Animations/F5.json');
+      initFeatureLottie('feature-f1-lottie', 'feat1-visual', 'assets/animations/F1.json');
+      initFeatureLottie('feature-f2-lottie', 'feat2-visual', 'assets/animations/F2.json');
+      initFeatureLottie('feature-f3-lottie', 'feat3-visual', 'assets/animations/F3.json');
+      initFeatureLottie('feature-f4-lottie', 'feat4-visual', 'assets/animations/F4.json');
+      initFeatureLottie('feature-f5-lottie', 'feat5-visual', 'assets/animations/F5.json');
 
       // Hero Lottie
       var introContainer = document.getElementById('hero-intro-lottie');
@@ -775,8 +775,8 @@
       var loopTrack = document.getElementById('hero-loop-track');
       var hero = document.querySelector('.hero');
       if (!introContainer || !loopContainer || !introTrack || !loopTrack || !hero) return;
-      var introAnim = window.lottie.loadAnimation({ container: introContainer, renderer: 'svg', loop: false, autoplay: true, path: 'Animations/HeroIntro.json', rendererSettings: { preserveAspectRatio: 'xMidYMid slice' } });
-      var loopAnim = window.lottie.loadAnimation({ container: loopContainer, renderer: 'svg', loop: true, autoplay: false, path: 'Animations/HeroLoop.json', rendererSettings: { preserveAspectRatio: 'xMidYMid slice' } });
+      var introAnim = window.lottie.loadAnimation({ container: introContainer, renderer: 'svg', loop: false, autoplay: true, path: 'assets/animations/HeroIntro.json', rendererSettings: { preserveAspectRatio: 'xMidYMid slice' } });
+      var loopAnim = window.lottie.loadAnimation({ container: loopContainer, renderer: 'svg', loop: true, autoplay: false, path: 'assets/animations/HeroLoop.json', rendererSettings: { preserveAspectRatio: 'xMidYMid slice' } });
       introAnim.setSpeed(1.25); loopAnim.setSpeed(1.25);
       var introDone = false, wantsHover = false, stopAfterLoop = false;
       var showIntro = function () { introTrack.style.opacity = '1'; loopTrack.style.opacity = '0'; };

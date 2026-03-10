@@ -1034,7 +1034,7 @@
   <div class="wrap">
     <header class="topbar">
       <a class="brand-logo" href="#" aria-label="Floors">
-        <img class="brand-mark" src="FLoors%20Logo.svg" alt="" aria-hidden="true" />
+        <img class="brand-mark" src="assets/logos/floors-logo.svg" alt="" aria-hidden="true" />
       </a>
       <nav class="main-nav" aria-label="Main">
         <ul class="main-nav-list">
@@ -1528,11 +1528,11 @@
         }
         play();
       };
-      initFeatureLottie('feature-f1-lottie', 'feat1-visual', 'Animations/F1.json');
-      initFeatureLottie('feature-f2-lottie', 'feat2-visual', 'Animations/F2.json');
-      initFeatureLottie('feature-f3-lottie', 'feat3-visual', 'Animations/F3.json');
-      initFeatureLottie('feature-f4-lottie', 'feat4-visual', 'Animations/F4.json');
-      initFeatureLottie('feature-f5-lottie', 'feat5-visual', 'Animations/F5.json');
+      initFeatureLottie('feature-f1-lottie', 'feat1-visual', 'assets/animations/F1.json');
+      initFeatureLottie('feature-f2-lottie', 'feat2-visual', 'assets/animations/F2.json');
+      initFeatureLottie('feature-f3-lottie', 'feat3-visual', 'assets/animations/F3.json');
+      initFeatureLottie('feature-f4-lottie', 'feat4-visual', 'assets/animations/F4.json');
+      initFeatureLottie('feature-f5-lottie', 'feat5-visual', 'assets/animations/F5.json');
 
       if (!window.lottie) return;
 
@@ -1719,7 +1719,7 @@
           renderer: 'svg',
           loop: false,
           autoplay: true,
-          path: 'Animations/HeroIntro.json',
+          path: 'assets/animations/HeroIntro.json',
           rendererSettings: { preserveAspectRatio: 'xMidYMid slice' }
         });
         var loopAnimation = window.lottie.loadAnimation({
@@ -1727,7 +1727,7 @@
           renderer: 'svg',
           loop: true,
           autoplay: false,
-          path: 'Animations/HeroLoop.json',
+          path: 'assets/animations/HeroLoop.json',
           rendererSettings: { preserveAspectRatio: 'xMidYMid slice' }
         });
         introAnimation.setSpeed(1.25);
@@ -1810,7 +1810,7 @@
           renderer: 'svg',
           loop: false,
           autoplay: true,
-          path: 'Animations/LearnMoreIntro.json',
+          path: 'assets/animations/LearnMoreIntro.json',
           rendererSettings: { preserveAspectRatio: 'xMidYMid slice' }
         });
         var loopAnimation = window.lottie.loadAnimation({
@@ -1818,7 +1818,7 @@
           renderer: 'svg',
           loop: true,
           autoplay: false,
-          path: 'Animations/LearnMoreLoop.json',
+          path: 'assets/animations/LearnMoreLoop.json',
           rendererSettings: { preserveAspectRatio: 'xMidYMid slice' }
         });
 
@@ -1887,9 +1887,9 @@
       };
 
       initHeroHeadlineRotation();
-      initCardLottie('built-in-liquidity-lottie', 'Animations/OwnLiquidity.json');
-      initCardLottie('native-borrowing-lottie', 'Animations/NativeBorrowing.json');
-      initCardLottie('rising-floor-lottie', 'Animations/RisingFloor.json', 2.0);
+      initCardLottie('built-in-liquidity-lottie', 'assets/animations/OwnLiquidity.json');
+      initCardLottie('native-borrowing-lottie', 'assets/animations/NativeBorrowing.json');
+      initCardLottie('rising-floor-lottie', 'assets/animations/RisingFloor.json', 2.0);
       initHeroLottie();
       initLearnMoreLottie();
 
