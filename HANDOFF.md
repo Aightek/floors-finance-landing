@@ -1,80 +1,102 @@
-# HANDOFF — Floors Finance Modular Landing
-_Last updated: 2026-03-09_
+# HANDOFF - Floors Finance Modular Landing
+_Last updated: 2026-03-10_
 
 ---
 
-## Project Overview
-Static single-page landing page for Floors Finance, built in vanilla HTML/CSS/JS with no build step. Primary working file is `index.html`; testnet page is `testnet.html`; motion assets are in `Animations/`. Deploy flow is GitHub `master` to Vercel (`Aightek/floors-finance-landing`). No `CLAUDE.md` exists in project root.
+## Current State
+- **Task:** Redesign `testnet.html` into a standalone Genesis Testnet release page while keeping repo/deploy changes limited to intentionally shipped live-site files
+- **Phase:** Implementation
+- **Progress:** New local `testnet.html` redesign is complete in code, received a structural/accessibility QA pass, but has not been visually browser-QA'd, pushed, or deployed
 
-## Current Status
-Latest pushed commit: `18fedbb` (`Add testnet landing page; remove hidden sections from main`)
+## What We Did
+- Fetched and reviewed the reference page at `https://floors-testnet-landing.vercel.app/`
+- Replaced the old `testnet.html` that duplicated the main landing-page structure with a new standalone testnet page
+- Kept the leaderboard/tasks content from the previous `testnet.html`, but removed the duplicated landing-page hero imagery, Lottie usage, feature rows, benefits grid, and old CTA/email capture pattern
+- Added a follow-up polish pass on the new page to improve semantics and interaction quality without adding new deploy surface area
 
-Completed this session:
-- Created `testnet.html` — full dedicated testnet landing page
-- Wired `index.html` Testnet nav link → `testnet.html`
-- Removed hidden `.testnet` section from `index.html` (product cards, was `display:none`)
-- Removed hidden `.leaderboard` section from `index.html` (was `display:none`, had UTF-8 mojibake)
-- Reviewed `Floors UI/UX & CRO Overview.md` — a UX/CRO audit document with quick wins and high-impact items still pending
+## Latest Repo / Deploy State
+- Latest pushed commit: `17edca1` (`Reorganize live site assets`)
+- GitHub branch last pushed: `master`
+- Current production alias: `https://floors-finance-landing.vercel.app`
+- Current production deploy still reflects the pre-redesign `testnet.html`
+- Local working tree includes uncommitted changes to `testnet.html` and `HANDOFF.md`
 
-## testnet.html Structure (top → bottom)
-1. **Nav** — Logo → `index.html`, "Testnet" link marked `.is-active`
-2. **Hero** — Pulsing "Genesis Testnet Live" status dot, `h1` "Floor Only Goes Up", testnet sub-copy, "Enter dApp" (primary) + "Check Dashboard" (secondary) CTAs; shares HeroIntro/HeroLoop Lotties
-3. **Protocol Pillars** — 6-card 3×2 grid: Guaranteed Floor, Always Liquid, Interest-Free, Auto-Scaling, Permissionless, Cross-Chain
-4. **Stat Divider** — "748 participants. 140,000 points distributed. Phase One is live."
-5. **Genesis Rewards / Leaderboard** — `display:grid` (not hidden); live pulsing dot; 10 clean wallet entries (UTF-8 fixed); 4 tasks; tier values show `—` instead of `0`
-6. **Benefits** — 5 product cards (Presale, Hold, No Liquidations, Volatility, Supply)
-7. **Feature Rows** — 5 animated panels (F1–F5 Lotties), same hover/IntersectionObserver logic as main
-8. **FAQ** — 6 flip cards: floor price definition, liquidation risk, how floor rises, genesis rewards, audit, Phase One end
-9. **CTA** — "Join Genesis Phase One", "Enter dApp" primary + email capture inline
-10. **Footer** — Same 4-column grid as main
+## Decisions Made
+- **Use the reference page's content model for testnet** - the testnet page should explain the release and point system, not mirror the main marketing landing page
+- **Remove all image/animation dependencies from `testnet.html`** - the new testnet page is intentionally lighter and no longer depends on Lottie, hero animations, or landing-page visual duplication
+- **Keep the existing leaderboard section content** - wallet rankings and point-earning tasks from the prior `testnet.html` remain useful and were preserved in the redesign
+- **Do not deploy yet** - user requested a design-focused pass first; no GitHub/Vercel update was done for this redesign
 
-## Key Decisions
-- Testnet page is a standalone HTML file (not a route/SPA) — consistent with zero-build-step project
-- Hidden `.testnet` and `.leaderboard` sections fully removed from `index.html` DOM — no dead weight
-- Leaderboard wallet data replaced with clean readable aliases (`floors.eth`, `0x4f3c…a12e`, etc.) — original data was double-UTF-8 encoded mojibake, unrecoverable
-- Tier distribution shows `—` instead of `0` — signals "data pending" rather than "zero participants in tiers"
-- Hero on testnet reuses same Lottie assets (`HeroIntro.json` / `HeroLoop.json`) — avoids new asset dependency
-- `prefers-reduced-motion` guard included on all Lottie and animation code
-- Pulse animation added to `.hero-status-dot` and `.lb-live-dot` via `@keyframes pulse-dot`
+## Code Changes
+**Files modified locally:**
+- `testnet.html`
+  - replaced the old duplicated page structure with a new standalone testnet release page
+  - updated copy direction to match the reference page:
+    - `Genesis Testnet Live`
+    - `Floor Only Goes Up`
+    - `Mathematical Proof of Backing`
+    - `Protocol Pillars`
+    - `Genesis Rewards`
+    - `Common Questions`
+  - removed:
+    - hero Lottie setup
+    - feature-row animation system
+    - duplicated benefits/product card sections
+    - old flip-card FAQ
+    - inline email capture CTA module
+    - logo/image asset dependency in the page itself
+  - kept:
+    - leaderboard stats
+    - top wallets list
+    - point-earning task list
+  - replaced interactive behavior with a small FAQ accordion script only
+  - follow-up polish pass:
+    - added skip link and `main` landmark
+    - added visible keyboard focus styles
+    - upgraded FAQ accordion with `aria-controls` and `hidden` state sync
+    - changed `Top wallets - Feb 14, 2026` to a neutral `Leaderboard snapshot` label to avoid a stale hard-coded date
+- `HANDOFF.md`
+  - updated to reflect the current redesign state
 
-## UX/CRO Audit — Pending Items
-The file `Floors UI/UX & CRO Overview.md` contains a full audit. Items NOT yet implemented:
+## Reference Content Used
+- Source page reviewed: `https://floors-testnet-landing.vercel.app/`
+- Core copy patterns brought into the redesign:
+  - `Genesis Testnet Live`
+  - `Floor Only Goes Up`
+  - `Next-generation autonomous liquidity protocol providing deterministic floor price guarantees and interest-free credit.`
+  - `Mathematical Proof of Backing`
+  - `Every protocol operation reinforces the Reserve Pool, programmatically raising the floor price without external dependency.`
+  - `Protocol Pillars`
+  - `Genesis Rewards`
+  - `Participate in the Testnet ecosystem to earn weighted points clusters.`
+  - `Genesis Distribution`
+  - `Tiered Access`
+  - `Governance Alpha`
+  - `What defines a "Floor Price"?`
+  - `Is there liquidation risk?`
 
-**Quick Wins (low effort, high impact):**
-- [ ] Surface audit link near hero CTA as a trust badge
-- [ ] Rewrite newsletter section headline ("Feel the difference" → value-exchange copy)
-- [ ] Downgrade "Read Documentation" CTA to text link (index.html hero)
-- [ ] Style "Launch App" nav button as accented action
-
-**High-Impact:**
-- [ ] Mobile navigation menu (hamburger/drawer at ≤800px) — both pages
-- [ ] Move partner logo strip above the fold (below hero) on index.html
-- [ ] Replace partner text names with actual logo assets from `Partner Logos/` folder
-- [ ] Hero headline rewrite on index.html to pass 5-second clarity test
-
-**Known Issues Carried Forward:**
-- `prefers-reduced-motion` guard missing on hero Lottie in `index.html` (covered in testnet.html)
-- Partner logos folder `Partner Logos/` is untracked — needs decision: commit or gitignore
-- `Floors UI/`, `design-system.html`, `article.md`, `image.png`, `Email-Logo.svg` all untracked at root — triage needed
-
-## Blockers / Caveats
-- Git history still contains `Co-Authored-By: Claude Sonnet 4.6` lines in older commits. Can be rewritten with `FILTER_BRANCH_SQUELCH_WARNING=1 git filter-branch --msg-filter 'sed "/^Co-Authored-By:/d"' -- --all` followed by `git push --force` if desired.
-- No in-browser visual QA run this session — testnet.html is code-complete but unverified at runtime.
+## Known Issues / Caveats
+- No browser QA has been run on the redesigned `testnet.html`; the latest pass was code-level QA only
+- The new `testnet.html` is local only and not yet pushed or deployed
+- CTA links are still placeholders (`#`)
+- PowerShell emits a profile execution-policy warning on nearly every shell command in this environment; noisy but non-blocking
+- There are still many local-only untracked support files in `docs/`, `emails/`, `assets/images/`, `assets/illustrations/`, `assets/logos/partners/`, and some unused animation files
 
 ## Next Steps
-1. Visual QA `testnet.html` in browser — verify Lottie animations load, leaderboard layout, FAQ flips, CTA email capture.
-2. Visual QA `index.html` — confirm removal of hidden sections didn't shift any layout.
-3. Implement quick wins from UX audit: audit badge, CTA hierarchy, newsletter headline.
-4. Implement mobile nav (hamburger/drawer) — affects both `index.html` and `testnet.html`.
-5. Swap partner text names for real logos from `Partner Logos/` folder.
-6. Triage untracked root files — commit useful ones, gitignore the rest.
+1. Open and visually QA local `testnet.html`
+2. Tighten layout/copy if needed after QA against the reference page
+3. Wire real destinations for the testnet CTA links if available
+4. If approved, commit only `testnet.html` and deploy the redesign to GitHub/Vercel
+5. Optionally decide whether to keep or ignore the local-only support files
+
+## Files To Review On Resume
+- `testnet.html` - redesigned standalone Genesis Testnet release page
+- `index.html` - unchanged live main landing page
+- `HANDOFF.md` - current session state
+- `vercel.json` - static no-build deploy configuration
 
 ## Context Notes
-- Design tokens: `--bg: #0a0a0a`, `--text: #fafafa`, `--muted: #a1a1a1`, `--accent: #beffb0`, `--border: #262626`, `--col-pad: 44px`
-- Grid language: `.frame` (border, no border-top), `.wrap` (max 1060px), `repeat(3,1fr)` columns, `min-height: 304px` cells
-- Mechanic cards live at `index.html` around `.mechanic-card` / `.mechanic-copy` (3 cards, 608px height, gradient overlay via `::before`)
-- FAQ section: `.faq` / `.faq-cell` / `.faq-card` — pure CSS 3D Y-flip on hover
-- Hero verb cycling: `initHeroHeadlineRotation()` in JS, sequence `['Hold','Trade','Borrow','Loop','Earn']`, 2000ms interval
-- `.hook-highlight` is used only on the "Floors fixes this" paragraph inside `.hook-panel`
-- Commit messages do NOT include `Co-Authored-By` lines (user preference)
-- Lottie lib loaded from CDN: `cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js`
+- Static site, no build step
+- Deploy source is GitHub `master` to Vercel
+- User preference remains: do not add or deploy files that are not actively intended for the live site
+- Current production site has **not** received the new `testnet.html` yet
