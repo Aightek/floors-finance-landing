@@ -59,9 +59,6 @@
     /* Hero */
     .hero { height: 720px; position: relative; overflow: hidden; border-top: 1px solid var(--border); }
     .hero-grid { position: absolute; inset: 0; background-image: radial-gradient(circle at 1px 1px, rgba(190,255,176,.25) 1px, transparent 0); background-size: 28px 28px; opacity: .25; z-index: 0; }
-    .hero-lottie { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
-    .hero-lottie-track { position: absolute; inset: 0; }
-    .hero-lottie-track > div, .hero-lottie-track > svg { width: 100%; height: 100%; }
     .hero-illustration { position: absolute; bottom: -150px; left: 50%; transform: translateX(-50%); width: 620px; z-index: 2; pointer-events: none; }
     .hero-content { position: relative; z-index: 3; text-align: center; padding-left: var(--col-pad); padding-right: var(--col-pad); display: flex; flex-direction: column; align-items: center; }
     .hero-content-box { width: min(860px, 100%); min-height: 420px; padding: 64px 44px 56px; display: flex; flex-direction: column; align-items: center; }
@@ -254,10 +251,6 @@
   <!-- HERO -->
   <section class="wrap frame hero">
     <div class="hero-grid" aria-hidden="true"></div>
-    <div class="hero-lottie">
-      <div class="hero-lottie-track" id="hero-intro-track"><div id="hero-intro-lottie" aria-hidden="true"></div></div>
-      <div class="hero-lottie-track" id="hero-loop-track"><div id="hero-loop-lottie" aria-hidden="true"></div></div>
-    </div>
     <img class="hero-illustration" src="assets/illustrations/testnet-hero.svg" alt="" aria-hidden="true" />
     <div class="hero-content">
       <div class="hero-content-box">
@@ -518,11 +511,8 @@
     </div>
   </footer>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js" defer></script>
   <script>
     window.addEventListener('DOMContentLoaded', function () {
-      var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
       // Inline email capture
       var initInlineCapture = function () {
         var modules = Array.prototype.slice.call(document.querySelectorAll('[data-inline-capture]'));
@@ -555,38 +545,6 @@
         });
       };
       initInlineCapture();
-
-      if (!window.lottie) return;
-
-      // Hero Lottie
-      var introContainer = document.getElementById('hero-intro-lottie');
-      var loopContainer = document.getElementById('hero-loop-lottie');
-      var introTrack = document.getElementById('hero-intro-track');
-      var loopTrack = document.getElementById('hero-loop-track');
-      var hero = document.querySelector('.hero');
-      if (!introContainer || !loopContainer || !introTrack || !loopTrack || !hero) return;
-      var introAnim = window.lottie.loadAnimation({ container: introContainer, renderer: 'svg', loop: false, autoplay: true, path: 'assets/animations/HeroIntro.json', rendererSettings: { preserveAspectRatio: 'xMidYMid slice' } });
-      var loopAnim = window.lottie.loadAnimation({ container: loopContainer, renderer: 'svg', loop: true, autoplay: false, path: 'assets/animations/HeroLoop.json', rendererSettings: { preserveAspectRatio: 'xMidYMid slice' } });
-      introAnim.setSpeed(1.25); loopAnim.setSpeed(1.25);
-      var introDone = false, wantsHover = false, stopAfterLoop = false;
-      var showIntro = function () { introTrack.style.opacity = '1'; loopTrack.style.opacity = '0'; };
-      var showLoop = function () { introTrack.style.opacity = '0'; loopTrack.style.opacity = '1'; };
-      showIntro();
-      loopAnim.addEventListener('DOMLoaded', function () { stopAfterLoop = false; loopAnim.goToAndStop(0, true); });
-      loopAnim.addEventListener('complete', function () {
-        if (wantsHover && !stopAfterLoop) return;
-        stopAfterLoop = false; loopAnim.loop = false; loopAnim.goToAndStop(0, true);
-      });
-      if (reduceMotion) { introAnim.goToAndStop(0, true); introDone = true; showLoop(); loopAnim.goToAndStop(0, true); }
-      else {
-        introAnim.addEventListener('complete', function () {
-          introDone = true; showLoop();
-          if (wantsHover) { stopAfterLoop = false; loopAnim.loop = true; loopAnim.play(); }
-          else { loopAnim.loop = false; loopAnim.goToAndStop(0, true); }
-        });
-      }
-      hero.addEventListener('mouseenter', function () { wantsHover = true; if (!introDone || reduceMotion) return; showLoop(); stopAfterLoop = false; loopAnim.loop = true; loopAnim.play(); });
-      hero.addEventListener('mouseleave', function () { wantsHover = false; if (!introDone) return; showLoop(); stopAfterLoop = true; loopAnim.loop = false; if (loopAnim.isPaused) { stopAfterLoop = false; loopAnim.goToAndStop(0, true); } });
     });
   </script>
 </body>
