@@ -877,8 +877,8 @@
     @media (prefers-reduced-motion: reduce) {
       .faq-card { transition: none; }
     }
-    .newsletter { border-top: 1px solid var(--border); text-align: center; padding: 80px 24px; position: relative; overflow: hidden; min-height: 440px; display: flex; align-items: center; justify-content: flex-start; flex-direction: column; }
-    .newsletter h3 { margin: 0 0 28px; font-size: 36px; letter-spacing: -1.4px; line-height: 1.15; max-width: 540px; position: relative; z-index: 1; }
+    .footer-cta { border-top: 1px solid var(--border); text-align: center; padding: 80px 24px; position: relative; overflow: hidden; min-height: 440px; display: flex; align-items: center; justify-content: flex-start; flex-direction: column; }
+    .footer-cta h3 { margin: 0 0 28px; font-size: 36px; letter-spacing: -1.4px; line-height: 1.15; max-width: 540px; position: relative; z-index: 1; }
     .nl-canvas { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:0; }
     .nl-actions { position:relative; z-index:1; }
     @keyframes nl-crawl { to { stroke-dashoffset:-1900; } }
@@ -1060,7 +1060,7 @@
       .module-3col .divider-right {
         border-right: none;
       }
-      .newsletter { padding: 64px 20px; }
+      .footer-cta { padding: 64px 20px; }
       .footer-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 520px) {
@@ -1335,7 +1335,7 @@
     </div>
   </section>
 
-  <section class="wrap frame newsletter">
+  <section class="wrap frame footer-cta">
     <svg class="nl-canvas" viewBox="0 0 696 316" fill="none" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
       <defs>
         <linearGradient id="nl-grad" x1="0" y1="0" x2="0" y2="1">
@@ -1345,13 +1345,13 @@
       </defs>
       <g id="nl-bg"></g>
       <g class="nl-chart-group">
-        <path class="nl-premium" d="M 200,280 C 232,248 258,292 292,264 C 326,236 350,278 388,248 C 426,218 452,260 490,220 L 490,240 C 390,265 290,280 200,290 Z"/>
-        <path class="nl-floor"   d="M 200,290 C 290,280 390,265 490,240"/>
-        <path class="nl-market"  d="M 200,280 C 232,248 258,292 292,264 C 326,236 350,278 388,248 C 426,218 452,260 490,220"/>
-        <circle class="nl-dot" cx="490" cy="240" r="3"   fill="var(--accent)"/>
-        <circle class="nl-dot" cx="490" cy="220" r="2.5" fill="rgba(255,255,255,0.5)"/>
-        <text class="nl-label nl-label--market" x="497" y="224">market</text>
-        <text class="nl-label nl-label--floor"  x="497" y="244">floor</text>
+        <path class="nl-premium" d="M 200,230 C 232,198 258,242 292,214 C 326,186 350,228 388,198 C 426,168 452,210 490,170 L 490,190 C 390,215 290,230 200,240 Z"/>
+        <path class="nl-floor"   d="M 200,240 C 290,230 390,215 490,190"/>
+        <path class="nl-market"  d="M 200,230 C 232,198 258,242 292,214 C 326,186 350,228 388,198 C 426,168 452,210 490,170"/>
+        <circle class="nl-dot" cx="490" cy="190" r="3"   fill="var(--accent)"/>
+        <circle class="nl-dot" cx="490" cy="170" r="2.5" fill="rgba(255,255,255,0.5)"/>
+        <text class="nl-label nl-label--market" x="497" y="174">market</text>
+        <text class="nl-label nl-label--floor"  x="497" y="194">floor</text>
       </g>
     </svg>
     <h3 class="nl-title">Your floor.<br>Your move.</h3>
@@ -1488,7 +1488,7 @@
           }
         });
       };
-      // ── Newsletter floor/market animation ──────────────────────────────
+      // ── Footer CTA floor/market animation ──────────────────────────────
       (function () {
         var nlBg = document.getElementById('nl-bg');
         if (nlBg && !reduceMotion) {
@@ -1508,7 +1508,7 @@
           });
         }
 
-        var nlSection = document.querySelector('.newsletter');
+        var nlSection = document.querySelector('.footer-cta');
         if (!nlSection) return;
 
         var nlTitle = nlSection.querySelector('.nl-title');

@@ -1,112 +1,88 @@
 # HANDOFF - Floors Finance Modular Landing
-_Last updated: 2026-03-11_
+_Last updated: 2026-03-11 (session 2)_
 
 ---
 
 ## Current State
 
-- **Task:** Landing page visual enhancements — hero pills + newsletter animation
-- **Phase:** Complete — five commits pushed this session
-- **Branch:** `master` at commit `0525ae4`
+**Task:** Landing page visual enhancements — footer-cta section iteration
+**Phase:** Active
+**Branch:** `master`
 
 ## What We Did
 
-Added animated hero pills to the "Next Generation of Onchain Assets" section conveying the floor vs market price concept. Then rebuilt the newsletter section from scratch with a unified animated line system — background S-curves flow continuously while two anchor lines (floor = green, market = white) draw in on scroll, with a premium fill between them and a per-letter spring title entrance.
+Added animated hero pills to the "Next Generation of Onchain Assets" section. Rebuilt the newsletter section with a FloatingPaths-style background + centred floor/market chart that draws in on scroll. Attempted a second newsletter variant that merged the background paths with the chart lines into one unified system, but user preferred the original `3288c2b` version — reverted at end of session.
+
+## Current footer-cta State
+
+- **Section class:** `.footer-cta` (renamed from `.newsletter`)
+- **Background:** 30 diagonal FloatingPaths-style paths (15 each direction), fanning from off-screen top-left to off-screen bottom-right. Generated in JS on DOMContentLoaded. Stroke opacity 0.025–0.13, stroke-width 0.3–0.67. `stroke-dasharray: 260 1600`, `nl-crawl` keyframe `to { stroke-dashoffset: -1900 }`, duration 20–33s staggered.
+- **Chart (trigger: 25% scroll into view):**
+  - Premium fill: `M 200,230 C 232,198 ... 490,170 L 490,190 C 390,215 290,230 200,240 Z` — fades in at 1.5s delay
+  - Floor line: `M 200,240 C 290,230 390,215 490,190` — accent green, draws in 1.8s
+  - Market line: `M 200,230 C 232,198 258,242 292,214 C ... 490,170` — white 0.4 opacity, draws in 2.2s + 0.2s delay
+  - End-point dots + "market" / "floor" labels at x=497 — fade in at 1.6s / 1.8s
+  - Chart y-range: 168–240 in 316px viewBox (shifted up 50 units from previous 218–290, leaves bottom padding)
+- **Title:** "Your floor. Your move." — per-letter spring entrance (`cubic-bezier(.34,1.56,.64,1)`), triggered same time as chart
+- **Section:** `min-height: 440px`, flex column centered, `position: relative; overflow: hidden`
+
+## What Was Tried and Rejected
+
+- **Unified horizontal line system** (`0525ae4`) — replaced diagonal FloatingPaths with 19 horizontal S-curves (`M 0,y C 232,y±w 464,y∓w 696,y-end`) spanning full section width. Floor (y=182) and market (y=140) were anchor lines at section centre, background lines flowed above/below/between. `stroke-dasharray: 120 520`, loop period 640px. User preferred the original diagonal aesthetic — reverted via `git checkout 3288c2b -- index.html`.
+
+## cta-pills (complete, no changes pending)
+
+Three pills at the bottom of `.cta-main` ("Next Generation of Onchain Assets"), `position: absolute; bottom: 88px`:
+
+| Pill | Icon | Treatment |
+|---|---|---|
+| Market price fluctuates | Jagged chart line | `.cta-pill` default (muted) |
+| Floor price only ever rises | Rising floor + arrow | `.cta-pill-icon--accent` (green bg) |
+| Your floor — sell, borrow, or hold | Infinity symbol | `.cta-pill` default |
+
+Sequential focus animation: 6s cycle, 2s per pill. `@keyframes pill-focus` — ease in `cubic-bezier(.4,0,.2,1)` at 0→10%, linear hold 10→26%, ease out `cubic-bezier(.6,0,1,.6)` at 26→34%, inactive 34→100%. Stagger: pill 1 at `0s`, pill 2 at `2s`, pill 3 at `4s`.
 
 ## Decisions Made
 
-- **Pills at `bottom: 88px`** — Mirrors the section's `padding-top: 100px` for visual balance. Positioned `absolute` inside `cta-main` (already `position: relative`).
-- **Sequential pill focus animation** — 6s cycle, 2s per pill, `cubic-bezier(.4,0,.2,1)` ease-in / `cubic-bezier(.6,0,1,.6)` ease-out. Easing baked per keyframe segment, not on the `animation` shorthand. Accent green icon on the floor pill differentiates the guarantee from volatility.
-- **Unified line visual language** — All lines (background + floor + market) use the same S-curve formula (`M 0,y C 232,y±w 464,y∓w 696,y-end`). Background paths flow; floor/market stay stationary. Rejected keeping separate chart vs background SVG systems.
-- **Background path loop** — `stroke-dasharray: 120 520` (period = 640). `@keyframes nl-crawl { to { stroke-dashoffset: -640 } }` gives a perfect seamless loop. 19 paths with staggered `animation-delay` of `idx * 0.55s` so none sync.
-- **Gradient locked to `gradientUnits="userSpaceOnUse"` with `y1=96 y2=182`** — Matches the actual y-range of the market/floor lines in the viewBox, not the full viewBox height. Makes the mint fill visibly gradient within the premium zone.
-- **Premium fill timing** — `transition: opacity 0.8s ease 2.2s` (delay 2.2s after `nl-chart-go`). Market line finishes drawing at ~2.4s so fill begins just as lines complete.
-- **Letter animation** — `cubic-bezier(.34,1.56,.64,1)` (spring with overshoot, matching 21st.dev BackgroundPaths). Words stagger at `wordDelay += 0.1s`, letters at `ci * 0.03s`.
-- **Newsletter section height: 600px** — 2x the original natural height. Flex column + `align-items: center` keeps content vertically centered without absolute positioning.
+- **Pills `bottom: 88px`** — mirrors `padding-top: 100px` on the section title for visual symmetry
+- **Accent green on floor pill icon only** — distinguishes the "guaranteed" pill from the two informational ones without over-styling
+- **Newsletter: diagonal FloatingPaths preferred over horizontal** — more atmospheric, less "charty". The chart lines (x: 200–490) are centred in the section and clearly separated from the fanning background.
+- **Revert via `git checkout <commit> -- file`** — cleaner than `git revert` (which conflicted) or force-push
 
-## Code Changes
+## Session Commits
 
-**Files modified this session:** `index.html` only
-
-**Session commits:**
 | Hash | Description |
 |---|---|
 | `a220bc2` | Add floor/market price pills to Next Generation section |
 | `fa57b41` | Move cta-pills to absolute bottom of section |
-| `0f631b9` | Sequential focus animation on pills + bottom padding to 88px |
-| `3288c2b` | Full newsletter section rebuild with animated lines |
-| `0525ae4` | Merge background lines with floor/market, 2x section height |
+| `0f631b9` | Sequential focus animation on pills + bottom: 88px |
+| `3288c2b` | Full newsletter section rebuild (FloatingPaths + chart) |
+| `0525ae4` | Merge background lines with floor/market (REVERTED) |
+| `a3d86ce` | Update HANDOFF |
+| `77e9084` | Restore newsletter to 3288c2b state |
+| _(next)_ | Rename newsletter→footer-cta, shift chart up 50px |
 
-**Key selectors added:**
-```
-.cta-pills          — absolute bottom:88px, flex row, centered
-.cta-pill           — pill badge (border, bg, muted text)
-.cta-pill-icon      — 22px circle badge inside pill
-.cta-pill-icon--accent — accent green variant for floor pill
-@keyframes pill-focus  — 6s cycle: inactive → active → inactive
-.nl-canvas          — absolute inset SVG, z-index:0
-.nl-floor / .nl-market — stroke-dashoffset draw-in on .nl-chart-go
-.nl-premium         — fill with transition delayed 2.2s after trigger
-.nl-letter / .nl-word  — spring letter entrance on .nl-title-go
-@keyframes nl-crawl — stroke-dashoffset -640 loop for bg paths
-```
+## Open Questions / Next Steps
 
-## SVG Line Positions (viewBox 0 0 696 316)
+- [ ] **footer-cta iteration** — chart position improved; may still want tweaks (label positions, section height, fill opacity, line weight)
+- [ ] **Chart x-range** — lines currently x: 200–490 (centred safe zone for mobile). Labels at x=497 may clip on narrow viewports — consider moving to x=340 area or removing
+- [ ] **footer-cta section height** — currently `min-height: 440px`. May need adjustment now that chart sits higher.
+- [ ] **Lottie files** — `Hero.json`, `Curve.json`, `Leveraged.json` etc. are untracked. `cta-main` Lottie layer is `z-index:1`, pills are `z-index:2` — stack order is correct when files land.
+- [ ] **All CTA links** point to `#` — real URLs needed
+- [ ] **Testnet page** — leaderboard data hardcoded, tier distribution shows `—`, CTA links `#`, footer version `v1.4.2-ALPHA` unconfirmed
 
-```
-y=140  MARKET  white 0.5/1.2px  M 0,140 C 87,118 142,158 204,132 C ... C 618,92 657,108 696,102
-y=182  FLOOR   accent green 1.5px  M 0,182 C 232,174 464,163 696,150
+## Key Files
 
-Background bands:
-  Above market (y=140):  8, 24, 40, 56, 72, 88, 104, 120
-  Between (y=140–182):   155, 163, 171
-  Below floor  (y=182):  197, 213, 229, 245, 261, 277, 292, 308
-
-Premium fill path:
-  M 0,140 [market forward] 696,102 L 696,150 C 464,163 232,174 0,182 Z
-```
-
-## Open Questions
-
-- [ ] Should labels ("market" / "floor") be added to the SVG at a safe x position (x≈300–400 to survive mobile crop)? Deferred — title text provides enough context for now.
-- [ ] `cta-main` Lottie animation files (`HeroIntro.json` / `HeroLoop.json`) — still untracked, not deployed. Pills layer above `z-index:2` (same as Lottie layer) so z-order should be correct when files land.
-- [ ] All CTA buttons still point to `#` — real dApp/dashboard URLs needed.
-- [ ] Testnet page open items still pending (see below).
-
-## Testnet Page Open Items (from previous session)
-
-- [ ] Real CTA link destinations
-- [ ] Live leaderboard data (currently hardcoded)
-- [ ] Tier Distribution values show `—` dashes
-- [ ] Footer version string `v1.4.2-ALPHA` — confirm
-- [ ] Hero animation files for testnet — reuse `Hero.json` or separate
-
-## Known Issues / Caveats
-
-- **Mobile crop on newsletter SVG** — `preserveAspectRatio="xMidYMid slice"` crops x:254–442 at 375px screen. Background paths span full 0–696 so some are clipped at edges (fine, decorative). Floor/market lines also exist in center so always visible.
-- **No hamburger nav at <800px** — design-system bug, affects `testnet.html` primarily.
-- **Many untracked files** — `docs/`, `emails/`, `assets/images/`, `assets/illustrations/`, `assets/logos/partners/`, animation JSONs — not deployed, not in scope.
-
-## Next Steps
-
-1. [ ] Add visual/animation content (Lottie files) to sections once finalized
-2. [ ] Wire real CTA links when dApp/dashboard URLs are available
-3. [ ] Consider adding "market" / "floor" SVG labels at x≈320 (safe mobile zone)
-4. [ ] Port newsletter animation to `testnet.html` if desired
-5. [ ] Address testnet page open items (leaderboard, CTAs, tier values)
-6. [ ] Confirm footer version string and copyright across both pages
-
-## Files to Review on Resume
-
-- `index.html` — all changes this session; search `cta-pills`, `nl-canvas`, `nl-chart-group`, `Newsletter floor/market animation`
-- `testnet.html` — testnet-specific page, open items above
+- `index.html` — all changes; search `cta-pills`, `nl-canvas`, `nl-chart-group`, `Footer CTA floor/market animation` (~line 1491)
+- `testnet.html` — separate page, open items above
 - `docs/design/design-system.html` — token/component/pattern reference
 
-## Context Notes
+## Context / Constraints
 
-- Static site, no build step
-- Deploy: GitHub `master` → Vercel (`https://floors-finance-landing.vercel.app`)
-- Constraint: preserve modular design system at all times — no standalone redesigns
-- All animation JS lives inside one `DOMContentLoaded` listener in `index.html` ~line 1378
-- `reduceMotion` variable checked at the top of the listener — all animations gate on it
+- Static site, no build step — vanilla HTML/CSS/JS only
+- Deploy: `master` → Vercel at `https://floors-finance-landing.vercel.app`
+- Modular design system must be preserved — no standalone redesigns
+- All animation JS inside one `DOMContentLoaded` listener in `index.html` ~line 1379
+- `var reduceMotion` checked at top of listener — all animations must gate on it
 - Design tokens: `--bg:#0a0a0a` `--border:#262626` `--text:#fafafa` `--muted:#a1a1a1` `--accent:#beffb0`
+- Font: Poppins 400/500/600
