@@ -1501,20 +1501,20 @@
       (function () {
         var nlBg = document.getElementById('nl-bg');
         if (nlBg && !reduceMotion) {
-          [1, -1].forEach(function (pos) {
-            for (var i = 0; i < 15; i++) {
-              var yOff = i * 18 * pos;
-              var dAttr = 'M -400 '+(600+yOff)+' C -50 '+(360+yOff)+' 750 '+(-40+yOff)+' 1100 '+(-300+yOff);
-              var p = document.createElementNS('http://www.w3.org/2000/svg','path');
-              p.setAttribute('d', dAttr);
-              p.setAttribute('stroke', 'rgba(255,255,255,'+(0.025+i*0.008)+')');
-              p.setAttribute('stroke-width', String(0.3+i*0.025));
-              p.setAttribute('fill','none');
-              p.setAttribute('stroke-dasharray','260 1600');
-              p.style.animation = 'nl-crawl '+(20+i*0.9)+'s linear '+(i*0.6+(pos===-1?10:0))+'s infinite';
-              nlBg.appendChild(p);
-            }
-          });
+          // 30 lines parallel to the floor line curve, spread above and below it
+          // Floor line extended to full width: M -50,283 C 250,253 500,208 750,143
+          for (var i = 0; i < 30; i++) {
+            var yOff = (i - 14.5) * 12;
+            var d = 'M -50,'+(283+yOff)+' C 250,'+(253+yOff)+' 500,'+(208+yOff)+' 750,'+(143+yOff);
+            var p = document.createElementNS('http://www.w3.org/2000/svg','path');
+            p.setAttribute('d', d);
+            p.setAttribute('stroke', 'rgba(255,255,255,'+(0.022+i*0.005)+')');
+            p.setAttribute('stroke-width', String(0.3+i*0.018));
+            p.setAttribute('fill','none');
+            p.setAttribute('stroke-dasharray','260 1600');
+            p.style.animation = 'nl-crawl '+(20+i*0.9)+'s linear '+(i*0.65)+'s infinite';
+            nlBg.appendChild(p);
+          }
         }
 
         var nlSection = document.querySelector('.footer-cta');
