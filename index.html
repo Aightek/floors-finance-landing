@@ -1354,7 +1354,7 @@
         <text class="nl-label nl-label--floor"  x="497" y="214">floor</text>
       </g>
     </svg>
-    <h3 class="nl-title">You can do whatever<br>you want with floor value</h3>
+    <h3 class="nl-title">Your floor.<br>Your move.</h3>
     <div class="actions nl-actions" style="margin-top:0">
       <div class="inline-capture" data-inline-capture>
         <button type="button" class="btn-primary inline-capture-trigger">Get Early Access</button>
@@ -1495,12 +1495,12 @@
           [1, -1].forEach(function (pos) {
             for (var i = 0; i < 15; i++) {
               var a = -(380 - i * 5 * pos);
-              var b = -(189 + i * 6);
+              var b = 505 + i * 6;
               var c = -(312 - i * 5 * pos);
               var e = 152 - i * 5 * pos;
               var f = 616 - i * 5 * pos;
               var g = 684 - i * 5 * pos;
-              var dAttr = 'M'+a+' '+b+'C'+a+' '+b+' '+c+' '+(216-i*6)+' '+e+' '+(343-i*6)+'C'+f+' '+(470-i*6)+' '+g+' '+(875-i*6)+' '+g+' '+(875-i*6);
+              var dAttr = 'M'+a+' '+b+'C'+a+' '+b+' '+c+' '+(100+i*6)+' '+e+' '+(-27+i*6)+'C'+f+' '+(-154+i*6)+' '+g+' '+(-559+i*6)+' '+g+' '+(-559+i*6);
               var p = document.createElementNS('http://www.w3.org/2000/svg','path');
               p.setAttribute('d', dAttr);
               p.setAttribute('stroke', 'rgba(255,255,255,'+(0.025+i*0.008)+')');
