@@ -5,9 +5,9 @@ _Last updated: 2026-03-11 (session 2)_
 
 ## Current State
 
-**Task:** Landing page visual enhancements — footer-cta section iteration
-**Phase:** Active
-**Branch:** `master`
+**Task:** Landing page visual polish — footer-cta, card animations, hooks
+**Phase:** Complete — session 2 wrapped
+**Branch:** `master` at commit `c580148`
 
 ## What We Did
 
@@ -60,7 +60,14 @@ Sequential focus animation: 6s cycle, 2s per pill. `@keyframes pill-focus` — e
 | `0525ae4` | Merge background lines with floor/market (REVERTED) |
 | `a3d86ce` | Update HANDOFF |
 | `77e9084` | Restore newsletter to 3288c2b state |
-| _(next)_ | Rename newsletter→footer-cta, shift chart up 50px |
+| `9f7dff5` | footer-cta: rename + chart shift up 50px |
+| `4309b0c` | card-with-media: scale 80%, top-aligned |
+| `9c5a8f8` | partners: add hook panel |
+| `f163162` | partners hook: body copy only |
+| `1ec8277` | faq: add hook panel |
+| `3148f58` | footer-cta bg: parallel to floor curve |
+| `4e339e2` | footer-cta bg: negative delay fix |
+| `c580148` | footer-cta bg: random start positions (HEAD) |
 
 ## Open Questions / Next Steps
 
