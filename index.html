@@ -1512,7 +1512,8 @@
             p.setAttribute('stroke-width', String(0.3+i*0.018));
             p.setAttribute('fill','none');
             p.setAttribute('stroke-dasharray','260 1600');
-            p.style.animation = 'nl-crawl '+(20+i*0.9)+'s linear -'+(5+i*1.5)+'s infinite';
+            var dur = 20+i*0.9;
+            p.style.animation = 'nl-crawl '+dur+'s linear -'+(Math.random()*dur).toFixed(2)+'s infinite';
             nlBg.appendChild(p);
           }
         }
