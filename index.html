@@ -881,7 +881,7 @@
     .newsletter h3 { margin: 0 0 28px; font-size: 36px; letter-spacing: -1.4px; line-height: 1.15; max-width: 540px; position: relative; z-index: 1; }
     .nl-canvas { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:0; }
     .nl-actions { position:relative; z-index:1; }
-    @keyframes nl-crawl { to { stroke-dashoffset:-640; } }
+    @keyframes nl-bg-flow { 0%{stroke-dashoffset:0} 50%{stroke-dashoffset:-3000} 100%{stroke-dashoffset:0} }
     .nl-premium { fill:url(#nl-grad); opacity:0; }
     .nl-floor   { stroke:var(--accent); stroke-width:1.5; fill:none; stroke-linecap:round; stroke-dasharray:750; stroke-dashoffset:750; }
     .nl-market  { stroke:rgba(255,255,255,0.5); stroke-width:1.2; fill:none; stroke-linecap:round; stroke-dasharray:900; stroke-dashoffset:900; }
@@ -1482,30 +1482,34 @@
       (function () {
         var nlBg = document.getElementById('nl-bg');
         if (nlBg && !reduceMotion) {
-          // Horizontal S-curves spanning full section width (viewBox 0 0 696 316).
-          // Two central positions (y≈140 and y≈182) are reserved for the market/floor
-          // anchor lines. Background paths fill above, between, and below those lines.
-          var bgCfg = [
-            // above market (y=140)
-            {y:8,   w:6},  {y:24, w:-8}, {y:40, w:7},  {y:56, w:-9},
-            {y:72,  w:8},  {y:88, w:-6}, {y:104,w:10}, {y:120,w:-7},
-            // between market and floor
-            {y:155, w:5},  {y:163,w:-4}, {y:171,w:6},
-            // below floor (y=182)
-            {y:197, w:-8}, {y:213,w:9},  {y:229,w:-6}, {y:245,w:8},
-            {y:261, w:-7}, {y:277,w:9},  {y:292,w:-5}, {y:308,w:4}
-          ];
-          bgCfg.forEach(function (cfg, idx) {
-            var y = cfg.y, w = cfg.w;
-            var d = 'M 0,'+y+' C 232,'+(y+w)+' 464,'+(y-w)+' 696,'+(y - Math.round(w*0.5));
-            var p = document.createElementNS('http://www.w3.org/2000/svg','path');
-            p.setAttribute('d', d);
-            p.setAttribute('stroke', 'rgba(255,255,255,'+(0.035 + (idx % 3) * 0.008)+')');
-            p.setAttribute('stroke-width', '0.5');
-            p.setAttribute('fill', 'none');
-            p.setAttribute('stroke-dasharray', '120 520');
-            p.style.animation = 'nl-crawl '+(13+idx*0.75)+'s linear '+(idx*0.55)+'s infinite';
-            nlBg.appendChild(p);
+          // Diagonal floating paths — two mirrored fans (position ±1) of 18 paths each,
+          // using the same formula as the 21st.dev BackgroundPaths component.
+          // viewBox is 0 0 696 316 so these coordinates map directly.
+          [1, -1].forEach(function (pos, pi) {
+            for (var i = 0; i < 18; i++) {
+              var ax = -(380 - i * 5 * pos);
+              var ay = -(189 + i * 6);
+              var bx = -(312 - i * 5 * pos);
+              var by = 216 - i * 6;
+              var cx = 152 - i * 5 * pos;
+              var cy = 343 - i * 6;
+              var dx = 616 - i * 5 * pos;
+              var dy = 470 - i * 6;
+              var ex = 684 - i * 5 * pos;
+              var ey = 875 - i * 6;
+              var d = 'M'+ax+' '+ay+' C'+ax+' '+ay+' '+bx+' '+by+' '+cx+' '+cy+' C'+dx+' '+dy+' '+ex+' '+ey+' '+ex+' '+ey;
+              var p = document.createElementNS('http://www.w3.org/2000/svg','path');
+              p.setAttribute('d', d);
+              var op = (0.1 + i * 0.03).toFixed(3);
+              p.setAttribute('stroke', 'rgba(255,255,255,' + op + ')');
+              p.setAttribute('stroke-width', (0.5 + i * 0.03).toFixed(2));
+              p.setAttribute('fill', 'none');
+              p.setAttribute('stroke-dasharray', '800 2200');
+              var dur = (20 + i * 0.55).toFixed(1);
+              var del = (i * 0.55 + pi * 4.5).toFixed(2);
+              p.style.animation = 'nl-bg-flow ' + dur + 's linear ' + del + 's infinite';
+              nlBg.appendChild(p);
+            }
           });
         }
 
