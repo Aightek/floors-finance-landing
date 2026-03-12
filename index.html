@@ -897,6 +897,45 @@
     .nl-letter { display:inline-block; opacity:0; transform:translateY(22px); }
     .nl-title-go .nl-letter { animation:nl-letter 0.55s cubic-bezier(.34,1.56,.64,1) forwards; }
     @keyframes nl-letter { to { opacity:1; transform:translateY(0); } }
+    /* === Floor Premium section === */
+    .floor-premium { border-top:1px solid var(--border); padding:80px 24px 72px; position:relative; overflow:hidden; display:flex; align-items:center; flex-direction:column; gap:48px; }
+    .fp-canvas { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:0; }
+    .fp-text { position:relative; z-index:1; text-align:center; max-width:560px; }
+    .fp-text .label { margin-bottom:16px; }
+    .fp-title { font-size:42px; font-weight:600; letter-spacing:-1.6px; line-height:1.1; margin:0 0 16px; }
+    .fp-sub { color:var(--muted); font-size:16px; line-height:1.65; margin:0; }
+    .fp-chart-wrap { position:relative; z-index:1; width:100%; max-width:760px; }
+    .fp-chart { width:100%; height:auto; overflow:visible; }
+    .fp-premium { fill:url(#fp-grad); opacity:0; transition:opacity 1.2s ease 1.5s; }
+    .fp-floor  { stroke:var(--accent); stroke-width:1.5; fill:none; stroke-linecap:round; stroke-dasharray:700; stroke-dashoffset:700; }
+    .fp-market { stroke:rgba(255,255,255,0.4); stroke-width:1; fill:none; stroke-linecap:round; stroke-dasharray:900; stroke-dashoffset:900; }
+    .fp-dot    { opacity:0; }
+    .fp-label  { font-size:9px; font-family:Poppins,sans-serif; opacity:0; }
+    .fp-label--market  { fill:rgba(255,255,255,0.45); }
+    .fp-label--floor   { fill:var(--accent); }
+    .fp-label--premium { fill:rgba(190,255,176,0.45); font-size:7.5px; letter-spacing:1.8px; text-anchor:middle; }
+    .fp-chart-go .fp-floor   { animation:nl-draw 2s cubic-bezier(.4,0,.2,1) forwards; }
+    .fp-chart-go .fp-market  { animation:nl-draw 2.5s cubic-bezier(.4,0,.2,1) 0.2s forwards; }
+    .fp-chart-go .fp-dot     { animation:nl-fade 0.3s ease 1.8s forwards; }
+    .fp-chart-go .fp-premium { opacity:0.75; }
+    .fp-chart-go .fp-label   { animation:nl-fade 0.5s ease 2s forwards; }
+    .fp-actions { position:relative; z-index:1; display:grid; grid-template-columns:repeat(3,1fr); gap:16px; width:100%; max-width:760px; }
+    .fp-action { border:1px solid var(--border); border-radius:12px; padding:24px 20px; display:flex; flex-direction:column; gap:8px; background:rgba(10,10,10,0.5); opacity:0; transform:translateY(16px); transition:opacity 0.5s ease, transform 0.5s ease; }
+    .fp-actions-go .fp-action { opacity:1; transform:translateY(0); }
+    .fp-actions-go .fp-action:nth-child(1) { transition-delay:0s; }
+    .fp-actions-go .fp-action:nth-child(2) { transition-delay:0.1s; }
+    .fp-actions-go .fp-action:nth-child(3) { transition-delay:0.2s; }
+    .fp-action-icon { width:36px; height:36px; border-radius:8px; border:1px solid var(--border); display:flex; align-items:center; justify-content:center; margin-bottom:4px; flex-shrink:0; }
+    .fp-action-icon svg { width:16px; height:16px; stroke:var(--muted); stroke-width:1.5; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+    .fp-action-icon--accent { background:rgba(190,255,176,0.08); border-color:rgba(190,255,176,0.22); }
+    .fp-action-icon--accent svg { stroke:var(--accent); }
+    .fp-action-name { font-size:14px; font-weight:600; letter-spacing:-0.3px; color:var(--text); }
+    .fp-action p { font-size:13px; line-height:1.6; color:var(--muted); margin:0; }
+    @media (max-width:680px) {
+      .fp-actions { grid-template-columns:1fr; max-width:400px; }
+      .fp-title { font-size:32px; }
+      .floor-premium { gap:36px; padding:64px 20px 56px; }
+    }
     .inline-capture {
       position: relative;
       height: 48px;
@@ -1277,6 +1316,60 @@
     </article>
   </section>
 
+  <section class="wrap frame floor-premium">
+    <svg class="fp-canvas" viewBox="0 0 760 380" fill="none" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <g id="fp-bg"></g>
+    </svg>
+    <div class="fp-text">
+      <p class="label">Floor vs Market</p>
+      <h2 class="fp-title">The premium is yours.</h2>
+      <p class="fp-sub">The gap between floor and market price is real capital. Sell into it, borrow from it, or hold while both lines climb — your floor, your call.</p>
+    </div>
+    <div class="fp-chart-wrap">
+      <svg class="fp-chart" viewBox="0 0 760 200" fill="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="fp-grad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#beffb0" stop-opacity="0.16"/>
+            <stop offset="100%" stop-color="#beffb0" stop-opacity="0.02"/>
+          </linearGradient>
+        </defs>
+        <g class="fp-chart-group">
+          <path class="fp-premium" d="M 80,145 C 130,112 165,150 225,118 C 282,86 312,128 372,96 C 432,64 458,104 518,78 C 568,56 622,86 680,62 L 680,105 C 480,138 260,158 80,165 Z"/>
+          <path class="fp-floor"   d="M 80,165 C 260,158 480,138 680,105"/>
+          <path class="fp-market"  d="M 80,145 C 130,112 165,150 225,118 C 282,86 312,128 372,96 C 432,64 458,104 518,78 C 568,56 622,86 680,62"/>
+          <circle class="fp-dot" cx="680" cy="105" r="3"   fill="var(--accent)"/>
+          <circle class="fp-dot" cx="680" cy="62"  r="2.5" fill="rgba(255,255,255,0.5)"/>
+          <text class="fp-label fp-label--market"  x="688" y="66">market</text>
+          <text class="fp-label fp-label--floor"   x="688" y="109">floor</text>
+          <text class="fp-label fp-label--premium" x="380" y="128">PREMIUM</text>
+        </g>
+      </svg>
+    </div>
+    <div class="fp-actions">
+      <div class="fp-action">
+        <div class="fp-action-icon">
+          <svg viewBox="0 0 20 20"><path d="M5 15L15 5"/><path d="M7 5h8v8"/></svg>
+        </div>
+        <p class="fp-action-name">Sell</p>
+        <p>Exit at market price, always above your floor. Your floor was always the worst case.</p>
+      </div>
+      <div class="fp-action">
+        <div class="fp-action-icon fp-action-icon--accent">
+          <svg viewBox="0 0 20 20"><rect x="4" y="9" width="12" height="8" rx="2"/><path d="M7 9V7a3 3 0 016 0v2"/><path d="M10 13v1"/></svg>
+        </div>
+        <p class="fp-action-name">Borrow</p>
+        <p>Get liquidity against your floor value. No liquidations, no expiry, no health factor.</p>
+      </div>
+      <div class="fp-action">
+        <div class="fp-action-icon">
+          <svg viewBox="0 0 20 20"><path d="M3 14l4-4 3 3 7-8"/><path d="M14 5h3v3"/></svg>
+        </div>
+        <p class="fp-action-name">Hold</p>
+        <p>Sit tight while your floor rises. The gap between floor and market keeps compounding.</p>
+      </div>
+    </div>
+  </section>
+
   <section class="wrap frame module-3col" style="border-top:none;">
     <div class="col-span2">
       <div class="label">Debt-Aware Credit Layer</div>
@@ -1497,6 +1590,53 @@
           }
         });
       };
+      // ── Floor Premium section ───────────────────────────────────────────
+      (function () {
+        var fpSection = document.querySelector('.floor-premium');
+        if (!fpSection) return;
+        // Background diagonal paths
+        if (!reduceMotion) {
+          var fpBg = document.getElementById('fp-bg');
+          if (fpBg) {
+            for (var i = 0; i < 28; i++) {
+              var p = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+              var sx = Math.random() * 760 * 0.5 - 80;
+              var sy = Math.random() * 380 * 0.3 - 60;
+              var ex = sx + 460 + Math.random() * 340;
+              var ey = sy + 260 + Math.random() * 180;
+              var mx = (sx + ex) / 2 + (Math.random() - 0.5) * 100;
+              var my = (sy + ey) / 2 + (Math.random() - 0.5) * 70;
+              p.setAttribute('d', 'M '+sx+','+sy+' Q '+mx+','+my+' '+ex+','+ey);
+              p.setAttribute('stroke', 'rgba(190,255,176,'+(0.022 + Math.random() * 0.1)+')');
+              p.setAttribute('stroke-width', (0.28 + Math.random() * 0.36).toFixed(2));
+              p.setAttribute('fill', 'none');
+              var dLen = 200 + Math.random() * 100;
+              p.setAttribute('stroke-dasharray', dLen + ' ' + (1400 + Math.random() * 400));
+              var dur = 20 + Math.random() * 13;
+              p.style.strokeDashoffset = (Math.random() * -600) + 'px';
+              p.style.animation = 'nl-crawl ' + dur + 's linear -' + (Math.random() * dur).toFixed(2) + 's infinite';
+              fpBg.appendChild(p);
+            }
+          }
+        }
+        // Chart + cards on scroll
+        var fpGroup   = fpSection.querySelector('.fp-chart-group');
+        var fpActions = fpSection.querySelector('.fp-actions');
+        if (!fpGroup) return;
+        var fire = function () {
+          fpGroup.classList.add('fp-chart-go');
+          if (fpActions) fpActions.classList.add('fp-actions-go');
+        };
+        if (reduceMotion) { fire(); return; }
+        if ('IntersectionObserver' in window) {
+          var fpObs = new IntersectionObserver(function (entries) {
+            entries.forEach(function (en) {
+              if (en.isIntersecting) { fire(); fpObs.disconnect(); }
+            });
+          }, { threshold: 0.25 });
+          fpObs.observe(fpSection);
+        } else { fire(); }
+      })();
       // ── Footer CTA floor/market animation ──────────────────────────────
       (function () {
         var nlBg = document.getElementById('nl-bg');
