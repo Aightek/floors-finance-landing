@@ -117,7 +117,7 @@
     .leaderboard { display: grid; min-height: 608px; border-top: 1px solid var(--border); grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .leaderboard-col { min-height: 608px; }
     .leaderboard-col + .leaderboard-col { border-left: 1px solid var(--border); }
-    .lb-stats { padding: 64px 44px; display: flex; flex-direction: column; gap: 16px; }
+    .lb-stats { padding: 64px 44px; display: flex; flex-direction: column; gap: 16px; justify-content: space-between; }
     .lb-live { display: inline-flex; align-items: center; gap: 6px; height: 34px; width: fit-content; border-radius: 6px; padding: 8px; color: var(--accent); font-size: 14px; line-height: 1.43; }
     .lb-live-dot { width: 8px; height: 8px; border-radius: 8px; background: var(--accent); animation: pulse-dot 2s ease-in-out infinite; }
     .lb-overview-title { margin: 0; color: #fafafa; font-size: 32px; font-weight: 600; letter-spacing: -2.4px; line-height: 1.2; }
@@ -130,7 +130,7 @@
     .lb-tier-item { display: inline-flex; flex-direction: column; align-items: center; gap: 4px; }
     .lb-tier-value { color: #fafafa; font-size: 24px; font-weight: 600; line-height: 1; letter-spacing: -.96px; }
     .lb-tier-label { color: var(--tier-label); font-size: 11px; line-height: 1; letter-spacing: .04px; }
-    .lb-rankings { padding: 64px 44px; display: flex; flex-direction: column; gap: 8px; }
+    .lb-rankings { padding: 64px 44px; display: flex; flex-direction: column; gap: 8px; justify-content: space-between; }
     .lb-rankings h3 { margin: 0; color: #fafafa; font-size: 16px; font-weight: 600; line-height: 1.4; }
     .lb-rank-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 4px; }
     .lb-rank-item { height: 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; font-size: 14px; line-height: 1.43; }
@@ -139,7 +139,7 @@
     .lb-rank-item.top2 .lb-rank-left { color: var(--rank-teal); font-weight: 500; }
     .lb-rank-item.top3 .lb-rank-left { color: var(--rank-purple); font-weight: 500; }
     .lb-rank-right { color: var(--rank-dim); font-weight: 500; flex: 0 0 auto; }
-    .lb-tasks { padding: 64px 44px; display: flex; flex-direction: column; gap: 12px; }
+    .lb-tasks { padding: 64px 44px; display: flex; flex-direction: column; gap: 12px; justify-content: space-between; }
     .lb-task-list { border: none; }
     .lb-task { min-height: 72px; padding: 14px 16px; display: flex; flex-direction: column; border: none; }
     .lb-task:not(:last-child) { border-bottom: 1px solid var(--border); }
@@ -429,6 +429,9 @@
         <li class="lb-rank-item"><span class="lb-rank-left">13 0xc1…77ae</span><span class="lb-rank-right">182 pts</span></li>
         <li class="lb-rank-item"><span class="lb-rank-left">14 based_trader</span><span class="lb-rank-right">170 pts</span></li>
         <li class="lb-rank-item"><span class="lb-rank-left">15 0x88…ee53</span><span class="lb-rank-right">156 pts</span></li>
+        <li class="lb-rank-item"><span class="lb-rank-left">16 early_bird.eth</span><span class="lb-rank-right">148 pts</span></li>
+        <li class="lb-rank-item"><span class="lb-rank-left">17 0xd7…b1a4</span><span class="lb-rank-right">135 pts</span></li>
+        <li class="lb-rank-item"><span class="lb-rank-left">18 floor_chad</span><span class="lb-rank-right">122 pts</span></li>
       </ul>
       <a href="#" class="lb-view-all"><span>View all rankings</span></a>
     </div>
@@ -436,20 +439,11 @@
       <div class="lb-task-list">
         <article class="lb-task">
           <div class="lb-task-head">
-            <h4>Join Presale</h4>
-            <p class="lb-task-points">25</p>
+            <h4>Presale Cycle</h4>
+            <p class="lb-task-points">50</p>
           </div>
           <div class="lb-task-copy">
-            <p>Presale · Enter the presale and commit funds.</p>
-          </div>
-        </article>
-        <article class="lb-task">
-          <div class="lb-task-head">
-            <h4>Complete Presale Cycle</h4>
-            <p class="lb-task-points">25</p>
-          </div>
-          <div class="lb-task-copy">
-            <p>Presale · Hold through the full presale round.</p>
+            <p>Presale · Enter and complete the full presale round.</p>
           </div>
         </article>
         <article class="lb-task">
@@ -481,20 +475,11 @@
         </article>
         <article class="lb-task">
           <div class="lb-task-head">
-            <h4>Join Discord</h4>
-            <p class="lb-task-points">20</p>
+            <h4>Community Engagement</h4>
+            <p class="lb-task-points">40</p>
           </div>
           <div class="lb-task-copy">
-            <p>Community · Verify and join the Floors Discord.</p>
-          </div>
-        </article>
-        <article class="lb-task">
-          <div class="lb-task-head">
-            <h4>Share on X</h4>
-            <p class="lb-task-points">20</p>
-          </div>
-          <div class="lb-task-copy">
-            <p>Community · Post about Floors with a verified link.</p>
+            <p>Community · Join Discord, share on X, participate.</p>
           </div>
         </article>
         <article class="lb-task">
