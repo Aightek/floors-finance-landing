@@ -928,10 +928,6 @@
     .fp-actions-go .fp-action:nth-child(1) { transition-delay:0s; }
     .fp-actions-go .fp-action:nth-child(2) { transition-delay:0.1s; }
     .fp-actions-go .fp-action:nth-child(3) { transition-delay:0.2s; }
-    .fp-action-icon { width:36px; height:36px; border-radius:8px; border:1px solid var(--border); display:flex; align-items:center; justify-content:center; margin-bottom:4px; flex-shrink:0; }
-    .fp-action-icon svg { width:16px; height:16px; stroke:var(--muted); stroke-width:1.5; fill:none; stroke-linecap:round; stroke-linejoin:round; }
-    .fp-action-icon--accent { background:rgba(190,255,176,0.08); border-color:rgba(190,255,176,0.22); }
-    .fp-action-icon--accent svg { stroke:var(--accent); }
     .fp-action-name { font-size:14px; font-weight:600; letter-spacing:-0.3px; color:var(--text); }
     .fp-action p { font-size:13px; line-height:1.6; color:var(--muted); margin:0; }
     @media (max-width:680px) {
@@ -1353,23 +1349,14 @@
     </div>
     <div class="fp-actions">
       <div class="fp-action">
-        <div class="fp-action-icon">
-          <svg viewBox="0 0 20 20"><path d="M5 15L15 5"/><path d="M7 5h8v8"/></svg>
-        </div>
         <p class="fp-action-name">Sell</p>
         <p>Exit at market price, always above your floor. Your floor was always the worst case.</p>
       </div>
       <div class="fp-action">
-        <div class="fp-action-icon fp-action-icon--accent">
-          <svg viewBox="0 0 20 20"><rect x="4" y="9" width="12" height="8" rx="2"/><path d="M7 9V7a3 3 0 016 0v2"/><path d="M10 13v1"/></svg>
-        </div>
         <p class="fp-action-name">Borrow</p>
         <p>Get liquidity against your floor value. No liquidations, no expiry, no health factor.</p>
       </div>
       <div class="fp-action">
-        <div class="fp-action-icon">
-          <svg viewBox="0 0 20 20"><path d="M3 14l4-4 3 3 7-8"/><path d="M14 5h3v3"/></svg>
-        </div>
         <p class="fp-action-name">Hold</p>
         <p>Sit tight while your floor rises. The gap between floor and market keeps compounding.</p>
       </div>
