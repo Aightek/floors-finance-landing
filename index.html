@@ -919,8 +919,11 @@
     .fp-chart-go .fp-dot     { animation:nl-fade 0.3s ease 1.8s forwards; }
     .fp-chart-go .fp-premium { opacity:0.75; }
     .fp-chart-go .fp-label   { animation:nl-fade 0.5s ease 2s forwards; }
-    .fp-actions { position:relative; z-index:1; display:grid; grid-template-columns:repeat(3,1fr); gap:16px; width:100%; max-width:760px; }
-    .fp-action { border:1px solid var(--border); border-radius:12px; padding:24px 20px; display:flex; flex-direction:column; gap:8px; background:rgba(10,10,10,0.5); opacity:0; transform:translateY(16px); transition:opacity 0.5s ease, transform 0.5s ease; }
+    .fp-actions { position:relative; z-index:1; display:grid; grid-template-columns:repeat(3,1fr); gap:0; width:100%; max-width:760px; }
+    .fp-action { padding:4px 32px; display:flex; flex-direction:column; gap:8px; opacity:0; transform:translateY(16px); transition:opacity 0.5s ease, transform 0.5s ease; }
+    .fp-action:first-child { padding-left:0; }
+    .fp-action:last-child  { padding-right:0; }
+    .fp-action + .fp-action { border-left:1px solid var(--border); }
     .fp-actions-go .fp-action { opacity:1; transform:translateY(0); }
     .fp-actions-go .fp-action:nth-child(1) { transition-delay:0s; }
     .fp-actions-go .fp-action:nth-child(2) { transition-delay:0.1s; }
@@ -933,6 +936,9 @@
     .fp-action p { font-size:13px; line-height:1.6; color:var(--muted); margin:0; }
     @media (max-width:680px) {
       .fp-actions { grid-template-columns:1fr; max-width:400px; }
+      .fp-action { padding:20px 0 0; }
+      .fp-action:first-child { padding-top:0; }
+      .fp-action + .fp-action { border-left:none; border-top:1px solid var(--border); }
       .fp-title { font-size:32px; }
       .floor-premium { gap:36px; padding:64px 20px 56px; }
     }
@@ -1594,29 +1600,23 @@
       (function () {
         var fpSection = document.querySelector('.floor-premium');
         if (!fpSection) return;
-        // Background diagonal paths
-        if (!reduceMotion) {
-          var fpBg = document.getElementById('fp-bg');
-          if (fpBg) {
-            for (var i = 0; i < 28; i++) {
-              var p = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-              var sx = Math.random() * 760 * 0.5 - 80;
-              var sy = Math.random() * 380 * 0.3 - 60;
-              var ex = sx + 460 + Math.random() * 340;
-              var ey = sy + 260 + Math.random() * 180;
-              var mx = (sx + ex) / 2 + (Math.random() - 0.5) * 100;
-              var my = (sy + ey) / 2 + (Math.random() - 0.5) * 70;
-              p.setAttribute('d', 'M '+sx+','+sy+' Q '+mx+','+my+' '+ex+','+ey);
-              p.setAttribute('stroke', 'rgba(190,255,176,'+(0.022 + Math.random() * 0.1)+')');
-              p.setAttribute('stroke-width', (0.28 + Math.random() * 0.36).toFixed(2));
-              p.setAttribute('fill', 'none');
-              var dLen = 200 + Math.random() * 100;
-              p.setAttribute('stroke-dasharray', dLen + ' ' + (1400 + Math.random() * 400));
-              var dur = 20 + Math.random() * 13;
-              p.style.strokeDashoffset = (Math.random() * -600) + 'px';
-              p.style.animation = 'nl-crawl ' + dur + 's linear -' + (Math.random() * dur).toFixed(2) + 's infinite';
-              fpBg.appendChild(p);
-            }
+        // Background lines — parallel to floor price curve, same pattern as footer-cta
+        var fpBg = document.getElementById('fp-bg');
+        if (fpBg && !reduceMotion) {
+          // Reference: floor line extended to full canvas width (760×380)
+          // Floor line: M 80,165 C 260,158 480,138 680,105 → extended to M -50,300 C 200,275 480,248 810,210
+          for (var i = 0; i < 30; i++) {
+            var yOff = (i - 14.5) * 12;
+            var d = 'M -50,'+(300+yOff)+' C 200,'+(275+yOff)+' 480,'+(248+yOff)+' 810,'+(210+yOff);
+            var p = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            p.setAttribute('d', d);
+            p.setAttribute('stroke', 'rgba(255,255,255,'+(0.022+i*0.005)+')');
+            p.setAttribute('stroke-width', String(0.3+i*0.018));
+            p.setAttribute('fill', 'none');
+            p.setAttribute('stroke-dasharray', '260 1600');
+            var dur = 20 + i * 0.9;
+            p.style.animation = 'nl-crawl '+dur+'s linear -'+(Math.random()*dur).toFixed(2)+'s infinite';
+            fpBg.appendChild(p);
           }
         }
         // Chart + cards on scroll
